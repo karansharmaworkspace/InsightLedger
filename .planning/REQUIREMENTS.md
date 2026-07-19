@@ -103,41 +103,41 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ING-01 | Phase 1 | Pending |
-| ING-02 | Phase 1 | Pending |
-| ING-03 | Phase 1 | Pending |
-| ING-04 | Phase 1 | Pending |
-| ING-05 | Phase 1 | Pending |
-| ING-06 | Phase 1 | Pending |
-| KG-01 | Phase 1 | Pending |
-| KG-02 | Phase 1 | Pending |
-| KG-03 | Phase 1 | Pending |
-| KG-04 | Phase 1 | Pending |
-| KG-05 | Phase 1 | Pending |
-| COP-01 | Phase 2 | Pending |
-| COP-02 | Phase 2 | Pending |
-| COP-03 | Phase 2 | Pending |
-| COP-04 | Phase 2 | Pending |
-| COP-05 | Phase 2 | Pending |
-| COP-06 | Phase 2 | Pending |
-| MNT-01 | Phase 3 | Pending |
-| MNT-02 | Phase 3 | Pending |
-| MNT-03 | Phase 3 | Pending |
-| MNT-04 | Phase 3 | Pending |
-| MNT-05 | Phase 3 | Pending |
-| CMP-01 | Phase 4 | Pending |
-| CMP-02 | Phase 4 | Pending |
-| CMP-03 | Phase 4 | Pending |
-| CMP-04 | Phase 4 | Pending |
-| LL-01 | Phase 4 | Pending |
-| LL-02 | Phase 4 | Pending |
-| LL-03 | Phase 4 | Pending |
-| LL-04 | Phase 4 | Pending |
-| UX-01 | Phase 5 | Pending |
-| UX-02 | Phase 5 | Pending |
-| UX-03 | Phase 5 | Pending |
-| UX-04 | Phase 5 | Pending |
-| UX-05 | Phase 5 | Pending |
+| ING-01 | Phase 2 | Pending |
+| ING-02 | Phase 3 | Pending |
+| ING-03 | Phase 2 | Pending |
+| ING-04 | Phase 2 | Pending |
+| ING-05 | Phase 4 | Pending |
+| ING-06 | Phase 4 | Pending |
+| KG-01 | Phase 4 | Pending |
+| KG-02 | Phase 4 | Pending |
+| KG-03 | Phase 4 | Pending |
+| KG-04 | Phase 4 | Pending |
+| KG-05 | Phase 5 | Pending |
+| COP-01 | Phase 6 | Pending |
+| COP-02 | Phase 6 | Pending |
+| COP-03 | Phase 6 | Pending |
+| COP-04 | Phase 9 | Pending |
+| COP-05 | Phase 6 | Pending |
+| COP-06 | Phase 6 | Pending |
+| MNT-01 | Phase 7 | Pending |
+| MNT-02 | Phase 7 | Pending |
+| MNT-03 | Phase 7 | Pending |
+| MNT-04 | Phase 7 | Pending |
+| MNT-05 | Phase 7 | Pending |
+| CMP-01 | Phase 8 | Pending |
+| CMP-02 | Phase 8 | Pending |
+| CMP-03 | Phase 8 | Pending |
+| CMP-04 | Phase 8 | Pending |
+| LL-01 | Phase 8 | Pending |
+| LL-02 | Phase 8 | Pending |
+| LL-03 | Phase 8 | Pending |
+| LL-04 | Phase 8 | Pending |
+| UX-01 | Phase 9 | Pending |
+| UX-02 | Phase 9 | Pending |
+| UX-03 | Phase 10 | Pending |
+| UX-04 | Phase 10 | Pending |
+| UX-05 | Phase 10 | Pending |
 
 **Coverage:**
 - v1 requirements: 30 total
@@ -146,4 +146,4 @@ Deferred to future release. Tracked but not in current roadmap.
 
 ---
 *Requirements defined: 2026-07-19*
-*Last updated: 2026-07-19 after initial definition*
+*Last updated: 2026-07-19 fixed phase mappings*

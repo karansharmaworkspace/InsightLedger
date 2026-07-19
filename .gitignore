@@ -1,0 +1,20 @@
+venv/
+__pycache__/
+*.pyc
+.env
+*.db
+storage/
+uploads/
+*.egg-info/
+dist/
+build/
+.DS_Store
+Thumbs.db
+node_modules/
+*.pt
+*.onnx
+*.bin
+*.safetensors
+.planning/
+.omo/
+Research Papers/

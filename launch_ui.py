@@ -6,14 +6,14 @@ import traceback
 # Ensure the root directory is in the path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from gui.dashboard import DPIDDashboard
 from PyQt6.QtWidgets import QApplication
+from gui.home_screen import HomeScreen
 
 def main():
     try:
-        print("Launching DPID AI Master Dashboard [Instrumentation Active]...")
+        print("Launching DocuPID...")
         app = QApplication(sys.argv)
-        window = DPIDDashboard()
+        window = HomeScreen()
         window.show()
         sys.exit(app.exec())
     except Exception:

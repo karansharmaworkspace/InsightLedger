@@ -2,7 +2,7 @@
 
 # Model weights (large binaries — track with DVC or Git LFS)
 models/*.pt
-!models/32class.pt
+
 models/*.pth
 models/*.gguf
 models/*.onnx

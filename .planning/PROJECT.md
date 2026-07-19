@@ -70,6 +70,7 @@ An AI-powered Industrial Knowledge Intelligence platform that ingests heterogene
 | Web-first responsive | Field technicians need mobile access without native app development | — Pending |
 | Sample data approach | No real proprietary industrial data available for hackathon | — Pending |
 | OKF as knowledge graph format | Google-backed open standard (June 2026), markdown-based, vendor-neutral, creates graph via file structure + links | ✓ Approved |
+| RAG + CAG architecture | RAG for retrieval, CAG (Cached-Augmented Generation) for instant responses to frequent queries | ✓ Approved |
 
 ## Evolution
 

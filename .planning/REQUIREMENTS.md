@@ -16,13 +16,13 @@ Requirements for hackathon prototype. Each maps to roadmap phases.
 - [ ] **ING-05**: System can process P&ID diagrams and extract equipment tags
 - [ ] **ING-06**: System can extract entities: equipment tags, process parameters, regulatory references, personnel, dates
 
-### Knowledge Graph
+### Knowledge Graph (OKF Format)
 
-- [ ] **KG-01**: System builds unified knowledge graph maintaining relationships across document types
-- [ ] **KG-02**: Knowledge graph updates automatically when new documents arrive
-- [ ] **KG-03**: System maintains document-to-entity relationships (which document mentions which equipment)
-- [ ] **KG-04**: System maintains entity-to-entity relationships (which equipment interacts with which)
-- [ ] **KG-05**: Knowledge graph is queryable via structured queries
+- [ ] **KG-01**: System builds unified knowledge graph using Open Knowledge Format (OKF) bundles
+- [ ] **KG-02**: Knowledge graph updates automatically when new documents arrive (OKF log.md tracking)
+- [ ] **KG-03**: System maintains document-to-entity relationships via OKF cross-links
+- [ ] **KG-04**: System maintains entity-to-entity relationships via OKF markdown links
+- [ ] **KG-05**: Knowledge graph is queryable via OKF structured queries (type, tags, links)
 
 ### Expert Knowledge Copilot
 

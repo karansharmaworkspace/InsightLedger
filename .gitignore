@@ -1,6 +1,76 @@
-.env
-*.db
-uploads/
+
+
+# Model weights (large binaries — track with DVC or Git LFS)
+models/*.pt
+!models/32class.pt
+models/*.pth
+models/*.gguf
+models/*.onnx
+models/*.engine
+models/*.torchscript
+
+
+
+
+# Python
 __pycache__/
 *.pyc
-venv/
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Logs
+*.log
+THREAD_FAULT.log
+CRITICAL_FAULT.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary
+temp_*
+*.tmp
+output/temp_transfer.json
+
+# Data cache
+data/*.json
+!data/class_memory.json
+
+# Translation cache (user-specific)
+~/.dpid_ai/
+
+# Training artifacts (not part of app)
+training/
+archive/
+
+# Planning (internal)
+.planning/
+.omo/
+
+# Kaggle
+*.ipynb_checkpoints/
+
+# Large data files
+*.npy
+*.h5
+*.hdf5
+
+# Large datasets (keep local, don't track)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.pdf

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0f1628"/>
+    </linearGradient>
+    <filter id="glow2"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect width="700" height="180" rx="12" fill="url(#bg2)"/>
+  <text x="350" y="28" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="13" fill="#5a8ab5" font-weight="600" letter-spacing="3">DETECTION ENGINE</text>
+  <!-- Grid of tiles being scanned -->
+  <g transform="translate(100,45)">
+    <!-- 4x3 grid of tiles -->
+    <g id="tilegrid">
+      <rect x="0" y="0" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="90" y="0" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="180" y="0" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="270" y="0" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="360" y="0" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="0" y="45" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="90" y="45" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="180" y="45" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="270" y="45" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="360" y="45" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="0" y="90" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="90" y="90" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="180" y="90" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="270" y="90" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+      <rect x="360" y="90" width="80" height="35" rx="4" fill="#0d1a2d" stroke="#1a2744" stroke-width="1"/>
+    </g>
+    <!-- Scanning beam -->
+    <rect x="-5" y="0" width="460" height="35" rx="4" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0">
+      <animate attributeName="y" values="0;45;90;0" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0.9;0.9;0" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <!-- Detected symbols (blinking) -->
+    <rect x="92" y="2" width="76" height="31" rx="3" fill="#00d4ff" opacity="0">
+      <animate attributeName="opacity" values="0;0.15;0.15;0" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+    </rect>
+    <rect x="272" y="47" width="76" height="31" rx="3" fill="#00ff88" opacity="0">
+      <animate attributeName="opacity" values="0;0.15;0.15;0" dur="4s" repeatCount="indefinite" begin="1.5s"/>
+    </rect>
+    <rect x="2" y="92" width="76" height="31" rx="3" fill="#ff6b6b" opacity="0">
+      <animate attributeName="opacity" values="0;0.15;0.15;0" dur="4s" repeatCount="indefinite" begin="2.5s"/>
+    </rect>
+    <rect x="362" y="47" width="76" height="31" rx="3" fill="#ffd93d" opacity="0">
+      <animate attributeName="opacity" values="0;0.15;0.15;0" dur="4s" repeatCount="indefinite" begin="3.5s"/>
+    </rect>
+  </g>
+  <!-- Stats on right -->
+  <g transform="translate(560,55)">
+    <text x="0" y="0" font-family="Segoe UI,sans-serif" font-size="9" fill="#3a6a95" letter-spacing="1">TILE SIZE</text>
+    <text x="0" y="18" font-family="Segoe UI,sans-serif" font-size="18" fill="#00d4ff" font-weight="700">640<span font-size="10" fill="#3a6a95">px</span></text>
+    <text x="0" y="45" font-family="Segoe UI,sans-serif" font-size="9" fill="#3a6a95" letter-spacing="1">OVERLAP</text>
+    <text x="0" y="63" font-family="Segoe UI,sans-serif" font-size="18" fill="#00ff88" font-weight="700">20<span font-size="10" fill="#3a6a95">%</span></text>
+    <text x="0" y="90" font-family="Segoe UI,sans-serif" font-size="9" fill="#3a6a95" letter-spacing="1">CLASSES</text>
+    <text x="0" y="108" font-family="Segoe UI,sans-serif" font-size="18" fill="#ffd93d" font-weight="700">32</text>
+  </g>
+</svg>

@@ -57,11 +57,26 @@ Requirements for hackathon prototype. Each maps to roadmap phases.
 
 ### User Experience
 
-- [ ] **UX-01**: Responsive web interface works on desktop and mobile devices
+- [ ] **UX-01**: PyQt6 desktop GUI with crop, zoom, pan support
 - [ ] **UX-02**: Search results appear within 5 seconds (time-to-answer improvement)
 - [ ] **UX-03**: Interface provides intuitive navigation across document types
-- [ ] **UX-04**: System provides visual knowledge graph exploration
+- [ ] **UX-04**: System provides visual knowledge graph exploration (vis.js or pyvis)
 - [ ] **UX-05**: Dashboard shows compliance status and maintenance insights
+- [ ] **UX-06**: AI Assistant powered by Groq Llama 3.3 for natural language queries
+- [ ] **UX-07**: 605-class reclassification sidebar with thumbnails (like DPID AI)
+
+### Tech Stack (DPID AI Compatible)
+
+- [ ] **TS-01**: YOLOv8 (Ultralytics) for 32-class symbol detection
+- [ ] **TS-02**: DINOv2 (Facebook Research) for 605-subclass reclassification
+- [ ] **TS-03**: SAHI for tiled inference on large P&ID images (up to 7000px)
+- [ ] **TS-04**: ensemble-boxes for Weighted Boxes Fusion (IoU=0.60)
+- [ ] **TS-05**: OpenCV for image preprocessing (CLAHE, deskew)
+- [ ] **TS-06**: TrOCR + DBNet for text recognition and detection
+- [ ] **TS-07**: Groq API for fast LLM inference (Llama 3.3 70B)
+- [ ] **TS-08**: ClassMemory system for user reclassification learning
+- [ ] **TS-09**: VisualRAG for DINOv2-based reclassification gallery
+- [ ] **TS-10**: Topology engine with HoughLinesP + BFS connectivity solver
 
 ## v2 Requirements
 
@@ -93,11 +108,12 @@ Deferred to future release. Tracked but not in current roadmap.
 |---------|--------|
 | Real-time sensor data integration | Requires IoT infrastructure not available in hackathon |
 | Full enterprise deployment | Hackathon prototype only, demo with sample data |
-| Custom hardware/on-premise | Cloud-first for hackathon, demonstrate capability |
+| Custom hardware/on-premise | Desktop-first with PyQt6, demo capability |
 | Complete regulatory database | Use representative samples of Factory Act, OISD, PESO |
-| Native mobile app | Web-first responsive design sufficient for demo |
-| Multi-language support | English-first for hackathon, can add later |
+| Native mobile app | PyQt6 desktop GUI sufficient for demo |
+| Multi-language support | Can add via deep-translator later |
 | Full SCADA integration | Complex industrial protocol, out of scope |
+| Web-based frontend | Using PyQt6 desktop GUI like DPID AI |
 
 ## Traceability
 

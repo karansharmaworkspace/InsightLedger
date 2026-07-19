@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 140">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0f1628"/>
+    </linearGradient>
+    <linearGradient id="glow1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00d4ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <rect width="700" height="140" rx="12" fill="url(#bg1)"/>
+  <!-- Pipeline flow line -->
+  <line x1="80" y1="70" x2="620" y2="70" stroke="#1a2744" stroke-width="3"/>
+  <!-- Flowing dot -->
+  <circle r="5" fill="#00d4ff" filter="url(#blur1)">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M80,70 L620,70"/>
+  </circle>
+  <circle r="3" fill="#00d4ff">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M80,70 L620,70"/>
+  </circle>
+  <!-- Stage boxes -->
+  <g id="stages">
+    <rect x="50" y="48" width="60" height="44" rx="8" fill="#0d1a2d" stroke="#1a3a5c" stroke-width="1.5"/>
+    <text x="80" y="68" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="8" fill="#5a8ab5" font-weight="600">INPUT</text>
+    <text x="80" y="82" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">P&amp;ID</text>
+    <rect x="170" y="48" width="60" height="44" rx="8" fill="#0d1a2d" stroke="#1a3a5c" stroke-width="1.5"/>
+    <text x="200" y="68" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="8" fill="#5a8ab5" font-weight="600">DETECT</text>
+    <text x="200" y="82" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">YOLOv8</text>
+    <rect x="290" y="48" width="60" height="44" rx="8" fill="#0d1a2d" stroke="#1a3a5c" stroke-width="1.5"/>
+    <text x="320" y="68" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="8" fill="#5a8ab5" font-weight="600">CLASSIFY</text>
+    <text x="320" y="82" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">DINOv2</text>
+    <rect x="410" y="48" width="60" height="44" rx="8" fill="#0d1a2d" stroke="#1a3a5c" stroke-width="1.5"/>
+    <text x="440" y="68" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="8" fill="#5a8ab5" font-weight="600">TOPOLOGY</text>
+    <text x="440" y="82" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">BFS</text>
+    <rect x="530" y="48" width="60" height="44" rx="8" fill="#0d1a2d" stroke="#1a3a5c" stroke-width="1.5"/>
+    <text x="560" y="68" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="8" fill="#5a8ab5" font-weight="600">EXPORT</text>
+    <text x="560" y="82" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">DEXPI</text>
+  </g>
+  <!-- Arrow connectors -->
+  <path d="M115,70 L165,70" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M235,70 L285,70" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M355,70 L405,70" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M475,70 L525,70" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Pulse on each stage -->
+  <rect x="50" y="48" width="60" height="44" rx="8" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite" begin="0s"/>
+  </rect>
+  <rect x="170" y="48" width="60" height="44" rx="8" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+  </rect>
+  <rect x="290" y="48" width="60" height="44" rx="8" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+  </rect>
+  <rect x="410" y="48" width="60" height="44" rx="8" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+  </rect>
+  <rect x="530" y="48" width="60" height="44" rx="8" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite" begin="2.4s"/>
+  </rect>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a3a5c"/>
+    </marker>
+  </defs>
+</svg>

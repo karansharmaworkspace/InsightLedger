@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+  <key id="d0" for="node" attr.name="label" attr.type="string"/>
+  <key id="d1" for="node" attr.name="Labels" attr.type="string"/>
+  <key id="d2" for="node" attr.name="raw_id" attr.type="int"/>
+  <key id="d3" for="node" attr.name="fine_class" attr.type="string"/>
+  <key id="d4" for="node" attr.name="fine_raw_id" attr.type="string"/>
+  <key id="d5" for="node" attr.name="type_key" attr.type="string"/>
+  <key id="d6" for="node" attr.name="xmin" attr.type="double"/>
+  <key id="d7" for="node" attr.name="ymin" attr.type="double"/>
+  <key id="d8" for="node" attr.name="xmax" attr.type="double"/>
+  <key id="d9" for="node" attr.name="ymax" attr.type="double"/>
+  <key id="d10" for="edge" attr.name="edge_label" attr.type="string"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="Electrically_Insulated1">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">70.3</data>
+      <data key="d7">7.5</data>
+      <data key="d8">98.7</data>
+      <data key="d9">26.3</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="Electrically_Insulated2">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">6.6</data>
+      <data key="d7">5.7</data>
+      <data key="d8">34.3</data>
+      <data key="d9">24.9</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="Electrically_Insulated3">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">6.3</data>
+      <data key="d7">41.4</data>
+      <data key="d8">35.8</data>
+      <data key="d9">61.5</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="ystrainer1">
+      <data key="d0">y-strainer</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">76.1</data>
+      <data key="d7">42.6</data>
+      <data key="d8">100.8</data>
+      <data key="d9">60.3</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="diaphragm_valve1">
+      <data key="d0">diaphragm_valve</data>
+      <data key="d1">N/A</data>
+      <data key="d2">12</data>
+      <data key="d6">27.7</data>
+      <data key="d7">15.3</data>
+      <data key="d8">52.0</data>
+      <data key="d9">32.0</data>
+      <data key="d5">diaphragm_valve</data>
+    </node>
+    <node id="diaphragm_valve2">
+      <data key="d0">diaphragm_valve</data>
+      <data key="d1">N/A</data>
+      <data key="d2">12</data>
+      <data key="d6">27.0</data>
+      <data key="d7">37.2</data>
+      <data key="d8">48.3</data>
+      <data key="d9">52.2</data>
+      <data key="d5">diaphragm_valve</data>
+    </node>
+  </graph>
+</graphml>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 160">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0f1628"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="160" rx="12" fill="url(#bg4)"/>
+  <text x="350" y="28" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="13" fill="#5a8ab5" font-weight="600" letter-spacing="3">TOPOLOGY RECONSTRUCTION</text>
+  <!-- Network graph -->
+  <g transform="translate(80,50)">
+    <!-- Edges -->
+    <line x1="40" y1="30" x2="140" y2="50" stroke="#1a3a5c" stroke-width="2" opacity="0.6"/>
+    <line x1="140" y1="50" x2="240" y2="30" stroke="#1a3a5c" stroke-width="2" opacity="0.6"/>
+    <line x1="240" y1="30" x2="340" y2="60" stroke="#1a3a5c" stroke-width="2" opacity="0.6"/>
+    <line x1="140" y1="50" x2="200" y2="100" stroke="#1a3a5c" stroke-width="2" opacity="0.6"/>
+    <line x1="340" y1="60" x2="400" y2="100" stroke="#1a3a5c" stroke-width="2" opacity="0.6"/>
+    <line x1="200" y1="100" x2="340" y2="60" stroke="#1a3a5c" stroke-width="2" opacity="0.6"/>
+    <!-- BFS traversal pulse -->
+    <circle cx="40" cy="30" r="10" fill="#00d4ff" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="5s" repeatCount="indefinite" begin="0s"/>
+      <animate attributeName="r" values="8;14;8" dur="5s" repeatCount="indefinite" begin="0s"/>
+    </circle>
+    <circle cx="140" cy="50" r="10" fill="#00d4ff" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="5s" repeatCount="indefinite" begin="0.8s"/>
+      <animate attributeName="r" values="8;14;8" dur="5s" repeatCount="indefinite" begin="0.8s"/>
+    </circle>
+    <circle cx="240" cy="30" r="10" fill="#00ff88" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="5s" repeatCount="indefinite" begin="1.6s"/>
+      <animate attributeName="r" values="8;14;8" dur="5s" repeatCount="indefinite" begin="1.6s"/>
+    </circle>
+    <circle cx="340" cy="60" r="10" fill="#00ff88" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="5s" repeatCount="indefinite" begin="2.4s"/>
+      <animate attributeName="r" values="8;14;8" dur="5s" repeatCount="indefinite" begin="2.4s"/>
+    </circle>
+    <circle cx="200" cy="100" r="10" fill="#ffd93d" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="5s" repeatCount="indefinite" begin="3.2s"/>
+      <animate attributeName="r" values="8;14;8" dur="5s" repeatCount="indefinite" begin="3.2s"/>
+    </circle>
+    <circle cx="400" cy="100" r="10" fill="#ff6b6b" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="5s" repeatCount="indefinite" begin="4s"/>
+      <animate attributeName="r" values="8;14;8" dur="5s" repeatCount="indefinite" begin="4s"/>
+    </circle>
+    <!-- Nodes -->
+    <circle cx="40" cy="30" r="7" fill="#0d1a2d" stroke="#00d4ff" stroke-width="2"/>
+    <circle cx="140" cy="50" r="7" fill="#0d1a2d" stroke="#00d4ff" stroke-width="2"/>
+    <circle cx="240" cy="30" r="7" fill="#0d1a2d" stroke="#00ff88" stroke-width="2"/>
+    <circle cx="340" cy="60" r="7" fill="#0d1a2d" stroke="#00ff88" stroke-width="2"/>
+    <circle cx="200" cy="100" r="7" fill="#0d1a2d" stroke="#ffd93d" stroke-width="2"/>
+    <circle cx="400" cy="100" r="7" fill="#0d1a2d" stroke="#ff6b6b" stroke-width="2"/>
+    <!-- Node labels -->
+    <text x="40" y="55" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">P-101</text>
+    <text x="140" y="75" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">V-201</text>
+    <text x="240" y="22" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">E-301</text>
+    <text x="340" y="85" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">C-401</text>
+    <text x="200" y="125" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">L-501</text>
+    <text x="400" y="125" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="7" fill="#3a6a95">T-601</text>
+  </g>
+  <!-- Edge traversal animation -->
+  <g>
+    <circle r="3" fill="#00d4ff">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M120,80 L220,100 L320,80 L420,100"/>
+    </circle>
+    <circle r="3" fill="#00ff88">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M120,80 L280,130 L420,100"/>
+    </circle>
+  </g>
+  <!-- Stats -->
+  <g transform="translate(570,55)">
+    <text x="0" y="0" font-family="Segoe UI,sans-serif" font-size="9" fill="#3a6a95" letter-spacing="1">ALGORITHM</text>
+    <text x="0" y="18" font-family="Segoe UI,sans-serif" font-size="14" fill="#00d4ff" font-weight="700">BFS</text>
+    <text x="0" y="45" font-family="Segoe UI,sans-serif" font-size="9" fill="#3a6a95" letter-spacing="1">CONNECTIVITY</text>
+    <text x="0" y="63" font-family="Segoe UI,sans-serif" font-size="14" fill="#00ff88" font-weight="700">98.7%</text>
+    <text x="0" y="90" font-family="Segoe UI,sans-serif" font-size="9" fill="#3a6a95" letter-spacing="1">MAX DEPTH</text>
+    <text x="0" y="108" font-family="Segoe UI,sans-serif" font-size="14" fill="#ffd93d" font-weight="700">4</text>
+  </g>
+</svg>

@@ -93,7 +93,7 @@ async def digitize_pid(file: UploadFile = File(...), db: Session = Depends(get_d
 
 @app.get("/", response_class=HTMLResponse)
 def serve_frontend():
-    frontend_path = os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "index.html")
+    frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend", "index.html")
     if os.path.exists(frontend_path):
         return HTMLResponse(content=open(frontend_path).read())
     return HTMLResponse(content="<h1>Industrial Knowledge Assistant</h1><p>Frontend not found. API is running at /docs</p>")
@@ -101,7 +101,7 @@ def serve_frontend():
 
 @app.get("/dashboard", response_class=HTMLResponse)
 def serve_dashboard():
-    dashboard_path = os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dashboard.html")
+    dashboard_path = os.path.join(os.path.dirname(__file__), "..", "frontend", "dashboard.html")
     if os.path.exists(dashboard_path):
         return HTMLResponse(content=open(dashboard_path).read())
     return HTMLResponse(content="<h1>Dashboard not found</h1>")

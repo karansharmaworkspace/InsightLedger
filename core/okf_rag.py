@@ -1,80 +1,80 @@
+"""RAG engine over an OKF (Open Knowledge Format) bundle.
+
+OKF is Google's open standard for representing knowledge as markdown files
+with YAML frontmatter. See: https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md
+"""
 from __future__ import annotations
 
-import json
 import os
 import re
+from pathlib import Path
 from typing import Any
 
+import yaml
 from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.getcwd(), ".env"), override=True)
 
 
-class OKFRAG:
-    def __init__(self, ontology_path: str | None = None):
-        if ontology_path is None:
-            ontology_path = os.path.join(os.getcwd(), "assets", "legend_classification.json")
-        self.ontology_path = ontology_path
-        self.classes: dict[str, dict[str, Any]] = {}
+def _parse_frontmatter(text: str) -> tuple[dict[str, Any], str]:
+    """Extract YAML frontmatter and body from markdown."""
+    if not text.startswith("---"):
+        return {}, text
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return {}, text
+    try:
+        meta = yaml.safe_load(parts[1]) or {}
+    except yaml.YAMLError:
+        meta = {}
+    body = parts[2].strip()
+    return meta, body
+
+
+def _keywords(text: str) -> set[str]:
+    text = re.sub(r"[^a-z0-9_\s]", " ", text.lower())
+    stops = {
+        "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
+        "have", "has", "had", "do", "does", "did", "will", "would", "could",
+        "should", "may", "might", "shall", "can", "to", "of", "in", "for",
+        "on", "with", "at", "by", "from", "as", "into", "and", "but", "or",
+        "not", "so", "this", "that", "these", "those", "none",
+    }
+    return {w for w in text.split() if len(w) > 2 and w not in stops}
+
+
+class OntologyRAG:
+    """Reads an OKF bundle and retrieves relevant concepts."""
+
+    def __init__(self, okf_path: str | None = None):
+        if okf_path is None:
+            okf_path = os.path.join(os.getcwd(), "okf")
+        self.okf_path = Path(okf_path)
         self.chunks: list[dict[str, Any]] = []
         self._loaded = False
 
-    def load(self):
+    def load(self) -> "OntologyRAG":
         if self._loaded:
             return self
-        if not os.path.exists(self.ontology_path):
+        if not self.okf_path.is_dir():
             return self
 
-        with open(self.ontology_path, "r") as f:
-            raw = json.load(f)
+        for md_file in sorted(self.okf_path.rglob("*.md")):
+            rel = md_file.relative_to(self.okf_path)
+            concept_id = str(rel.with_suffix("")).replace("\\", "/")
 
-        legend = raw.get("legend_classification", {})
-        self.classes = legend.get("classes", {})
-
-        self.chunks = []
-        for parent_name, info in self.classes.items():
-            subclasses = info.get("subclasses", [])
-            count = len(subclasses)
-            sub_list = ", ".join(s.replace("_", " ") for s in subclasses[:30])
-            if count > 30:
-                sub_list += f", ... ({count - 30} more)"
+            text = md_file.read_text(encoding="utf-8")
+            meta, body = _parse_frontmatter(text)
+            full_text = f"{meta.get('title', '')}\n{body}" if meta.get("title") else body
 
             self.chunks.append({
-                "type": "parent_class",
-                "id": parent_name,
-                "text": (
-                    f"Parent class: {parent_name}\n"
-                    f"Subclass count: {count}\n"
-                    f"Subclasses: {sub_list}"
-                ),
-                "keywords": self._keywords(f"{parent_name} {' '.join(subclasses)}"),
-                "data": {"parent": parent_name, "subclasses": subclasses}
+                "type": meta.get("type", "concept"),
+                "id": concept_id,
+                "text": full_text,
+                "keywords": _keywords(full_text),
+                "data": meta,
             })
-
-            for sub in subclasses:
-                display = sub.replace("_", " ")
-                self.chunks.append({
-                    "type": "subclass",
-                    "id": sub,
-                    "text": f"{display} is a subclass of {parent_name}",
-                    "keywords": self._keywords(f"{sub} {parent_name} {display}"),
-                    "data": {"parent": parent_name, "subclass": sub, "display": display}
-                })
-
-        meta = legend.get("metadata", {})
-        summary = (
-            f"OKF Ontology: {meta.get('total_classes', len(self.classes))} parent classes, "
-            f"{meta.get('total_subclasses', 0)} subclasses. "
-            f"Parents: {', '.join(self.classes.keys())}."
-        )
-        self.chunks.insert(0, {
-            "type": "ontology_summary",
-            "id": "ontology_summary",
-            "text": summary,
-            "keywords": self._keywords(summary),
-            "data": meta
-        })
 
         self._loaded = True
         return self
@@ -85,7 +85,7 @@ class OKFRAG:
         if not self.chunks:
             return []
 
-        q_kw = self._keywords(query)
+        q_kw = _keywords(query)
         q_lower = query.lower()
 
         scored: list[tuple[float, dict[str, Any]]] = []
@@ -101,31 +101,15 @@ class OKFRAG:
                 scored.append((score, chunk))
 
         scored.sort(key=lambda x: x[0], reverse=True)
-        results = [c for _, c in scored[:top_k]]
-
-        if not results:
-            results = [c for c in self.chunks if c["type"] == "ontology_summary"][:1]
-
-        return results
-
-    def _keywords(self, text: str) -> set[str]:
-        text = re.sub(r"[^a-z0-9_\s]", " ", text.lower())
-        stops = {
-            "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
-            "have", "has", "had", "do", "does", "did", "will", "would", "could",
-            "should", "may", "might", "shall", "can", "to", "of", "in", "for",
-            "on", "with", "at", "by", "from", "as", "into", "and", "but", "or",
-            "not", "so", "this", "that", "these", "those", "none",
-        }
-        return {w for w in text.split() if len(w) > 2 and w not in stops}
+        return [c for _, c in scored[:top_k]]
 
 
-class OKFRAGChat:
+class OntologyRAGChat:
     def __init__(self):
         self.api_key: str | None = os.getenv("GROQ_API_KEY")
         self.client = Groq(api_key=self.api_key)
         self.model: str | None = os.getenv("CHAT_MODEL", "llama-3.3-70b-versatile")
-        self.rag = OKFRAG().load()
+        self.rag = OntologyRAG().load()
 
     def ask(self, query: str, stream: bool = True):
         relevant = self.rag.retrieve(query, top_k=8)
@@ -133,13 +117,13 @@ class OKFRAGChat:
 
         prompt = (
             "You are an expert P&ID (Piping & Instrumentation Diagram) analyst.\n"
-            "You have access to an OKF (Ontology Knowledge Framework) containing "
+            "You have access to an OKF (Open Knowledge Format) bundle containing "
             "605 P&ID symbol subclasses across 15 parent classes.\n\n"
-            "Use the following ontology context to answer the user's question.\n"
+            "Use the following knowledge context to answer the user's question.\n"
             "Be precise. Reference specific parent classes and subclasses.\n"
             "If asked about a specific symbol, list its parent class and similar symbols.\n"
             "If the question is about the ontology structure, summarize what's available.\n\n"
-            f"--- OKF Context ---\n{context_str}\n--- End Context ---\n\n"
+            f"--- Knowledge Context ---\n{context_str}\n--- End Context ---\n\n"
             f"User Question: {query}\n\n"
             "Answer:"
         )
@@ -153,5 +137,5 @@ class OKFRAGChat:
                 stream=stream,
             )
         except Exception as e:
-            print(f"[OKF-RAG ERROR] {e}")
+            print(f"[OntologyRAG ERROR] {e}")
             return None

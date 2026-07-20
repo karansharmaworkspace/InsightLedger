@@ -4,8 +4,8 @@ from PyQt6.QtWidgets import (
     QSplitter
 )
 from PyQt6.QtCore import Qt
-import json
 import os
+import yaml
 
 
 class OKFDashboardPage(QWidget):
@@ -22,7 +22,7 @@ class OKFDashboardPage(QWidget):
         title.setStyleSheet("color: #fff; font-size: 24px; font-weight: bold;")
         layout.addWidget(title)
 
-        subtitle = QLabel("Ontology Knowledge Framework - Symbol knowledge graph explorer")
+        subtitle = QLabel("Open Knowledge Format - P&ID symbol knowledge bundle explorer")
         subtitle.setStyleSheet("color: #888; font-size: 13px;")
         layout.addWidget(subtitle)
 
@@ -35,7 +35,7 @@ class OKFDashboardPage(QWidget):
         left_layout.setContentsMargins(0, 0, 0, 0)
 
         self.knowledge_tree = QTreeWidget()
-        self.knowledge_tree.setHeaderLabel("Symbol Ontology")
+        self.knowledge_tree.setHeaderLabel("Symbol Knowledge Bundle")
         self.knowledge_tree.setStyleSheet("""
             QTreeWidget { background: #16213e; color: #ccc; border: 1px solid #1a1a3e;
                           border-radius: 6px; font-size: 12px; }
@@ -44,7 +44,7 @@ class OKFDashboardPage(QWidget):
         self.knowledge_tree.itemClicked.connect(self._on_item_clicked)
         left_layout.addWidget(self.knowledge_tree)
 
-        load_btn = QPushButton("Load Knowledge Base")
+        load_btn = QPushButton("Load Knowledge Bundle")
         load_btn.clicked.connect(self._load_knowledge)
         left_layout.addWidget(load_btn)
 
@@ -75,39 +75,85 @@ class OKFDashboardPage(QWidget):
     def _load_knowledge(self):
         self.knowledge_tree.clear()
         base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        json_path = os.path.join(base, "assets", "legend_classification.json")
+        okf_dir = os.path.join(base, "okf")
 
-        if not os.path.exists(json_path):
-            self.detail_display.setText("Knowledge base not found. Place legend_classification.json in assets/")
+        if not os.path.isdir(okf_dir):
+            self.detail_display.setText("OKF bundle not found. Place okf/ in project root.")
             return
 
-        with open(json_path, 'r') as f:
-            data = json.load(f)
-
-        classes = data.get("legend_classification", {}).get("classes", {})
         root = QTreeWidgetItem(self.knowledge_tree)
         root.setText(0, "P&ID Symbols")
         root.setExpanded(True)
 
-        for parent_name, info in classes.items():
-            subclasses = info.get("subclasses", [])
+        classes_dir = os.path.join(okf_dir, "classes")
+        if not os.path.isdir(classes_dir):
+            self.detail_display.setText("No classes/ directory in OKF bundle.")
+            return
+
+        count = 0
+        for fname in sorted(os.listdir(classes_dir)):
+            if not fname.endswith(".md"):
+                continue
+            fpath = os.path.join(classes_dir, fname)
+            with open(fpath, "r", encoding="utf-8") as f:
+                text = f.read()
+
+            # Parse frontmatter
+            if text.startswith("---"):
+                parts = text.split("---", 2)
+                if len(parts) >= 3:
+                    try:
+                        meta = yaml.safe_load(parts[1]) or {}
+                    except yaml.YAMLError:
+                        meta = {}
+                    body = parts[2].strip()
+                else:
+                    meta = {}
+                    body = text
+            else:
+                meta = {}
+                body = text
+
+            title = meta.get("title", fname.replace(".md", ""))
+            subclasses = []
+            in_list = False
+            for line in body.split("\n"):
+                if line.strip() == "## Subclasses":
+                    in_list = True
+                    continue
+                if in_list and line.startswith("- "):
+                    subclasses.append(line[2:].strip())
+                elif in_list and line.startswith("#"):
+                    break
+
             parent_item = QTreeWidgetItem(root)
-            parent_item.setText(0, f"{parent_name} ({len(subclasses)})")
+            parent_item.setText(0, f"{title} ({len(subclasses)})")
             parent_item.setExpanded(False)
+            parent_item.setData(0, Qt.ItemDataRole.UserRole, {"meta": meta, "body": body})
+
             for sub in subclasses:
                 child = QTreeWidgetItem(parent_item)
-                child.setText(0, sub.replace("_", " "))
-                child.setData(0, Qt.ItemDataRole.UserRole, {"parent": parent_name, "subclass": sub})
+                child.setText(0, sub)
+                child.setData(0, Qt.ItemDataRole.UserRole, {"parent": title, "subclass": sub})
+            count += 1
 
-        self.detail_display.setText(f"Loaded {len(classes)} parent classes.\nClick a symbol to view details.")
+        self.detail_display.setText(f"Loaded {count} parent classes from OKF bundle.\nClick a symbol to view details.")
 
     def _on_item_clicked(self, item, col):
         data = item.data(0, Qt.ItemDataRole.UserRole)
-        if data:
+        if data and "subclass" in data:
             self.detail_display.setText(
                 f"<b>Parent Class:</b> {data['parent']}<br>"
                 f"<b>Subclass:</b> {data['subclass']}<br><br>"
                 f"<i>DINOv2 embeddings available for reclassification.</i>"
+            )
+        elif data and "meta" in data:
+            meta = data["meta"]
+            self.detail_display.setText(
+                f"<b>{meta.get('title', item.text(0))}</b><br>"
+                f"<b>Type:</b> {meta.get('type', 'N/A')}<br>"
+                f"<b>Description:</b> {meta.get('description', 'N/A')}<br>"
+                f"<b>Tags:</b> {', '.join(meta.get('tags', []))}"
             )
         else:
             self.detail_display.setText(f"<b>{item.text(0)}</b>")

@@ -8,6 +8,10 @@ ET Hackathon 2.0 | Team InsightLedger
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange.svg)](https://pytorch.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](#license)
 
+<p align="center">
+  <img src="assets/svg/01-logo.svg" alt="DocuPID Logo" width="400">
+</p>
+
 ---
 
 ## Table of Contents
@@ -22,7 +26,6 @@ ET Hackathon 2.0 | Team InsightLedger
 - [Industry Applications](#industry-applications)
 - [Getting Started](#getting-started)
 - [API Reference](#api-reference)
-- [Presentation Assets](#presentation-assets)
 - [Team](#team)
 - [Roadmap](#roadmap)
 - [FAQ](#faq)
@@ -36,6 +39,10 @@ ET Hackathon 2.0 | Team InsightLedger
 ### The Silent Crisis in Industrial Plants
 
 Every day, engineers in oil refineries, chemical plants, and power stations make critical safety decisions based on **paper Piping & Instrumentation Diagrams (P&IDs)**. These documents are the backbone of industrial operations — they show how every valve, pipe, pump, and instrument connects.
+
+<p align="center">
+  <img src="assets/svg/02-problem.svg" alt="The Problem" width="700">
+</p>
 
 But there's a massive problem:
 
@@ -91,6 +98,16 @@ DocuPID is a **multi-stage AI pipeline** that transforms scanned P&ID images int
 
 ### The 6-Step Pipeline
 
+<p align="center">
+  <img src="assets/svg/09-demo-workflow.svg" alt="User Workflow" width="700">
+</p>
+
+### Processing Pipeline
+
+<p align="center">
+  <img src="assets/svg/04-pipeline.svg" alt="Processing Pipeline" width="700">
+</p>
+
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
 │   UPLOAD    │───▶│    AI       │───▶│  KNOWLEDGE  │
@@ -143,6 +160,10 @@ DocuPID is a **multi-stage AI pipeline** that transforms scanned P&ID images int
 ## Architecture
 
 ### High-Level System Design
+
+<p align="center">
+  <img src="assets/svg/03-architecture.svg" alt="System Architecture" width="700">
+</p>
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -198,6 +219,10 @@ Raw Image
 
 ## Tech Stack
 
+<p align="center">
+  <img src="assets/svg/08-tech-stack.svg" alt="Technology Stack" width="700">
+</p>
+
 ### AI/ML Pipeline
 
 | Technology | Version | Purpose | Why We Chose It |
@@ -249,6 +274,10 @@ Raw Image
 
 ### 1. `pid_ocr.py` — Text Detection & Recognition
 
+<p align="center">
+  <img src="assets/svg/05-ocr-engine.svg" alt="OCR Engine" width="600">
+</p>
+
 **Purpose**: Extract text labels from P&ID images with high accuracy.
 
 **Pipeline**:
@@ -290,6 +319,10 @@ def get_pipeline_status(job_id: str) -> PipelineStatus:
 ```
 
 ### 3. `knowledge_graph.py` — Graph Construction
+
+<p align="center">
+  <img src="assets/svg/06-knowledge-graph.svg" alt="Knowledge Graph" width="600">
+</p>
 
 **Purpose**: Build a knowledge graph from detected symbols and their relationships.
 
@@ -366,6 +399,10 @@ Level 1: Major Categories (12)
 ---
 
 ## Impact & Results
+
+<p align="center">
+  <img src="assets/svg/10-impact.svg" alt="Impact and Future" width="700">
+</p>
 
 ### Quantitative Results
 
@@ -560,75 +597,11 @@ answer = client.query("What instruments are connected to TANK-101?")
 
 ---
 
-## Presentation Assets
-
-All presentation SVGs are in `assets/svg/`:
-
-| Slide | File | Content | Key Points |
-|-------|------|---------|------------|
-| 1 | `01-logo.svg` | DocuPID animated logo | Brand identity, animated hexagon |
-| 2 | `02-problem.svg` | The problem: paper P&IDs | 72% paper, $4.2M cost, 6-12 months |
-| 3 | `03-architecture.svg` | System architecture overview | 4-stage pipeline, core modules |
-| 4 | `04-pipeline.svg` | Processing pipeline detail | Preprocessing, detection, OCR |
-| 5 | `05-ocr-engine.svg` | OCR engine deep dive | CRAFT + TrOCR, confidence scoring |
-| 6 | `06-knowledge-graph.svg` | Knowledge graph extraction | Entity mapping, relationships |
-| 7 | `07-team.svg` | Team InsightLedger | Members and contributions |
-| 8 | `08-tech-stack.svg` | Technology stack | AI/ML, backend, frontend, standards |
-| 9 | `09-demo-workflow.svg` | User workflow demo | 5-step user journey |
-| 10 | `10-impact.svg` | Impact and future roadmap | 500x speed, industry applications |
-
-### Embedding SVGs
-
-For animated SVGs with full animation support:
-
-```html
-<object type="image/svg+xml" data="assets/svg/01-logo.svg"></object>
-```
-
-For static use (no animations):
-
-```html
-<img src="assets/svg/01-logo.svg" alt="DocuPID Logo" />
-```
-
-For inline SVG (full control):
-
-```html
-<div id="logo-container"></div>
-<script>
-fetch('assets/svg/01-logo.svg')
-  .then(response => response.text())
-  .then(svg => {
-    document.getElementById('logo-container').innerHTML = svg;
-  });
-</script>
-```
-
-### SVG Design System
-
-**Colors**:
-- Background: `#0a0e27` → `#111633` (gradient)
-- Cyan: `#00d4ff` → `#00e5c0` (primary accent)
-- Purple: `#a855f7` → `#6366f1` (secondary accent)
-- Orange: `#ff6b35` (warnings, problems)
-- Gold: `#ffd700` (highlights, stats)
-- Muted: `#7a8ba8` (secondary text)
-
-**Typography**:
-- Primary: 'Segoe UI', Arial, sans-serif
-- Headings: 700 weight, 22-24px
-- Body: 400 weight, 10-12px
-- Labels: 400 weight, 8-10px
-
-**Animations**:
-- `fadeInUp`: Elements appear from below
-- `pulse`: Attention-grabbing animation
-- `flow`: Data flow visualization
-- `glow`: Highlight effect
-
----
-
 ## Team
+
+<p align="center">
+  <img src="assets/svg/07-team.svg" alt="Team InsightLedger" width="700">
+</p>
 
 ### Team InsightLedger
 

@@ -11,7 +11,7 @@
     </linearGradient>
   </defs>
   <rect width="900" height="500" fill="url(#bg10)" rx="12"/>
-  <text x="450" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">IMPACT & FUTURE</text>
+  <text x="450" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">IMPACT &amp; FUTURE</text>
   <line x1="370" y1="55" x2="530" y2="55" stroke="url(#cyan10)" stroke-width="2"/>
 
   <!-- Impact Stats -->
@@ -35,7 +35,7 @@
     
     <g transform="translate(15, 40)">
       <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
-      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Oil & Gas</text>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Oil &amp; Gas</text>
     </g>
     <g transform="translate(130, 40)">
       <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>

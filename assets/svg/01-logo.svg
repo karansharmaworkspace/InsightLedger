@@ -18,18 +18,16 @@
   </defs>
   <style>
     @keyframes pulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
     @keyframes drawLine { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes glow { 0%, 100% { filter: url(#glow1); } 50% { filter: url(#glow1) brightness(1.3); } }
+    @keyframes glow { 0%, 100% { filter: none; } 50% { filter: url(#glow1); } }
     .sparkle { animation: pulse 2s ease-in-out infinite; }
-    .float { animation: float 3s ease-in-out infinite; }
     .line-draw { stroke-dasharray: 30; animation: drawLine 1.5s ease-out forwards; }
     .fade-in { animation: fadeIn 0.8s ease-out forwards; }
     .text-glow { animation: glow 2s ease-in-out infinite; }
   </style>
-  <!-- P&ID schematic icon -->
-  <g transform="translate(15, 18)" class="float">
+  <!-- P&amp;ID schematic icon -->
+  <g transform="translate(15, 18)">
     <line x1="0" y1="28" x2="30" y2="28" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw"/>
     <line x1="50" y1="28" x2="80" y2="28" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw" style="animation-delay: 0.2s"/>
     <line x1="0" y1="68" x2="30" y2="68" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw" style="animation-delay: 0.4s"/>

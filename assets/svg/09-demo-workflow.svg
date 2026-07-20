@@ -11,7 +11,7 @@
   <rect width="900" height="450" fill="url(#bg9)" rx="12"/>
   <text x="450" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">USER WORKFLOW</text>
   <line x1="370" y1="55" x2="530" y2="55" stroke="url(#cyan9)" stroke-width="2"/>
-  <text x="450" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" text-anchor="middle">From paper P&ID to digital knowledge in minutes</text>
+  <text x="450" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" text-anchor="middle">From paper P&amp;ID to digital knowledge in minutes</text>
 
   <!-- Step 1: Upload -->
   <g transform="translate(30, 100)">
@@ -20,7 +20,7 @@
     <line x1="75" y1="22" x2="75" y2="58" stroke="#00d4ff" stroke-width="2"/>
     <line x1="57" y1="40" x2="93" y2="40" stroke="#00d4ff" stroke-width="2"/>
     <text x="75" y="85" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">Upload</text>
-    <text x="75" y="100" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">Drag & drop P&ID</text>
+    <text x="75" y="100" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">Drag &amp; drop P&amp;ID</text>
     <text x="75" y="115" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">PDF / PNG / DWG</text>
   </g>
   <line x1="180" y1="160" x2="210" y2="160" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow9)"/>

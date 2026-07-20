@@ -9,7 +9,7 @@
     <marker id="a4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#00d4ff"/></marker>
   </defs>
   <style>
-    @keyframes fadeInUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInUp { from { opacity:0; } to { opacity:1; } }
     @keyframes drawLine { from { stroke-dashoffset:30; } to { stroke-dashoffset:0; } }
     @keyframes pulse { 0%,100% { stroke-width:1.5; } 50% { stroke-width:2.5; } }
     @keyframes scanMove { 0%,100% { opacity:0.3; } 50% { opacity:0.8; } }

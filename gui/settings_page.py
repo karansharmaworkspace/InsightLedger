@@ -38,7 +38,7 @@ class EngineSettingsPage(QWidget):
         self.api_input.setPlaceholderText("gsk_...")
         self.api_input.setStyleSheet("""
             QLineEdit { background: #2d2d2d; color: #fff; border: 1px solid #444;
-                        border-radius: 6px; padding: 10px; font-size: 13px; }
+                        border-radius: 6px; padding: 12px; font-size: 13px; min-height: 20px; }
         """)
         api_layout.addWidget(self.api_input)
 
@@ -72,17 +72,17 @@ class EngineSettingsPage(QWidget):
 
         row.addWidget(QLabel("Vision Model:"), 0, 0)
         self.vision_model = QLineEdit(os.getenv("VISION_MODEL", ""))
-        self.vision_model.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
+        self.vision_model.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 12px; min-height: 20px;")
         row.addWidget(self.vision_model, 0, 1)
 
         row.addWidget(QLabel("Chat Model:"), 1, 0)
         self.chat_model = QLineEdit(os.getenv("CHAT_MODEL", ""))
-        self.chat_model.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
+        self.chat_model.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 12px; min-height: 20px;")
         row.addWidget(self.chat_model, 1, 1)
 
         row.addWidget(QLabel("Model Path:"), 2, 0)
         self.model_path = QLineEdit(os.getenv("PT_MODEL_PATH", "models/32class.pt"))
-        self.model_path.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
+        self.model_path.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 12px; min-height: 20px;")
         row.addWidget(self.model_path, 2, 1)
 
         model_layout.addLayout(row)
@@ -120,10 +120,11 @@ class EngineSettingsPage(QWidget):
     def _card(self, title_text):
         card = QFrame()
         card.setStyleSheet("""
-            QFrame { background: #16213e; border: 1px solid #1a1a3e; border-radius: 8px; padding: 15px; }
+            QFrame { background: #16213e; border: 1px solid #1a1a3e; border-radius: 8px; }
         """)
         layout = QVBoxLayout(card)
         layout.setSpacing(10)
+        layout.setContentsMargins(15, 15, 15, 15)
         title = QLabel(title_text)
         title.setStyleSheet("color: #e94560; font-size: 15px; font-weight: bold; border: none;")
         layout.addWidget(title)

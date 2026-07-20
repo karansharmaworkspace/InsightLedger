@@ -79,32 +79,6 @@ def _parse_okf_file(fpath: str) -> tuple[dict[str, Any], list[str]]:
     return meta, subs
 
 
-# ── Legend widget ─────────────────────────────────────────────────────
-class LegendWidget(QFrame):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setStyleSheet(CARD_STYLE)
-        lay = QVBoxLayout(self)
-        lay.setContentsMargins(10, 8, 10, 8)
-        lay.setSpacing(3)
-        lay.addWidget(QLabel("Legend"))
-        for name, rgba in ENTITY_COLORS.items():
-            row = QHBoxLayout()
-            row.setSpacing(6)
-            swatch = QLabel("  ")
-            swatch.setFixedSize(10, 10)
-            swatch.setStyleSheet(
-                f"background: rgba({rgba[0]},{rgba[1]},{rgba[2]},{rgba[3]});"
-                f"border-radius: 2px;"
-            )
-            row.addWidget(swatch)
-            lbl = QLabel(name.replace("_", " ").title())
-            lbl.setStyleSheet(f"color: {TEXT_DIM}; font-size: 10px;")
-            row.addWidget(lbl)
-            row.addStretch()
-            lay.addLayout(row)
-
-
 # ── 3D viewport ──────────────────────────────────────────────────────
 class Scene3D(QWidget):
     def __init__(self, parent=None):
@@ -226,9 +200,6 @@ class OKFDashboardPage(QWidget):
             self._filter_checks[etype] = cb
             flay.addWidget(cb)
         left.addWidget(filters_frame)
-
-        # Legend
-        left.addWidget(LegendWidget())
 
         left.addStretch()
 

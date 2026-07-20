@@ -97,6 +97,7 @@ class HomeScreen(QMainWindow):
         self._chat_streaming = False
         self._home_response_text = ""
         self._in_chat_mode = False
+        self._chat_messages = []
 
         try:
             from core.okf_rag import OKFRAGChat
@@ -207,6 +208,7 @@ class HomeScreen(QMainWindow):
 
         self._build_pages()
         self._switch(0)
+        self._load_stats()
 
     def _toggle_sidebar(self):
         end_w = self.SIDEBAR_W_COLLAPSED if self._sidebar_expanded else self.SIDEBAR_W_EXPANDED
@@ -265,7 +267,7 @@ class HomeScreen(QMainWindow):
         page = QWidget()
         page.setStyleSheet("background: transparent;")
         page_layout = QVBoxLayout(page)
-        page_layout.setContentsMargins(24, 20, 24, 20)
+        page_layout.setContentsMargins(24, 8, 24, 20)
         page_layout.setSpacing(16)
 
         stats_grid = QHBoxLayout()
@@ -284,13 +286,12 @@ class HomeScreen(QMainWindow):
                     background: #111827;
                     border: 1px solid #1e293b;
                     border-radius: 12px;
-                    padding: 16px;
                 }}
                 QFrame:hover {{ border-color: {color}; }}
             """)
-            card.setFixedHeight(80)
+            card.setFixedHeight(72)
             row = QHBoxLayout(card)
-            row.setContentsMargins(16, 12, 16, 12)
+            row.setContentsMargins(16, 10, 16, 10)
             row.setSpacing(12)
 
             icon_box = QLabel(icon)
@@ -478,22 +479,14 @@ class HomeScreen(QMainWindow):
 
         self._home_query.clear()
 
-        self._chat_display.append(
-            f"<div style='margin-bottom:12px; padding:8px 12px; background:#1e293b; border-radius:8px;'>"
-            f"<b style='color:#3b82f6;'>You:</b> <span style='color:#e2e8f0;'>{query}</span></div>"
-        )
+        self._chat_messages = getattr(self, '_chat_messages', [])
+        self._chat_messages.append(("user", query))
+        self._refresh_chat()
 
         if self._rag_chat is None:
-            self._chat_display.append(
-                "<div style='color:#ef4444;'>[ERROR] OKF-RAG engine not available. Check GROQ_API_KEY in .env</div>"
-            )
+            self._chat_messages.append(("error", "OKF-RAG engine not available. Check GROQ_API_KEY in .env"))
+            self._refresh_chat()
             return
-
-        self._ai_label = QLabel()
-        self._ai_label.setStyleSheet("color: #e2e8f0; font-size: 13px; padding: 8px 12px; background: #0f172a; border-radius: 8px; margin-bottom: 12px;")
-        self._ai_label.setWordWrap(True)
-        self._chat_display.append("")
-        self._chat_display.setHtml(self._chat_display.toHtml() + "<div id='ai'></div>")
 
         self._chat_streaming = True
         self._home_query.setEnabled(False)
@@ -506,48 +499,81 @@ class HomeScreen(QMainWindow):
         self._chat_thread.error.connect(self._on_chat_error)
         self._chat_thread.start()
 
+    def _refresh_chat(self):
+        html_parts = []
+        for role, text in getattr(self, '_chat_messages', []):
+            if role == "user":
+                html_parts.append(
+                    f"<div style='margin-bottom:10px;padding:8px 12px;background:#1e293b;border-radius:8px;'>"
+                    f"<b style='color:#3b82f6;'>You:</b> <span style='color:#e2e8f0;'>{text}</span></div>"
+                )
+            elif role == "assistant":
+                html_parts.append(
+                    f"<div style='margin-bottom:10px;padding:8px 12px;background:#0f172a;border-radius:8px;'>"
+                    f"<b style='color:#10b981;'>OKF Assistant:</b> "
+                    f"<span style='color:#e2e8f0;'>{text}</span></div>"
+                )
+            elif role == "streaming":
+                html_parts.append(
+                    f"<div style='margin-bottom:10px;padding:8px 12px;background:#0f172a;border-radius:8px;'>"
+                    f"<b style='color:#10b981;'>OKF Assistant:</b> "
+                    f"<span style='color:#e2e8f0;'>{text}</span>"
+                    f"<span style='color:#10b981;'>|</span></div>"
+                )
+            elif role == "error":
+                html_parts.append(
+                    f"<div style='margin-bottom:10px;padding:8px 12px;background:#2d1215;border-radius:8px;'>"
+                    f"<b style='color:#ef4444;'>[ERROR]</b> <span style='color:#ef4444;'>{text}</span></div>"
+                )
+        self._chat_display.setHtml("".join(html_parts))
+        sb = self._chat_display.verticalScrollBar()
+        sb.setValue(sb.maximum())
+
     def _on_chat_chunk(self, chunk):
         self._home_response_text += chunk
-        html = self._chat_display.toHtml()
-        marker = "<div id='ai'></div>"
-        if marker in html:
-            new_html = html.replace(marker,
-                f"<div style='margin-bottom:12px; padding:8px 12px; background:#0f172a; border-radius:8px;'>"
-                f"<b style='color:#10b981;'>OKF Assistant:</b> "
-                f"<span style='color:#e2e8f0;'>{self._home_response_text}</span>"
-                f"<span style='color:#10b981;'>|</span></div>"
-            )
-            self._chat_display.setHtml(new_html)
+        self._chat_messages = getattr(self, '_chat_messages', [])
+        if self._chat_messages and self._chat_messages[-1][0] == "streaming":
+            self._chat_messages[-1] = ("streaming", self._home_response_text)
+        else:
+            self._chat_messages.append(("streaming", self._home_response_text))
+        self._refresh_chat()
 
     def _on_chat_finished(self):
         self._chat_streaming = False
         self._home_query.setEnabled(True)
         self._home_send_btn.setEnabled(True)
         self._home_query.setFocus()
-        html = self._chat_display.toHtml()
-        marker = "<div id='ai'></div>"
-        if marker in html:
-            new_html = html.replace(marker,
-                f"<div style='margin-bottom:12px; padding:8px 12px; background:#0f172a; border-radius:8px;'>"
-                f"<b style='color:#10b981;'>OKF Assistant:</b> "
-                f"<span style='color:#e2e8f0;'>{self._home_response_text}</span></div>"
-            )
-            self._chat_display.setHtml(new_html)
-        sb = self._chat_display.verticalScrollBar()
-        sb.setValue(sb.maximum())
+        self._chat_messages = getattr(self, '_chat_messages', [])
+        if self._chat_messages and self._chat_messages[-1][0] == "streaming":
+            self._chat_messages[-1] = ("assistant", self._home_response_text)
+        self._refresh_chat()
 
     def _on_chat_error(self, error_msg):
         self._chat_streaming = False
         self._home_query.setEnabled(True)
         self._home_send_btn.setEnabled(True)
-        html = self._chat_display.toHtml()
-        marker = "<div id='ai'></div>"
-        if marker in html:
-            new_html = html.replace(marker,
-                f"<div style='margin-bottom:12px; padding:8px 12px; background:#2d1215; border-radius:8px;'>"
-                f"<b style='color:#ef4444;'>[ERROR]</b> <span style='color:#ef4444;'>{error_msg}</span></div>"
-            )
-            self._chat_display.setHtml(new_html)
+        self._chat_messages = getattr(self, '_chat_messages', [])
+        if self._chat_messages and self._chat_messages[-1][0] == "streaming":
+            self._chat_messages.pop()
+        self._chat_messages.append(("error", error_msg))
+        self._refresh_chat()
+
+    def _load_stats(self):
+        if not hasattr(self, '_platform') or self._platform is None:
+            print("[Stats] Platform not available")
+            return
+        try:
+            kg_stats = self._platform.kg.get_stats()
+            self._stat_vals[0].setText(str(kg_stats.get("total_nodes", 0)))
+            self._stat_vals[1].setText(str(kg_stats.get("total_edges", 0)))
+            self._stat_vals[2].setText(str(len(kg_stats.get("types", {}))))
+        except Exception as e:
+            print(f"[Stats] KG failed: {e}")
+        try:
+            rag_stats = self._platform.rag.get_stats()
+            self._stat_vals[3].setText(str(rag_stats.get("total_chunks", 0)))
+        except Exception as e:
+            print(f"[Stats] RAG failed: {e}")
 
     def _switch(self, index):
         self.stack.setCurrentIndex(index)

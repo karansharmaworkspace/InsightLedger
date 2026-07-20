@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111633"/>
+    </linearGradient>
+    <linearGradient id="cyan3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+    <linearGradient id="purple3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <marker id="arrowC" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#00d4ff"/></marker>
+  </defs>
+  <style>
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes flowPulse { 0%,100% { opacity:0.6; } 50% { opacity:1; } }
+    @keyframes drawArrow { from { stroke-dashoffset:40; } to { stroke-dashoffset:0; } }
+    @keyframes scanGlow { 0%,100% { stroke-opacity:1; } 50% { stroke-opacity:0.4; } }
+    .f1 { animation: fadeInUp 0.5s ease-out 0.1s both; }
+    .f2 { animation: fadeInUp 0.5s ease-out 0.2s both; }
+    .f3 { animation: fadeInUp 0.5s ease-out 0.3s both; }
+    .f4 { animation: fadeInUp 0.5s ease-out 0.4s both; }
+    .f5 { animation: fadeInUp 0.5s ease-out 0.5s both; }
+    .flow { animation: drawArrow 1s ease-out forwards; stroke-dasharray:40; }
+    .flow-pulse { animation: flowPulse 2s ease-in-out infinite; }
+    .mod { animation: fadeInUp 0.4s ease-out both; }
+  </style>
+  <rect width="900" height="500" fill="url(#bg3)" rx="12"/>
+  <text x="450" y="40" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle" class="f1">SYSTEM ARCHITECTURE</text>
+  <line x1="370" y1="50" x2="530" y2="50" stroke="url(#cyan3)" stroke-width="2"/>
+
+  <!-- Flow: Input → Vision → Intelligence → Output -->
+  <rect x="30" y="72" width="170" height="85" rx="8" fill="#111633" stroke="#1e2a4a" class="f1"/>
+  <text x="115" y="96" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle" letter-spacing="2">INPUT</text>
+  <text x="115" y="118" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="600">P&amp;ID Images</text>
+  <text x="115" y="138" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">PDF, PNG, DWG scans</text>
+  <line x1="200" y1="115" x2="235" y2="115" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowC)" class="flow"/>
+
+  <rect x="235" y="72" width="190" height="85" rx="8" fill="#111633" stroke="#00d4ff" stroke-width="1.5" class="f2"/>
+  <text x="330" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00d4ff" text-anchor="middle" letter-spacing="2">VISION ENGINE</text>
+  <text x="330" y="114" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="600">Symbol Detection</text>
+  <text x="330" y="132" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">CRAFT + TrOCR + YOLO</text>
+  <text x="330" y="148" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00e5c0" text-anchor="middle">Adaptive multi-scale OCR</text>
+  <line x1="425" y1="115" x2="460" y2="115" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowC)" class="flow" style="animation-delay:0.3s"/>
+
+  <rect x="460" y="72" width="195" height="85" rx="8" fill="#111633" stroke="#a855f7" stroke-width="1.5" class="f3"/>
+  <text x="557" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a855f7" text-anchor="middle" letter-spacing="2">INTELLIGENCE</text>
+  <text x="557" y="114" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="600">Knowledge Graph</text>
+  <text x="557" y="132" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">Entity extraction + RAG</text>
+  <text x="557" y="148" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a855f7" text-anchor="middle">GraphML + embeddings</text>
+  <line x1="655" y1="115" x2="690" y2="115" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowC)" class="flow" style="animation-delay:0.6s"/>
+
+  <rect x="690" y="72" width="175" height="85" rx="8" fill="#111633" stroke="#ff6b35" stroke-width="1.5" class="f4"/>
+  <text x="777" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle" letter-spacing="2">OUTPUT</text>
+  <text x="777" y="114" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="white" text-anchor="middle" font-weight="600">Digital Twin</text>
+  <text x="777" y="132" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">Searchable graph</text>
+  <text x="777" y="148" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle">Compliance checks</text>
+
+  <!-- Core modules -->
+  <text x="450" y="195" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" text-anchor="middle" letter-spacing="3">CORE MODULES</text>
+  <g>
+    <rect x="30" y="210" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.5s"/>
+    <text x="112" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">pid_ocr.py</text>
+    <text x="112" y="255" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00d4ff" text-anchor="middle">CRAFT + TrOCR pipeline</text>
+    <rect x="210" y="210" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.55s"/>
+    <text x="292" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">universal_engine.py</text>
+    <text x="292" y="255" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00d4ff" text-anchor="middle">Orchestration layer</text>
+    <rect x="390" y="210" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.6s"/>
+    <text x="472" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">knowledge_graph.py</text>
+    <text x="472" y="255" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a855f7" text-anchor="middle">Graph construction</text>
+    <rect x="570" y="210" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.65s"/>
+    <text x="652" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">embeddings_rag.py</text>
+    <text x="652" y="255" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a855f7" text-anchor="middle">Semantic search</text>
+    <rect x="750" y="210" width="120" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.7s"/>
+    <text x="810" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">groq_client.py</text>
+    <text x="810" y="255" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ffd700" text-anchor="middle">LLM (Groq)</text>
+  </g>
+  <g>
+    <rect x="30" y="290" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.75s"/>
+    <text x="112" y="318" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">compliance_intel.py</text>
+    <text x="112" y="335" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle">Standards checking</text>
+    <rect x="210" y="290" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.8s"/>
+    <text x="292" y="318" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">crossref_visualizer.py</text>
+    <text x="292" y="335" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle">Cross-reference engine</text>
+    <rect x="390" y="290" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.85s"/>
+    <text x="472" y="318" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">maintenance_intel.py</text>
+    <text x="472" y="335" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle">Predictive maintenance</text>
+    <rect x="570" y="290" width="165" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.9s"/>
+    <text x="652" y="318" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">class_memory.py</text>
+    <text x="652" y="335" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00e5c0" text-anchor="middle">605-subclass DINOv2</text>
+    <rect x="750" y="290" width="120" height="65" rx="6" fill="#0d1230" stroke="#1e2a4a" class="mod" style="animation-delay:0.95s"/>
+    <text x="810" y="318" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">pid_rag.py</text>
+    <text x="810" y="335" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ffd700" text-anchor="middle">Document Q&amp;A</text>
+  </g>
+
+  <!-- Interface -->
+  <rect x="30" y="380" width="840" height="75" rx="8" fill="#111633" stroke="url(#cyan3)" stroke-width="1" class="f5"/>
+  <text x="450" y="400" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00d4ff" text-anchor="middle" letter-spacing="2">INTERFACE LAYER</text>
+  <g transform="translate(60, 412)"><rect width="100" height="28" rx="5" fill="#0d1230" stroke="#1e2a4a"/><text x="50" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">PyQt6 GUI</text></g>
+  <g transform="translate(185, 412)"><rect width="100" height="28" rx="5" fill="#0d1230" stroke="#1e2a4a"/><text x="50" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">Web Server</text></g>
+  <g transform="translate(310, 412)"><rect width="100" height="28" rx="5" fill="#0d1230" stroke="#1e2a4a"/><text x="50" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">CLI Tools</text></g>
+  <g transform="translate(435, 412)"><rect width="120" height="28" rx="5" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">GraphML Export</text></g>
+  <g transform="translate(580, 412)"><rect width="120" height="28" rx="5" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">DEXPI JSON</text></g>
+  <g transform="translate(725, 412)"><rect width="120" height="28" rx="5" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">CSV Export</text></g>
+</svg>

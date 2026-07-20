@@ -18,3 +18,4 @@ sentence-transformers>=2.2.0
 pyyaml>=6.0
 pyvis>=0.3.0
 networkx>=3.0
+flask>=3.0.0

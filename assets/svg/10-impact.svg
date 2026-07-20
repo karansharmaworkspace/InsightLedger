@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500">
+  <defs>
+    <linearGradient id="bg10" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111633"/>
+    </linearGradient>
+    <linearGradient id="cyan10" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+    <linearGradient id="purple10" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="500" fill="url(#bg10)" rx="12"/>
+  <text x="450" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">IMPACT & FUTURE</text>
+  <line x1="370" y1="55" x2="530" y2="55" stroke="url(#cyan10)" stroke-width="2"/>
+
+  <!-- Impact Stats -->
+  <g transform="translate(30, 80)">
+    <rect width="260" height="160" rx="8" fill="#111633" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="130" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#00d4ff" text-anchor="middle" letter-spacing="2">IMMEDIATE IMPACT</text>
+    
+    <text x="130" y="65" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="700" fill="url(#cyan10)" text-anchor="middle">500x</text>
+    <text x="130" y="85" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">faster than manual digitization</text>
+    
+    <line x1="30" y1="95" x2="230" y2="95" stroke="#1e2a4a"/>
+    
+    <text x="130" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="700" fill="#ffd700" text-anchor="middle">$4.2M</text>
+    <text x="130" y="140" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">savings per plant project</text>
+  </g>
+
+  <!-- Industry Applications -->
+  <g transform="translate(320, 80)">
+    <rect width="260" height="160" rx="8" fill="#111633" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="130" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#a855f7" text-anchor="middle" letter-spacing="2">INDUSTRY SECTORS</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Oil & Gas</text>
+    </g>
+    <g transform="translate(130, 40)">
+      <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Chemical</text>
+    </g>
+    <g transform="translate(15, 75)">
+      <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Power Gen</text>
+    </g>
+    <g transform="translate(130, 75)">
+      <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Pharma</text>
+    </g>
+    <g transform="translate(15, 110)">
+      <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Water</text>
+    </g>
+    <g transform="translate(130, 110)">
+      <rect width="100" height="28" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Mining</text>
+    </g>
+  </g>
+
+  <!-- Future Roadmap -->
+  <g transform="translate(610, 80)">
+    <rect width="260" height="160" rx="8" fill="#111633" stroke="#ff6b35" stroke-width="1.5"/>
+    <text x="130" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#ff6b35" text-anchor="middle" letter-spacing="2">FUTURE ROADMAP</text>
+    
+    <g transform="translate(15, 40)">
+      <circle cx="10" cy="10" r="5" fill="#00e5c0"/>
+      <text x="25" y="14" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white">Real-time collaboration</text>
+    </g>
+    <g transform="translate(15, 65)">
+      <circle cx="10" cy="10" r="5" fill="#a855f7"/>
+      <text x="25" y="14" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white">AR/VR visualization</text>
+    </g>
+    <g transform="translate(15, 90)">
+      <circle cx="10" cy="10" r="5" fill="#ff6b35"/>
+      <text x="25" y="14" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white">Predictive maintenance AI</text>
+    </g>
+    <g transform="translate(15, 115)">
+      <circle cx="10" cy="10" r="5" fill="#ffd700"/>
+      <text x="25" y="14" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white">Digital twin integration</text>
+    </g>
+  </g>
+
+  <!-- Value Proposition -->
+  <g transform="translate(30, 270)">
+    <rect width="840" height="120" rx="8" fill="#111633" stroke="url(#cyan10)" stroke-width="1"/>
+    <text x="420" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#00d4ff" text-anchor="middle" letter-spacing="2">VALUE PROPOSITION</text>
+    
+    <g transform="translate(30, 40)">
+      <rect width="180" height="60" rx="6" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="90" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">For Engineers</text>
+      <text x="90" y="42" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#7a8ba8" text-anchor="middle">Instant search across 500+ drawings</text>
+    </g>
+    <g transform="translate(230, 40)">
+      <rect width="180" height="60" rx="6" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="90" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">For Plants</text>
+      <text x="90" y="42" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#7a8ba8" text-anchor="middle">Compliance automation &amp; safety</text>
+    </g>
+    <g transform="translate(430, 40)">
+      <rect width="180" height="60" rx="6" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="90" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">For Operations</text>
+      <text x="90" y="42" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#7a8ba8" text-anchor="middle">Predictive maintenance insights</text>
+    </g>
+    <g transform="translate(630, 40)">
+      <rect width="180" height="60" rx="6" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="90" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">For Management</text>
+      <text x="90" y="42" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#7a8ba8" text-anchor="middle">Knowledge preservation</text>
+    </g>
+  </g>
+
+  <text x="450" y="440" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="url(#cyan10)" text-anchor="middle" font-weight="600">DocuPID: Bridging the gap between paper and digital intelligence</text>
+</svg>

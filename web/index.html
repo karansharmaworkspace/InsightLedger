@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPID AI — Knowledge Platform</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e1a;--card:#111827;--card2:#1a2235;--border:#1e293b;
+  --accent:#3b82f6;--accent2:#8b5cf6;--green:#10b981;--red:#ef4444;--yellow:#f59e0b;--orange:#f97316;
+  --text:#e2e8f0;--dim:#64748b;--input:#0f172a;
+  --grad:linear-gradient(135deg,#3b82f6,#8b5cf6)
+}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column}
+a{color:var(--accent);text-decoration:none}
+
+/* Nav */
+nav{background:rgba(17,24,39,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;height:56px;gap:20px;flex-shrink:0;z-index:100}
+nav .logo{font-weight:800;font-size:18px;color:#fff;display:flex;align-items:center;gap:8px}
+nav .logo .icon{width:28px;height:28px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+nav .tabs{display:flex;gap:2px}
+nav .tabs button{background:none;border:none;color:var(--dim);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s}
+nav .tabs button:hover{color:var(--text);background:rgba(255,255,255,.05)}
+nav .tabs button.active{color:#fff;background:rgba(59,130,246,.15)}
+nav .status{margin-left:auto;font-size:12px;color:var(--dim);display:flex;align-items:center;gap:6px}
+nav .status .dot{width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.dot-green{background:var(--green);box-shadow:0 0 8px rgba(16,185,129,.5)}
+.dot-red{background:var(--red)}
+
+/* Layout */
+.page{display:none;flex:1;overflow:auto;padding:24px;scroll-behavior:smooth}
+.page.active{display:flex;flex-direction:column;gap:20px}
+.page::-webkit-scrollbar{width:6px}
+.page::-webkit-scrollbar-track{background:transparent}
+.page::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s}
+.card:hover{border-color:#334155}
+.card h3{font-size:14px;font-weight:600;margin-bottom:16px;color:#fff;display:flex;align-items:center;gap:8px}
+.card h3 i{color:var(--accent);font-size:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+/* Stat Cards */
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:center;gap:16px;transition:all .2s}
+.stat-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.stat-card .icon-box{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.stat-card .info .val{font-size:24px;font-weight:700;color:#fff}
+.stat-card .info .lbl{font-size:12px;color:var(--dim);margin-top:2px}
+
+/* Hero upload */
+.hero-upload{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;text-align:center;position:relative;overflow:hidden}
+.hero-upload::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:.03}
+.hero-upload h2{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
+.hero-upload p{color:var(--dim);margin-bottom:20px}
+.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:48px 24px;cursor:pointer;transition:all .2s;position:relative}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:rgba(59,130,246,.05)}
+.upload-zone .upload-icon{font-size:48px;margin-bottom:12px;opacity:.6}
+.upload-zone .upload-text{font-size:15px;color:var(--text);font-weight:500}
+.upload-zone .upload-hint{font-size:12px;color:var(--dim);margin-top:6px}
+.upload-zone input{display:none}
+
+/* Action cards */
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.action-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-align:center}
+.action-card:hover{border-color:var(--accent);background:rgba(59,130,246,.05);transform:translateY(-2px)}
+.action-card i{font-size:24px;margin-bottom:8px;color:var(--accent)}
+.action-card .title{font-size:13px;font-weight:600;color:#fff}
+.action-card .desc{font-size:11px;color:var(--dim);margin-top:4px}
+
+/* Forms */
+input,textarea,select{background:var(--input);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-size:13px;width:100%;transition:border-color .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:80px;font-family:inherit}
+button.btn{background:var(--grad);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s}
+button.btn:hover{opacity:.9;transform:translateY(-1px)}
+button.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+button.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+button.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+button.btn-sm{padding:6px 12px;font-size:12px;border-radius:6px}
+button.btn-ghost{background:transparent;border:none;color:var(--dim)}
+button.btn-ghost:hover{color:var(--text)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);color:var(--dim);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:10px 12px;border-bottom:1px solid rgba(30,41,59,.5)}
+tr:hover td{background:rgba(255,255,255,.02)}
+
+/* Tags */
+.tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.tag-blue{background:rgba(59,130,246,.15);color:#60a5fa}
+.tag-green{background:rgba(16,185,129,.15);color:#34d399}
+.tag-yellow{background:rgba(245,158,11,.15);color:#fbbf24}
+.tag-red{background:rgba(239,68,68,.15);color:#f87171}
+.tag-purple{background:rgba(139,92,246,.15);color:#a78bfa}
+
+/* Search */
+.search-box{position:relative}
+.search-box input{padding-left:40px}
+.search-box i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:14px}
+
+/* Upload */
+.upload-zone-sm{border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all .2s}
+.upload-zone-sm:hover{border-color:var(--accent);background:rgba(59,130,246,.03)}
+
+/* Chat */
+.chat-box{max-height:400px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.chat-msg{padding:10px 14px;border-radius:12px;font-size:13px;max-width:80%;line-height:1.5;white-space:pre-wrap}
+.chat-user{background:var(--accent);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.chat-bot{background:var(--card2);color:var(--text);border-bottom-left-radius:4px}
+.chat-input{display:flex;gap:8px;margin-top:12px}
+.chat-input input{flex:1}
+.chat-input button{min-width:80px}
+
+/* Progress */
+.progress{height:6px;background:var(--card2);border-radius:3px;overflow:hidden;margin-top:12px}
+.progress-bar{height:100%;background:var(--grad);transition:width .3s;width:0;border-radius:3px}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--border);padding:14px 20px;border-radius:10px;font-size:13px;z-index:9999;animation:slideUp .3s;box-shadow:0 8px 32px rgba(0,0,0,.3);display:flex;align-items:center;gap:8px}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* KG canvas */
+#kgCanvas{width:100%;border-radius:8px;display:block}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="icon"><i class="fas fa-cube"></i></div>
+    DPID AI
+  </div>
+  <div class="tabs">
+    <button class="active" onclick="showPage('home')"><i class="fas fa-home"></i> Home</button>
+    <button onclick="showPage('kg')"><i class="fas fa-project-diagram"></i> Knowledge Graph</button>
+    <button onclick="showPage('okf')"><i class="fas fa-book"></i> OKF</button>
+    <button onclick="showPage('docs')"><i class="fas fa-file-alt"></i> Documents</button>
+    <button onclick="showPage('pid')"><i class="fas fa-cogs"></i> P&ID</button>
+    <button onclick="showPage('chat')"><i class="fas fa-robot"></i> AI Chat</button>
+    <button onclick="showPage('team')"><i class="fas fa-users"></i> Team</button>
+  </div>
+  <div class="status"><span class="dot dot-green" id="statusDot"></span><span id="statusText">Connected</span></div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <!-- Stats -->
+  <div class="grid4" id="statsGrid">
+    <div class="stat-card">
+      <div class="icon-box" style="background:rgba(59,130,246,.15)"><i class="fas fa-circle-nodes" style="color:var(--accent)"></i></div>
+      <div class="info"><div class="val" id="sNodes">—</div><div class="lbl">Knowledge Nodes</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon-box" style="background:rgba(139,92,246,.15)"><i class="fas fa-link" style="color:var(--accent2)"></i></div>
+      <div class="info"><div class="val" id="sEdges">—</div><div class="lbl">Relationships</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon-box" style="background:rgba(16,185,129,.15)"><i class="fas fa-tags" style="color:var(--green)"></i></div>
+      <div class="info"><div class="val" id="sTypes">—</div><div class="lbl">Entity Types</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="icon-box" style="background:rgba(245,158,11,.15)"><i class="fas fa-file" style="color:var(--yellow)"></i></div>
+      <div class="info"><div class="val" id="sDocs">—</div><div class="lbl">Documents</div></div>
+    </div>
+  </div>
+
+  <!-- Upload Hero -->
+  <div class="hero-upload">
+    <h2>Ingest Documents into Knowledge Base</h2>
+    <p>Upload PDFs, Excel, images, or text files — everything gets extracted, indexed, and linked automatically</p>
+    <div class="upload-zone" id="homeUploadZone" onclick="document.getElementById('homeFileInput').click()">
+      <input type="file" id="homeFileInput" multiple accept=".pdf,.xlsx,.xls,.png,.jpg,.jpeg,.bmp,.tiff,.txt,.md,.csv" onchange="handleUpload(this.files)">
+      <div class="upload-icon"><i class="fas fa-cloud-arrow-up"></i></div>
+      <div class="upload-text">Drop files here or click to browse</div>
+      <div class="upload-hint">PDF, Excel, Images, Text — up to 100MB per file</div>
+    </div>
+    <div class="progress" id="homeProgressWrap" style="display:none"><div class="progress-bar" id="homeProgress"></div></div>
+    <div id="homeUploadStatus" style="margin-top:12px;font-size:13px"></div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="action-grid">
+    <div class="action-card" onclick="showPage('pid')">
+      <i class="fas fa-crosshairs"></i>
+      <div class="title">Process P&ID</div>
+      <div class="desc">Detect symbols, classify, extract topology</div>
+    </div>
+    <div class="action-card" onclick="showPage('kg')">
+      <i class="fas fa-project-diagram"></i>
+      <div class="title">Explore Knowledge Graph</div>
+      <div class="desc">Visualize entities and relationships</div>
+    </div>
+    <div class="action-card" onclick="showPage('chat')">
+      <i class="fas fa-comments"></i>
+      <div class="title">AI Assistant</div>
+      <div class="desc">Chat with your knowledge base</div>
+    </div>
+  </div>
+
+  <!-- Recent + Types -->
+  <div class="grid2">
+    <div class="card">
+      <h3><i class="fas fa-clock"></i> Recent Documents</h3>
+      <div id="recentDocs" style="max-height:260px;overflow:auto"><p style="color:var(--dim);font-size:13px">Loading...</p></div>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-layer-group"></i> Entity Types</h3>
+      <div id="typeBreakdown" style="max-height:260px;overflow:auto"><p style="color:var(--dim);font-size:13px">Loading...</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- KNOWLEDGE GRAPH -->
+<div class="page" id="page-kg">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+      <i class="fas fa-project-diagram" style="color:var(--accent)"></i> Knowledge Graph
+    </h2>
+    <div style="display:flex;gap:8px">
+      <select id="kgTypeFilter" onchange="loadKgGraph()" style="width:180px"><option value="">All types</option></select>
+      <button class="btn btn-outline btn-sm" onclick="loadKgGraph()"><i class="fas fa-sync-alt"></i> Refresh</button>
+    </div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <canvas id="kgCanvas" height="480"></canvas>
+    <div style="padding:12px 16px;display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border)" id="kgLegend"></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><i class="fas fa-info-circle"></i> Node Detail</h3>
+      <div id="kgDetail" style="color:var(--dim);font-size:13px">Click a node to view details</div>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-expand-arrows-alt"></i> Network Expansion</h3>
+      <div class="search-box"><input id="kgNetSearch" placeholder="Search entity to expand..."></div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="expandNetwork()">Expand</button>
+      <div id="kgNetResult" style="margin-top:8px;font-size:13px;max-height:180px;overflow:auto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- OKF EXPLORER -->
+<div class="page" id="page-okf">
+  <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+    <i class="fas fa-book" style="color:var(--green)"></i> OKF Explorer
+  </h2>
+  <div class="grid2">
+    <div class="card">
+      <h3><i class="fas fa-search"></i> Search OKF</h3>
+      <div class="search-box"><i class="fas fa-search"></i><input id="okfSearch" placeholder="Search classes, symbols..." onkeydown="if(event.key==='Enter')searchOKF()"></div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="searchOKF()">Search</button>
+      <div id="okfResults" style="margin-top:12px;max-height:400px;overflow:auto"></div>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-list"></i> All Classes</h3>
+      <div id="okfClasses" style="max-height:500px;overflow:auto"><p style="color:var(--dim);font-size:13px">Loading...</p></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-robot"></i> OKF Chat</h3>
+    <div class="chat-box" id="okfChatBox"></div>
+    <div class="chat-input">
+      <input id="okfChatInput" placeholder="Ask about OKF symbols..." onkeydown="if(event.key==='Enter')sendOKFChat()">
+      <button class="btn" onclick="sendOKFChat()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTS -->
+<div class="page" id="page-docs">
+  <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+    <i class="fas fa-file-alt" style="color:var(--yellow)"></i> Documents
+  </h2>
+  <div class="card">
+    <h3><i class="fas fa-cloud-arrow-up"></i> Upload Documents</h3>
+    <div class="upload-zone-sm" id="docsUploadZone" onclick="document.getElementById('docsFileInput').click()">
+      <input type="file" id="docsFileInput" multiple accept=".pdf,.xlsx,.xls,.png,.jpg,.jpeg,.bmp,.tiff,.txt,.md,.csv" onchange="handleUpload(this.files)" style="display:none">
+      <i class="fas fa-plus-circle" style="font-size:24px;color:var(--dim)"></i>
+      <p style="color:var(--dim);font-size:13px;margin-top:8px">Click to add more files</p>
+    </div>
+    <div class="progress" id="docsProgressWrap" style="display:none"><div class="progress-bar" id="docsProgress"></div></div>
+    <div id="docsUploadStatus" style="margin-top:8px;font-size:13px"></div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-folder-open"></i> Ingested Documents</h3>
+    <div id="docList"><p style="color:var(--dim);font-size:13px">Loading...</p></div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-search"></i> Semantic Search</h3>
+    <div class="search-box"><i class="fas fa-search"></i><input id="docSearch" placeholder="Search document content..." onkeydown="if(event.key==='Enter')searchDocs()"></div>
+    <button class="btn btn-sm" style="margin-top:8px" onclick="searchDocs()">Search</button>
+    <div id="docResults" style="margin-top:12px;max-height:300px;overflow:auto"></div>
+  </div>
+</div>
+
+<!-- P&ID PROCESS -->
+<div class="page" id="page-pid">
+  <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+    <i class="fas fa-cogs" style="color:var(--orange)"></i> P&ID Processing
+  </h2>
+  <div class="card">
+    <div class="upload-zone" onclick="document.getElementById('pidInput').click()">
+      <input type="file" id="pidInput" accept=".png,.jpg,.jpeg,.bmp" onchange="processPID(this.files[0])" style="display:none">
+      <div class="upload-icon"><i class="fas fa-drafting-compass"></i></div>
+      <div class="upload-text">Upload P&ID Diagram</div>
+      <div class="upload-hint">PNG, JPG — detection + classification + topology</div>
+    </div>
+    <div class="progress" id="pidProgressWrap" style="display:none"><div class="progress-bar" id="pidProgress"></div></div>
+    <div id="pidStatus" style="margin-top:8px;font-size:13px"></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><i class="fas fa-crosshairs"></i> Detection Results</h3>
+      <div id="pidResults" style="max-height:400px;overflow:auto"><p style="color:var(--dim);font-size:13px">Upload a P&ID to process</p></div>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-brain"></i> Extracted Entities</h3>
+      <div id="pidEntities" style="max-height:400px;overflow:auto"><p style="color:var(--dim);font-size:13px">—</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI CHAT -->
+<div class="page" id="page-chat">
+  <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+    <i class="fas fa-robot" style="color:var(--accent2)"></i> AI Assistant
+  </h2>
+  <div class="card" style="flex:1;display:flex;flex-direction:column">
+    <div class="chat-box" id="aiChatBox" style="flex:1;max-height:none;min-height:300px">
+      <div class="chat-msg chat-bot">Ask me anything about your documents, OKF symbols, or industrial knowledge.</div>
+    </div>
+    <div class="chat-input">
+      <input id="aiChatInput" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')sendAIChat()">
+      <button class="btn" onclick="sendAIChat()"><i class="fas fa-paper-plane"></i> Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="page" id="page-team">
+  <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+    <i class="fas fa-users" style="color:var(--green)"></i> Our Team
+  </h2>
+  <div class="grid2">
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.1))">
+        <h3 style="margin-bottom:4px"><i class="fas fa-users-cog"></i> DPID AI — Development Team</h3>
+        <p style="color:var(--dim);font-size:12px">Building the future of industrial document intelligence</p>
+      </div>
+      <div style="padding:8px">
+        <!-- Tapesh Kumar -->
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--border)">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">T</div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:15px;font-weight:600;color:#fff">Tapesh Kumar</span>
+              <span class="tag tag-purple" style="font-size:10px">Team Leader</span>
+            </div>
+            <div style="font-size:12px;color:var(--dim);margin-top:2px"><i class="fas fa-phone" style="margin-right:4px"></i>+917877638076</div>
+          </div>
+        </div>
+        <!-- Karan Sharma -->
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--border)">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#10b981,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">K</div>
+          <div style="flex:1">
+            <div style="font-size:15px;font-weight:600;color:#fff">Karan Sharma</div>
+            <div style="font-size:12px;color:var(--dim);margin-top:2px"><i class="fas fa-phone" style="margin-right:4px"></i>+919627379234</div>
+          </div>
+        </div>
+        <!-- Harshit Goyal -->
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--border)">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#f97316);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">H</div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:15px;font-weight:600;color:#fff">Harshit Goyal</span>
+              <span class="tag tag-blue" style="font-size:10px">You</span>
+            </div>
+            <div style="font-size:12px;color:var(--dim);margin-top:2px"><i class="fas fa-phone" style="margin-right:4px"></i>+919468524599</div>
+          </div>
+        </div>
+        <!-- Divya Swami -->
+        <div style="display:flex;align-items:center;gap:16px;padding:16px">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#ec4899);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">D</div>
+          <div style="flex:1">
+            <div style="font-size:15px;font-weight:600;color:#fff">Divya Swami</div>
+            <div style="font-size:12px;color:var(--dim);margin-top:2px"><i class="fas fa-phone" style="margin-right:4px"></i>+916378792400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-info-circle"></i> About the Project</h3>
+      <div style="font-size:13px;line-height:1.8;color:var(--dim)">
+        <p><b style="color:var(--text)">DPID AI</b> is a Universal Industrial P&ID Digitization Suite that automatically detects, classifies, and extracts symbols from Piping & Instrumentation Diagrams.</p>
+        <br>
+        <p><b style="color:var(--text)">Key Features:</b></p>
+        <ul style="margin:8px 0 0 20px">
+          <li>32-class YOLOv8 symbol detection with SAHI tiled inference</li>
+          <li>605-subclass reclassification using DINOv2 embeddings</li>
+          <li>Topology reconstruction with line type classification</li>
+          <li>DEXPI JSON, GraphML, CSV export formats</li>
+          <li>Knowledge graph with cross-document entity linking</li>
+          <li>OKF (Open Knowledge Format) integration</li>
+          <li>AI-powered assistant for document Q&A</li>
+        </ul>
+        <br>
+        <p><b style="color:var(--text)">Tech Stack:</b></p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-red">PyTorch</span>
+          <span class="tag tag-green">YOLOv8</span>
+          <span class="tag tag-yellow">DINOv2</span>
+          <span class="tag tag-purple">PyQt6</span>
+          <span class="tag tag-blue">Flask</span>
+          <span class="tag tag-green">Groq LLM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const API = '';
+
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+function toast(msg, type='info') {
+  const d = document.createElement('div');
+  d.className = 'toast';
+  const icons = { info:'fa-info-circle', success:'fa-check-circle', error:'fa-exclamation-circle' };
+  const colors = { info:'var(--accent)', success:'var(--green)', error:'var(--red)' };
+  d.innerHTML = `<i class="fas ${icons[type]||icons.info}" style="color:${colors[type]||colors.info}"></i> ${msg}`;
+  document.body.appendChild(d);
+  setTimeout(() => d.remove(), 3500);
+}
+
+async function api(path, opts={}) {
+  try {
+    const r = await fetch(API + path, opts);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return await r.json();
+  } catch (e) {
+    console.error('API error:', path, e);
+    toast(e.message, 'error');
+    return null;
+  }
+}
+
+// ── Navigation ───────────────────────────────────────────────────────
+function showPage(name) {
+  $$('.page').forEach(p => p.classList.remove('active'));
+  $$('.tabs button').forEach(b => b.classList.remove('active'));
+  const page = $('#page-' + name);
+  if(page) page.classList.add('active');
+  $$('nav .tabs button').forEach(b => {
+    if(b.textContent.toLowerCase().includes(name) || b.onclick?.toString().includes(name))
+      b.classList.add('active');
+  });
+  if(name === 'home') loadHome();
+  if(name === 'kg') loadKgGraph();
+  if(name === 'okf') loadOKFClasses();
+  if(name === 'docs') loadDocuments();
+}
+
+// ── Home ─────────────────────────────────────────────────────────────
+async function loadHome() {
+  const [stats, docs, types] = await Promise.all([
+    api('/api/kg/stats'),
+    api('/api/documents'),
+    api('/api/kg/types'),
+  ]);
+  if(stats) {
+    $('#sNodes').textContent = stats.total_nodes.toLocaleString();
+    $('#sEdges').textContent = stats.total_edges.toLocaleString();
+    $('#sTypes').textContent = Object.keys(stats.types).length;
+  }
+  if(docs) {
+    $('#sDocs').textContent = docs.length;
+    const el = $('#recentDocs');
+    if(!docs.length) { el.innerHTML = '<p style="color:var(--dim);font-size:13px">No documents yet — upload one above!</p>'; return; }
+    el.innerHTML = '<table><tr><th>Name</th><th>Size</th></tr>' +
+      docs.slice(-8).reverse().map(d =>
+        `<tr><td><i class="fas fa-file" style="color:var(--dim);margin-right:6px"></i>${d.name}</td><td style="color:var(--dim)">${(d.size/1024).toFixed(0)} KB</td></tr>`
+      ).join('') + '</table>';
+  }
+  if(types) {
+    const el = $('#typeBreakdown');
+    const sorted = Object.entries(types).sort((a,b) => b[1]-a[1]);
+    const max = sorted[0]?.[1] || 1;
+    el.innerHTML = sorted.map(([t,c]) => {
+      const pct = (c/max*100).toFixed(0);
+      return `<div style="margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px">
+          <span>${t.replace(/_/g,' ')}</span><span style="color:var(--dim)">${c}</span>
+        </div>
+        <div style="height:4px;background:var(--card2);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:var(--grad);border-radius:2px"></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+}
+
+async function quickSearch() {
+  const q = $('#quickSearch')?.value?.trim();
+  if(!q) return;
+  const [kgRes, okfRes] = await Promise.all([
+    api('/api/kg/search?q=' + encodeURIComponent(q)),
+    api('/api/okf/search?q=' + encodeURIComponent(q)),
+  ]);
+  // Results handled by caller
+  return { kg: kgRes || [], okf: okfRes || [] };
+}
+
+// ── Knowledge Graph ──────────────────────────────────────────────────
+const KG_COLORS = {
+  equipment_tag:'#3b82f6', personnel:'#10b981', regulatory_ref:'#ef4444',
+  date:'#f59e0b', parameter:'#8b5cf6', work_order:'#14b8a6',
+  failure_mode:'#f97316', location:'#6366f1', okf_class:'#06b6d4',
+  okf_symbol:'#0891b2', unknown:'#64748b'
+};
+
+let kgNodes = [], kgEdges = [], kgDragging = null, kgOffset = {x:0,y:0}, kgSelected = null;
+
+async function loadKgGraph() {
+  const typeFilter = $('#kgTypeFilter')?.value || '';
+  const [nodes, edges, types] = await Promise.all([
+    api('/api/kg/nodes?type=' + typeFilter + '&limit=1500'),
+    api('/api/kg/edges'),
+    api('/api/kg/types'),
+  ]);
+  if(!nodes) return;
+  kgNodes = nodes;
+  kgEdges = edges || [];
+
+  if(types) {
+    const sel = $('#kgTypeFilter');
+    if(sel) {
+      const cur = sel.value;
+      const total = Object.values(types).reduce((a,b)=>a+b,0);
+      sel.innerHTML = `<option value="">All types (${total})</option>`;
+      Object.entries(types).sort((a,b)=>b[1]-a[1]).forEach(([t,c]) => {
+        sel.innerHTML += `<option value="${t}" ${t===cur?'selected':''}>${t.replace(/_/g,' ')} (${c})</option>`;
+      });
+    }
+  }
+
+  const typeGroups = {};
+  kgNodes.forEach((n,i) => { (typeGroups[n.type] ??= []).push(i); });
+  const typeKeys = Object.keys(typeGroups);
+  const canvas = $('#kgCanvas');
+  if(!canvas) return;
+  canvas.width = canvas.parentElement.clientWidth;
+  const W = canvas.width, H = canvas.height, cx = W/2, cy = H/2;
+
+  typeKeys.forEach((t, ti) => {
+    const angle = 2*Math.PI*ti/typeKeys.length;
+    const r = Math.min(W,H)*0.3 + (ti%3)*30;
+    const bx = cx + r*Math.cos(angle), by = cy + r*Math.sin(angle);
+    typeGroups[t].forEach((idx, ii) => {
+      const a2 = 2*Math.PI*ii/typeGroups[t].length;
+      const r2 = 15 + typeGroups[t].length*1.5;
+      kgNodes[idx]._x = bx + r2*Math.cos(a2);
+      kgNodes[idx]._y = by + r2*Math.sin(a2);
+      kgNodes[idx]._type = t;
+    });
+  });
+
+  const legend = $('#kgLegend');
+  if(legend) legend.innerHTML = typeKeys.slice(0,12).map(t =>
+    `<span style="font-size:12px;display:flex;align-items:center;gap:4px">
+      <span style="width:8px;height:8px;border-radius:50%;background:${KG_COLORS[t]||KG_COLORS.unknown}"></span>
+      ${t.replace(/_/g,' ')}
+    </span>`
+  ).join('');
+
+  drawKgGraph();
+  initKgInteraction();
+  window.onresize = () => { loadKgGraph(); };
+}
+
+function drawKgGraph() {
+  const canvas = $('#kgCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  ctx.strokeStyle = 'rgba(100,116,139,0.1)';
+  ctx.lineWidth = 0.5;
+  kgEdges.forEach(e => {
+    const s = kgNodes.find(n => n.id===e.source);
+    const t = kgNodes.find(n => n.id===e.target);
+    if(s?.[ '_x'] && t?._x) {
+      ctx.beginPath(); ctx.moveTo(s._x,s._y); ctx.lineTo(t._x,t._y); ctx.stroke();
+    }
+  });
+
+  kgNodes.forEach((n,i) => {
+    if(!n._x) return;
+    const col = KG_COLORS[n._type]||KG_COLORS.unknown;
+    const r = n._type==='okf_class' ? 5 : 3;
+    ctx.beginPath(); ctx.arc(n._x,n._y,r,0,Math.PI*2);
+    ctx.fillStyle = col; ctx.fill();
+    if(kgSelected===i) { ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.stroke(); }
+  });
+}
+
+function initKgInteraction() {
+  const canvas = $('#kgCanvas');
+  if(!canvas) return;
+  canvas.onmousedown = e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX-rect.left, my = e.clientY-rect.top;
+    let minD=20, minI=-1;
+    kgNodes.forEach((n,i) => { if(!n._x) return; const d=Math.hypot(n._x-mx,n._y-my); if(d<minD){minD=d;minI=i;} });
+    if(minI>=0) {
+      kgDragging=minI; kgOffset={x:mx-kgNodes[minI]._x,y:my-kgNodes[minI]._y};
+      kgSelected=minI; showNodeDetail(kgNodes[minI]); drawKgGraph();
+    }
+  };
+  canvas.onmousemove = e => {
+    if(kgDragging===null) return;
+    const rect=canvas.getBoundingClientRect();
+    kgNodes[kgDragging]._x=e.clientX-rect.left-kgOffset.x;
+    kgNodes[kgDragging]._y=e.clientY-rect.top-kgOffset.y;
+    drawKgGraph();
+  };
+  canvas.onmouseup = () => { kgDragging=null; };
+}
+
+function showNodeDetail(n) {
+  const el = $('#kgDetail'); if(!el) return;
+  el.innerHTML = `
+    <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:8px">${n.value}</div>
+    <span class="tag tag-blue">${n.type.replace(/_/g,' ')}</span>
+    <div style="margin-top:12px;font-size:12px;color:var(--dim);line-height:1.8">
+      <div><b style="color:var(--text)">ID:</b> ${n.id}</div>
+      <div><b style="color:var(--text)">Sources:</b> ${(n.sources||[]).join(', ')||'—'}</div>
+      <div><b style="color:var(--text)">Confidence:</b> ${n.confidence||'—'}</div>
+      ${n.contexts?.length ? '<div style="margin-top:6px"><b style="color:var(--text)">Contexts:</b></div>'+n.contexts.slice(0,3).map(c=>'<div style="margin-left:8px;padding:2px 0">• '+c.slice(0,120)+'</div>').join('') : ''}
+    </div>`;
+}
+
+async function expandNetwork() {
+  const val = $('#kgNetSearch')?.value?.trim();
+  if(!val) return;
+  const data = await api('/api/kg/network?value='+encodeURIComponent(val)+'&depth=2');
+  if(!data) return;
+  const el = $('#kgNetResult'); if(!el) return;
+  const nc=Object.keys(data.nodes).length, ec=data.edges.length;
+  el.innerHTML = `<div style="color:var(--green);margin-bottom:6px"><i class="fas fa-check-circle"></i> ${nc} nodes, ${ec} edges</div>` +
+    Object.values(data.nodes).slice(0,20).map(n =>
+      `<div style="padding:3px 0"><span class="tag tag-blue" style="font-size:10px">${n.type}</span> ${n.value}</div>`
+    ).join('');
+}
+
+// ── OKF Explorer ─────────────────────────────────────────────────────
+async function loadOKFClasses() {
+  const classes = await api('/api/okf/classes');
+  if(!classes) return;
+  const el = $('#okfClasses'); if(!el) return;
+  el.innerHTML = '<table><tr><th>Class</th><th style="text-align:center">Count</th></tr>' +
+    classes.map(c => `<tr><td><b>${c.meta?.title||c.file.replace('.md','')}</b></td><td style="text-align:center"><span class="tag tag-green">${c.count}</span></td></tr>`).join('')+'</table>';
+}
+
+async function searchOKF() {
+  const q = $('#okfSearch')?.value?.trim(); if(!q) return;
+  const results = await api('/api/okf/search?q='+encodeURIComponent(q));
+  const el = $('#okfResults'); if(!el) return;
+  if(!results?.length) { el.innerHTML='<p style="color:var(--dim);font-size:13px">No results</p>'; return; }
+  el.innerHTML = results.map(r => `
+    <div style="padding:10px;border-bottom:1px solid var(--border)">
+      <div><span class="tag tag-green">${r.type||'class'}</span> <b>${r.title||r.name||''}</b>
+      ${r.score?'<span style="color:var(--dim);font-size:11px;margin-left:8px">'+r.score.toFixed(3)+'</span>':''}</div>
+      <div style="font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5">${(r.body||'').slice(0,160)}...</div>
+    </div>`).join('');
+}
+
+async function sendOKFChat() {
+  const input=$('#okfChatInput'); const msg=input?.value?.trim(); if(!msg) return;
+  input.value='';
+  addChatMsg('okfChatBox',msg,'user');
+  addChatMsg('okfChatBox','Thinking...','bot');
+  const res = await api('/api/okf/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+  const box=$('#okfChatBox'); if(box?.lastChild) box.removeChild(box.lastChild);
+  addChatMsg('okfChatBox',res?.answer||res?.error||'No response','bot');
+}
+
+// ── Documents ────────────────────────────────────────────────────────
+async function loadDocuments() {
+  const docs = await api('/api/documents');
+  const el = $('#docList'); if(!el) return;
+  if(!docs?.length) { el.innerHTML='<p style="color:var(--dim);font-size:13px">No documents yet</p>'; return; }
+  const extIcon = e => ['pdf'].includes(e)?'fa-file-pdf':(['xlsx','xls'].includes(e)?'fa-file-excel':'fa-file-alt');
+  const extTag = e => ['pdf'].includes(e)?'tag-red':(['xlsx','xls'].includes(e)?'tag-green':'tag-blue');
+  el.innerHTML = '<table><tr><th>Name</th><th>Size</th><th>Type</th></tr>' +
+    docs.map(d => { const e=d.name.split('.').pop().toLowerCase();
+      return `<tr><td><i class="fas ${extIcon(e)}" style="margin-right:8px;color:var(--dim)"></i>${d.name}</td><td style="color:var(--dim)">${(d.size/1024).toFixed(0)} KB</td><td><span class="tag ${extTag(e)}">${e}</span></td></tr>`;
+    }).join('')+'</table>';
+}
+
+async function handleUpload(files) {
+  const statusEl = $('#homeUploadStatus') || $('#docsUploadStatus');
+  const progressWrap = $('#homeProgressWrap') || $('#docsProgressWrap');
+  const progressBar = $('#homeProgress') || $('#docsProgress');
+  if(progressWrap) progressWrap.style.display='block';
+
+  for(const file of files) {
+    const fd = new FormData();
+    fd.append('file', file);
+    if(statusEl) statusEl.innerHTML=`<i class="fas fa-spinner fa-spin"></i> Uploading ${file.name}...`;
+    if(progressBar) progressBar.style.width='30%';
+    const res = await api('/api/documents/ingest',{method:'POST',body:fd});
+    if(progressBar) progressBar.style.width='100%';
+    if(res?.status==='error') {
+      if(statusEl) statusEl.innerHTML=`<span style="color:var(--red)"><i class="fas fa-exclamation-circle"></i> ${res.message}</span>`;
+      toast(`Failed: ${file.name}`,'error');
+    } else {
+      if(statusEl) statusEl.innerHTML=`<span style="color:var(--green)"><i class="fas fa-check-circle"></i> ${file.name} ingested</span>`;
+      toast(`${file.name} ingested`,'success');
+    }
+    setTimeout(()=>{ if(progressBar) progressBar.style.width='0'; if(progressWrap) progressWrap.style.display='none'; },1500);
+  }
+  loadHome();
+  loadDocuments();
+}
+
+async function searchDocs() {
+  const q=$('#docSearch')?.value?.trim(); if(!q) return;
+  const results = await api('/api/documents/search?q='+encodeURIComponent(q));
+  const el=$('#docResults'); if(!el) return;
+  if(!results?.length) { el.innerHTML='<p style="color:var(--dim);font-size:13px">No results</p>'; return; }
+  el.innerHTML = results.map(r => `
+    <div style="padding:10px;border-bottom:1px solid var(--border)">
+      <div style="font-size:12px;color:var(--dim)"><i class="fas fa-file" style="margin-right:4px"></i>${r.source||'—'}</div>
+      <div style="margin-top:4px;font-size:13px;line-height:1.5">${(r.content||'').slice(0,200)}...</div>
+    </div>`).join('');
+}
+
+// Drag & drop on all upload zones
+document.querySelectorAll('.upload-zone, .upload-zone-sm').forEach(uz => {
+  uz.ondragover = e => { e.preventDefault(); uz.classList.add('dragover'); };
+  uz.ondragleave = () => uz.classList.remove('dragover');
+  uz.ondrop = e => { e.preventDefault(); uz.classList.remove('dragover'); handleUpload(e.dataTransfer.files); };
+});
+
+// ── P&ID Processing ─────────────────────────────────────────────────
+async function processPID(file) {
+  if(!file) return;
+  const fd = new FormData();
+  fd.append('file', file);
+  const sw = $('#pidStatus'), pw = $('#pidProgressWrap'), pb = $('#pidProgress');
+  if(pw) pw.style.display='block';
+  if(sw) sw.innerHTML=`<i class="fas fa-spinner fa-spin"></i> Processing ${file.name}... (30-90s)`;
+  if(pb) pb.style.width='20%';
+  const res = await api('/api/process/pid',{method:'POST',body:fd});
+  if(pb) pb.style.width='100%';
+  if(res?.error) {
+    if(sw) sw.innerHTML=`<span style="color:var(--red)"><i class="fas fa-exclamation-circle"></i> ${res.error}</span>`;
+    return;
+  }
+  if(sw) sw.innerHTML=`<span style="color:var(--green)"><i class="fas fa-check-circle"></i> Processed ${file.name}</span>`;
+  toast('P&ID processed','success');
+
+  const el=$('#pidResults');
+  if(res?.detections&&el) {
+    el.innerHTML='<table><tr><th>Class</th><th>Confidence</th><th>Box</th></tr>'+
+      res.detections.map(d=>`<tr><td>${d.class_name||d.class||'—'}</td><td>${((d.confidence||d.score||0)*100).toFixed(1)}%</td><td style="font-size:11px;color:var(--dim)">${d.box?d.box.map(b=>b.toFixed(0)).join(', '):'—'}</td></tr>`).join('')+'</table>';
+  }
+  if(res?.entities) {
+    $('#pidEntities').innerHTML=res.entities.map(e=>`<div style="padding:4px 0;font-size:13px"><span class="tag tag-blue">${e.type}</span> ${e.value}</div>`).join('');
+  }
+  setTimeout(()=>{ if(pw) pw.style.display='none'; },1500);
+}
+
+// ── AI Chat ──────────────────────────────────────────────────────────
+function addChatMsg(boxId,text,role) {
+  const box=$('#'+boxId); if(!box) return;
+  const div=document.createElement('div');
+  div.className='chat-msg chat-'+role;
+  div.textContent=text;
+  box.appendChild(div);
+  box.scrollTop=box.scrollHeight;
+}
+
+async function sendAIChat() {
+  const input=$('#aiChatInput'); const msg=input?.value?.trim(); if(!msg) return;
+  input.value='';
+  addChatMsg('aiChatBox',msg,'user');
+  addChatMsg('aiChatBox','Thinking...','bot');
+  const res = await api('/api/okf/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+  const box=$('#aiChatBox');
+  if(box?.lastChild) box.removeChild(box.lastChild);
+  if(res?.answer) {
+    addChatMsg('aiChatBox',res.answer,'bot');
+  } else {
+    const sr = await api('/api/search?q='+encodeURIComponent(msg));
+    if(sr?.length) {
+      addChatMsg('aiChatBox','Found relevant documents:\n'+sr.slice(0,3).map(r=>`• ${r.source}: ${(r.content||'').slice(0,100)}`).join('\n'),'bot');
+    } else {
+      addChatMsg('aiChatBox','No results found. Try uploading documents first.','bot');
+    }
+  }
+}
+
+// ── Init ─────────────────────────────────────────────────────────────
+async function init() {
+  const h = await api('/api/health');
+  if(h?.status==='ok') {
+    $('#statusDot').className='dot dot-green';
+    $('#statusText').textContent='Connected';
+  } else {
+    $('#statusDot').className='dot dot-red';
+    $('#statusText').textContent='Disconnected';
+  }
+  loadHome();
+}
+init();
+</script>
+</body>
+</html>

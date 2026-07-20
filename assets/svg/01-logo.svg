@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" width="420" height="130">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+    <filter id="glow1">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    @keyframes pulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    @keyframes drawLine { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes glow { 0%, 100% { filter: url(#glow1); } 50% { filter: url(#glow1) brightness(1.3); } }
+    .sparkle { animation: pulse 2s ease-in-out infinite; }
+    .float { animation: float 3s ease-in-out infinite; }
+    .line-draw { stroke-dasharray: 30; animation: drawLine 1.5s ease-out forwards; }
+    .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+    .text-glow { animation: glow 2s ease-in-out infinite; }
+  </style>
+  <!-- P&ID schematic icon -->
+  <g transform="translate(15, 18)" class="float">
+    <line x1="0" y1="28" x2="30" y2="28" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw"/>
+    <line x1="50" y1="28" x2="80" y2="28" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw" style="animation-delay: 0.2s"/>
+    <line x1="0" y1="68" x2="30" y2="68" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw" style="animation-delay: 0.4s"/>
+    <line x1="50" y1="68" x2="80" y2="68" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" class="line-draw" style="animation-delay: 0.6s"/>
+    <!-- Valve bowtie -->
+    <polygon points="35,18 45,28 35,38" fill="none" stroke="url(#g1)" stroke-width="2.5" class="fade-in" style="animation-delay: 0.3s"/>
+    <polygon points="45,18 35,28 45,38" fill="none" stroke="url(#g1)" stroke-width="2.5" class="fade-in" style="animation-delay: 0.3s"/>
+    <!-- Instrument circle -->
+    <circle cx="40" cy="68" r="12" fill="none" stroke="url(#g1)" stroke-width="2.5" class="fade-in" style="animation-delay: 0.5s"/>
+    <line x1="40" y1="56" x2="40" y2="50" stroke="url(#g1)" stroke-width="2.5"/>
+    <line x1="40" y1="80" x2="40" y2="86" stroke="url(#g1)" stroke-width="2.5"/>
+    <!-- AI sparkle -->
+    <circle cx="70" cy="14" r="4" fill="#00e5c0" class="sparkle"/>
+    <circle cx="77" cy="8" r="2.5" fill="#00d4ff" class="sparkle" style="animation-delay: 0.5s"/>
+  </g>
+  <!-- DocuPID text -->
+  <text x="120" y="58" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700" fill="white" letter-spacing="-1" class="fade-in text-glow">Docu</text>
+  <text x="215" y="58" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700" fill="url(#g1)" letter-spacing="-1" class="fade-in text-glow" style="animation-delay: 0.2s">PID</text>
+  <!-- Tagline -->
+  <text x="120" y="82" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" letter-spacing="3" class="fade-in" style="animation-delay: 0.4s">INDUSTRIAL P&amp;ID DIGITIZATION</text>
+  <line x1="120" y1="88" x2="370" y2="88" stroke="url(#g2)" stroke-width="1" opacity="0.3" class="line-draw" style="animation-delay: 0.6s"/>
+  <!-- AI badge -->
+  <rect x="350" y="32" width="44" height="24" rx="6" fill="url(#g1)" class="fade-in" style="animation-delay: 0.8s"/>
+  <text x="360" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#0a0e27" class="fade-in" style="animation-delay: 0.8s">AI</text>
+</svg>

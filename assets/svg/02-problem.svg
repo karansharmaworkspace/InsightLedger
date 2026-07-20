@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e27"/>
+      <stop offset="100%" stop-color="#111633"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6b35"/>
+      <stop offset="100%" stop-color="#ff3860"/>
+    </linearGradient>
+    <linearGradient id="cyan2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <style>
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    @keyframes scanLine { from { transform: translateX(-100%); } to { transform: translateX(200%); } }
+    @keyframes glow { 0%,100% { filter: none; } 50% { filter: url(#glow2); } }
+    .fade-up { animation: fadeInUp 0.6s ease-out both; }
+    .fade-up-1 { animation: fadeInUp 0.6s ease-out 0.1s both; }
+    .fade-up-2 { animation: fadeInUp 0.6s ease-out 0.2s both; }
+    .fade-up-3 { animation: fadeInUp 0.6s ease-out 0.3s both; }
+    .fade-up-4 { animation: fadeInUp 0.6s ease-out 0.4s both; }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    .count { animation: countUp 0.8s ease-out 0.5s both; }
+    .glow { animation: glow 2.5s ease-in-out infinite; }
+  </style>
+  <rect width="800" height="450" fill="url(#bg2)" rx="12"/>
+  <text x="400" y="48" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle" class="fade-up">THE PROBLEM</text>
+  <line x1="350" y1="58" x2="450" y2="58" stroke="url(#accent2)" stroke-width="2"/>
+
+  <!-- Left: Pain points -->
+  <g transform="translate(50, 90)">
+    <rect x="0" y="0" width="55" height="70" rx="4" fill="none" stroke="#ff6b35" stroke-width="2" class="pulse"/>
+    <line x1="10" y1="16" x2="45" y2="16" stroke="#ff6b35" stroke-width="1.5" opacity="0.6"/>
+    <line x1="10" y1="28" x2="40" y2="28" stroke="#ff6b35" stroke-width="1.5" opacity="0.6"/>
+    <line x1="10" y1="40" x2="45" y2="40" stroke="#ff6b35" stroke-width="1.5" opacity="0.6"/>
+    <line x1="10" y1="52" x2="32" y2="52" stroke="#ff6b35" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="28" cy="63" r="5" fill="none" stroke="#ff3860" stroke-width="2"/>
+
+    <text x="75" y="28" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="white" font-weight="600" class="fade-up-1">Millions of P&amp;IDs</text>
+    <text x="75" y="48" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" class="fade-up-1">trapped in scanned images &amp; paper</text>
+    <text x="0" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="white" font-weight="600" class="fade-up-2">Manual digitization</text>
+    <text x="0" y="130" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" class="fade-up-2">weeks of engineering hours per plant</text>
+    <text x="0" y="178" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="white" font-weight="600" class="fade-up-3">No searchability</text>
+    <text x="0" y="198" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" class="fade-up-3">find a valve across 500 drawings? good luck.</text>
+    <text x="0" y="246" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="white" font-weight="600" class="fade-up-4">Knowledge loss</text>
+    <text x="0" y="266" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" class="fade-up-4">retirements drain institutional memory</text>
+  </g>
+
+  <!-- Right: Stats -->
+  <g transform="translate(480, 90)">
+    <rect x="0" y="0" width="270" height="270" rx="10" fill="#111633" stroke="#1e2a4a"/>
+    <text x="135" y="32" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" text-anchor="middle" letter-spacing="2">INDUSTRY IMPACT</text>
+    <text x="135" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="40" font-weight="700" fill="url(#accent2)" text-anchor="middle" class="count glow">72%</text>
+    <text x="135" y="100" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">of plants still use paper P&amp;IDs</text>
+    <line x1="40" y1="115" x2="230" y2="115" stroke="#1e2a4a"/>
+    <text x="135" y="150" font-family="'Segoe UI', Arial, sans-serif" font-size="40" font-weight="700" fill="url(#cyan2)" text-anchor="middle" class="count" style="animation-delay:0.7s">$4.2M</text>
+    <text x="135" y="170" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">avg cost of a single digitization project</text>
+    <line x1="40" y1="185" x2="230" y2="185" stroke="#1e2a4a"/>
+    <text x="135" y="218" font-family="'Segoe UI', Arial, sans-serif" font-size="40" font-weight="700" fill="#ffd700" text-anchor="middle" class="count" style="animation-delay:0.9s">6-12mo</text>
+    <text x="135" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">typical timeline for manual conversion</text>
+  </g>
+
+  <text x="400" y="415" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="url(#cyan2)" text-anchor="middle" font-weight="600" class="fade-up" style="animation-delay:1s">DocuPID changes this.</text>
+</svg>

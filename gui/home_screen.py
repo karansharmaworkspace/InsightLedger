@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QStackedWidget, QPushButton, QLabel, QFrame,
-    QLineEdit, QTextEdit, QScrollArea
+    QScrollArea, QLineEdit, QTextEdit, QFileDialog
 )
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QPropertyAnimation, QEasingCurve
 from PyQt6.QtGui import QColor, QPalette, QTextCursor
@@ -105,6 +105,13 @@ class HomeScreen(QMainWindow):
             print(f"[OKF-RAG] Init failed: {e}")
             self._rag_chat = None
 
+        try:
+            from core.knowledge_platform import KnowledgePlatform
+            self._platform = KnowledgePlatform()
+        except Exception as e:
+            print(f"[KnowledgePlatform] Init failed: {e}")
+            self._platform = None
+
         p = QPalette()
         p.setColor(QPalette.ColorRole.Window, QColor("#1e1e1e"))
         p.setColor(QPalette.ColorRole.WindowText, QColor("#d4d4d4"))
@@ -177,6 +184,7 @@ class HomeScreen(QMainWindow):
             ("\u2699", "Engine Settings"),
             ("\u2295", "Users Management"),
             ("\u2692", "Settings"),
+            ("\u263A", "Team"),
         ]
         for icon, label in nav_items:
             btn = NavBtn(icon, label)
@@ -240,199 +248,252 @@ class HomeScreen(QMainWindow):
         self.stack.addWidget(UsersManagementPage())
         from gui.general_settings import GeneralSettingsPage
         self.stack.addWidget(GeneralSettingsPage())
+        from gui.team_screen import TeamPage
+        self.stack.addWidget(TeamPage())
 
     def _home_page(self):
-        page = QWidget()
-        page.setStyleSheet("background: #1e1e1e;")
-        page_layout = QVBoxLayout(page)
-        page_layout.setContentsMargins(0, 0, 0, 0)
-        page_layout.setSpacing(0)
+        outer = QWidget()
+        outer.setStyleSheet("background: #1e1e1e;")
+        outer_layout = QVBoxLayout(outer)
+        outer_layout.setContentsMargins(0, 0, 0, 0)
 
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.Shape.NoFrame)
         scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
 
-        container = QWidget()
-        container.setStyleSheet("background: transparent;")
-        cl = QVBoxLayout(container)
-        cl.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignTop)
-        cl.setContentsMargins(80, 40, 80, 20)
-        cl.setSpacing(0)
+        page = QWidget()
+        page.setStyleSheet("background: transparent;")
+        page_layout = QVBoxLayout(page)
+        page_layout.setContentsMargins(24, 20, 24, 20)
+        page_layout.setSpacing(16)
 
-        self._chat_area_widget = QWidget()
-        self._chat_area_widget.setStyleSheet("background: transparent;")
-        self._chat_area_layout = QVBoxLayout(self._chat_area_widget)
-        self._chat_area_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignTop)
-        self._chat_area_layout.setContentsMargins(0, 0, 0, 0)
-        self._chat_area_layout.setSpacing(0)
-
-        cl.addWidget(self._chat_area_widget)
-
-        self._welcome_widget = QWidget()
-        self._welcome_widget.setStyleSheet("background: transparent;")
-        welcome_layout = QVBoxLayout(self._welcome_widget)
-        welcome_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
-        welcome_layout.setContentsMargins(0, 60, 0, 0)
-        welcome_layout.setSpacing(12)
-
-        title = QLabel("DocuPID")
-        title.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        title.setStyleSheet("color: #fff; font-size: 32px; font-weight: 600; border: none;")
-        welcome_layout.addWidget(title)
-
-        sub = QLabel("What can I help you with?")
-        sub.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        sub.setStyleSheet("color: #999; font-size: 16px; border: none;")
-        welcome_layout.addWidget(sub)
-
-        welcome_layout.addSpacing(40)
-
-        suggestions = [
-            ("Symbols", "What P&ID symbols exist?"),
-            ("Valves", "Tell me about valve types"),
-            ("Pumps", "List all pump subclasses"),
-            ("Instruments", "What instrument classes are there?"),
+        stats_grid = QHBoxLayout()
+        stats_grid.setSpacing(12)
+        stats_data = [
+            ("Knowledge Nodes", "#3b82f6", "\u2B21"),
+            ("Relationships", "#8b5cf6", "\u25CE"),
+            ("Entity Types", "#10b981", "\u229E"),
+            ("Documents", "#f59e0b", "\u2295"),
         ]
-
-        cards_layout = QHBoxLayout()
-        cards_layout.setSpacing(12)
-        cards_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        for label, query in suggestions:
-            card = QPushButton(label)
-            card.setFixedSize(160, 56)
-            card.setCursor(Qt.CursorShape.PointingHandCursor)
-            card.setStyleSheet("""
-                QPushButton {
-                    background: #252526;
-                    color: #bbb;
-                    border: 1px solid #333;
+        self._stat_vals = []
+        for label, color, icon in stats_data:
+            card = QFrame()
+            card.setStyleSheet(f"""
+                QFrame {{
+                    background: #111827;
+                    border: 1px solid #1e293b;
                     border-radius: 12px;
-                    font-size: 13px;
-                    font-weight: 500;
-                }
-                QPushButton:hover {
-                    background: #2d2d2d;
-                    color: #fff;
-                    border-color: #555;
-                }
+                    padding: 16px;
+                }}
+                QFrame:hover {{ border-color: {color}; }}
             """)
-            card.clicked.connect(lambda _, q=query: self._quick_query(q))
-            cards_layout.addWidget(card)
+            card.setFixedHeight(80)
+            row = QHBoxLayout(card)
+            row.setContentsMargins(16, 12, 16, 12)
+            row.setSpacing(12)
 
-        cards_layout.addStretch()
-        welcome_layout.addLayout(cards_layout)
-        welcome_layout.addStretch()
+            icon_box = QLabel(icon)
+            icon_box.setFixedSize(44, 44)
+            icon_box.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            icon_box.setStyleSheet(f"""
+                background: {color}22; color: {color};
+                border-radius: 10px; font-size: 18px;
+            """)
+            row.addWidget(icon_box)
 
-        cl.addWidget(self._welcome_widget)
+            info = QVBoxLayout()
+            info.setSpacing(2)
+            val = QLabel("—")
+            val.setStyleSheet("color: #fff; font-size: 22px; font-weight: 700; border: none;")
+            self._stat_vals.append(val)
+            info.addWidget(val)
+            lbl = QLabel(label)
+            lbl.setStyleSheet("color: #64748b; font-size: 11px; border: none;")
+            info.addWidget(lbl)
+            row.addLayout(info)
+            row.addStretch()
 
-        scroll.setWidget(container)
-        page_layout.addWidget(scroll, 1)
+            stats_grid.addWidget(card)
+        page_layout.addLayout(stats_grid)
 
-        input_bar = QWidget()
-        input_bar.setFixedHeight(80)
-        input_bar.setStyleSheet("background: #1e1e1e; border-top: 1px solid #333;")
-        input_layout = QHBoxLayout(input_bar)
-        input_layout.setContentsMargins(100, 12, 100, 16)
+        upload_row = QHBoxLayout()
+        upload_row.setSpacing(12)
+
+        self._upload_btn = QPushButton("\u2B06  Upload Document")
+        self._upload_btn.setFixedHeight(44)
+        self._upload_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._upload_btn.setStyleSheet("""
+            QPushButton {
+                background: qlineargradient(x1:0,y1:0,x2:1,y2:1, stop:0 #3b82f6, stop:1 #8b5cf6);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 0 24px;
+            }
+            QPushButton:hover { opacity: 0.9; }
+            QPushButton:disabled { background: #334155; color: #64748b; }
+        """)
+        self._upload_btn.clicked.connect(self._pick_upload_file)
+        upload_row.addWidget(self._upload_btn)
+
+        self._upload_status = QLabel("")
+        self._upload_status.setStyleSheet("color: #10b981; font-size: 12px; border: none;")
+        upload_row.addWidget(self._upload_status)
+        upload_row.addStretch()
+        page_layout.addLayout(upload_row)
+
+        chat_card = QFrame()
+        chat_card.setStyleSheet("""
+            QFrame {
+                background: #111827;
+                border: 1px solid #1e293b;
+                border-radius: 12px;
+            }
+        """)
+        chat_layout = QVBoxLayout(chat_card)
+        chat_layout.setContentsMargins(16, 16, 16, 16)
+        chat_layout.setSpacing(12)
+
+        chat_header = QLabel("\u25CE  OKF Knowledge Assistant")
+        chat_header.setStyleSheet("color: #fff; font-size: 15px; font-weight: 600; border: none;")
+        chat_layout.addWidget(chat_header)
+
+        self._chat_display = QTextEdit()
+        self._chat_display.setReadOnly(True)
+        self._chat_display.setMinimumHeight(200)
+        self._chat_display.setStyleSheet("""
+            QTextEdit {
+                background: #0f172a;
+                color: #e2e8f0;
+                border: 1px solid #1e293b;
+                border-radius: 8px;
+                padding: 12px;
+                font-size: 13px;
+            }
+        """)
+        self._chat_display.setPlaceholderText("Ask anything about the OKF knowledge base...")
+        chat_layout.addWidget(self._chat_display, 1)
+
+        input_row = QHBoxLayout()
+        input_row.setSpacing(8)
 
         self._home_query = QLineEdit()
         self._home_query.setPlaceholderText("Ask the OKF knowledge base...")
-        self._home_query.setFixedHeight(48)
+        self._home_query.setFixedHeight(40)
         self._home_query.setStyleSheet("""
             QLineEdit {
-                background: #2d2d2d;
+                background: #0f172a;
                 color: #fff;
-                border: 1px solid #444;
-                border-radius: 24px;
-                padding: 0 52px 0 18px;
-                font-size: 14px;
-                selection-background-color: #0078d4;
+                border: 1px solid #1e293b;
+                border-radius: 8px;
+                padding: 0 14px;
+                font-size: 13px;
             }
-            QLineEdit:focus {
-                border-color: #666;
-            }
+            QLineEdit:focus { border-color: #3b82f6; }
         """)
         self._home_query.returnPressed.connect(self._send_home_query)
-        input_layout.addWidget(self._home_query)
+        input_row.addWidget(self._home_query, 1)
 
         self._home_send_btn = QPushButton("\u2191")
-        self._home_send_btn.setFixedSize(36, 36)
+        self._home_send_btn.setFixedSize(40, 40)
         self._home_send_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self._home_send_btn.setStyleSheet("""
             QPushButton {
-                background: #555;
-                color: #999;
+                background: #3b82f6;
+                color: #fff;
                 border: none;
-                border-radius: 18px;
-                font-size: 18px;
+                border-radius: 8px;
+                font-size: 16px;
                 font-weight: bold;
             }
-            QPushButton:hover { background: #0078d4; color: #fff; }
-            QPushButton:pressed { background: #005a9e; }
-            QPushButton:disabled { background: #333; color: #555; }
+            QPushButton:hover { background: #2563eb; }
+            QPushButton:disabled { background: #334155; color: #64748b; }
         """)
         self._home_send_btn.clicked.connect(self._send_home_query)
+        input_row.addWidget(self._home_send_btn)
 
-        send_container = QWidget()
-        send_container.setFixedSize(36, 36)
-        send_container.setStyleSheet("background: transparent;")
-        send_container_layout = QVBoxLayout(send_container)
-        send_container_layout.setContentsMargins(0, 0, 0, 0)
-        send_container_layout.addWidget(self._home_send_btn)
-        input_layout.addWidget(send_container, 0, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        chat_layout.addLayout(input_row)
+        page_layout.addWidget(chat_card, 1)
 
-        page_layout.addWidget(input_bar)
-        return page
+        page_layout.addStretch()
 
-    def _quick_query(self, text):
-        self._home_query.setText(text)
-        self._send_home_query()
+        scroll.setWidget(page)
+        outer_layout.addWidget(scroll)
+        return outer
 
-    def _ensure_chat_mode(self):
-        if not self._in_chat_mode:
-            self._in_chat_mode = True
-            self._welcome_widget.hide()
-            self._chat_display = QTextEdit()
-            self._chat_display.setReadOnly(True)
-            self._chat_display.setStyleSheet("""
-                QTextEdit {
-                    background: transparent;
-                    color: #d4d4d4;
-                    border: none;
-                    font-size: 14px;
-                    line-height: 1.6;
-                    selection-background-color: #0078d4;
-                }
-            """)
-            self._chat_area_layout.addWidget(self._chat_display)
+    def _pick_upload_file(self):
+        files, _ = QFileDialog.getOpenFileNames(
+            self, "Select Documents", "",
+            "All Supported (*.pdf *.xlsx *.xls *.png *.jpg *.jpeg *.bmp *.tiff *.txt *.md *.csv);;PDF (*.pdf);;Excel (*.xlsx *.xls);;Images (*.png *.jpg *.jpeg *.bmp *.tiff);;Text (*.txt *.md *.csv)"
+        )
+        if not files:
+            return
+        self._upload_btn.setEnabled(False)
+        self._upload_btn.setText(f"Uploading {len(files)} file(s)...")
+        self._upload_status.setText("")
+
+        from PyQt6.QtCore import QTimer
+        QTimer.singleShot(100, lambda: self._process_uploads(files))
+
+    def _process_uploads(self, files):
+        if self._platform is None:
+            self._upload_status.setStyleSheet("color: #ef4444; font-size: 12px; border: none;")
+            self._upload_status.setText("Knowledge platform not available")
+            self._upload_btn.setEnabled(True)
+            self._upload_btn.setText("\u2B06  Upload Document")
+            return
+
+        success = 0
+        failed = 0
+        for f in files:
+            try:
+                result = self._platform.ingest_document(f)
+                if result.get("status") == "error":
+                    failed += 1
+                else:
+                    success += 1
+            except Exception as e:
+                print(f"[Upload] Failed: {f} — {e}")
+                failed += 1
+
+        self._upload_btn.setEnabled(True)
+        self._upload_btn.setText("\u2B06  Upload Document")
+        parts = []
+        if success:
+            parts.append(f"{success} ingested")
+        if failed:
+            parts.append(f"{failed} failed")
+        msg = ", ".join(parts)
+        color = "#10b981" if success else "#ef4444"
+        self._upload_status.setStyleSheet(f"color: {color}; font-size: 12px; border: none;")
+        self._upload_status.setText(msg)
 
     def _send_home_query(self):
         query = self._home_query.text().strip()
         if not query or self._chat_streaming:
             return
 
-        self._ensure_chat_mode()
         self._home_query.clear()
+
+        self._chat_display.append(
+            f"<div style='margin-bottom:12px; padding:8px 12px; background:#1e293b; border-radius:8px;'>"
+            f"<b style='color:#3b82f6;'>You:</b> <span style='color:#e2e8f0;'>{query}</span></div>"
+        )
 
         if self._rag_chat is None:
             self._chat_display.append(
-                f"<div style='margin-bottom:16px;'><b style='color:#0078d4;'>You:</b> {query}</div>"
-            )
-            self._chat_display.append(
-                "<div style='color:#e94560;'>[ERROR] OKF-RAG engine not available. Check GROQ_API_KEY in .env</div>"
+                "<div style='color:#ef4444;'>[ERROR] OKF-RAG engine not available. Check GROQ_API_KEY in .env</div>"
             )
             return
 
-        self._chat_display.append(
-            f"<div style='margin-bottom:16px; padding:8px 12px; background:#252526; border-radius:8px;'>"
-            f"<b style='color:#0078d4;'>You:</b> <span style='color:#d4d4d4;'>{query}</span></div>"
-        )
-
-        self._ai_label = QLabel("<b style='color:#81c784;'>OKF Assistant:</b> ")
-        self._ai_label.setStyleSheet("color: #d4d4d4; font-size: 14px; padding: 8px 12px; background: #1a2a1a; border-radius: 8px; margin-bottom: 16px;")
+        self._ai_label = QLabel()
+        self._ai_label.setStyleSheet("color: #e2e8f0; font-size: 13px; padding: 8px 12px; background: #0f172a; border-radius: 8px; margin-bottom: 12px;")
         self._ai_label.setWordWrap(True)
-        self._chat_area_layout.addWidget(self._ai_label)
+        self._chat_display.append("")
+        self._chat_display.setHtml(self._chat_display.toHtml() + "<div id='ai'></div>")
 
         self._chat_streaming = True
         self._home_query.setEnabled(False)
@@ -447,29 +508,46 @@ class HomeScreen(QMainWindow):
 
     def _on_chat_chunk(self, chunk):
         self._home_response_text += chunk
-        self._ai_label.setText(
-            f"<b style='color:#81c784;'>OKF Assistant:</b> "
-            f"<span style='color:#d4d4d4;'>{self._home_response_text}</span>"
-            f"<span style='color:#81c784;'>|</span>"
-        )
+        html = self._chat_display.toHtml()
+        marker = "<div id='ai'></div>"
+        if marker in html:
+            new_html = html.replace(marker,
+                f"<div style='margin-bottom:12px; padding:8px 12px; background:#0f172a; border-radius:8px;'>"
+                f"<b style='color:#10b981;'>OKF Assistant:</b> "
+                f"<span style='color:#e2e8f0;'>{self._home_response_text}</span>"
+                f"<span style='color:#10b981;'>|</span></div>"
+            )
+            self._chat_display.setHtml(new_html)
 
     def _on_chat_finished(self):
         self._chat_streaming = False
         self._home_query.setEnabled(True)
         self._home_send_btn.setEnabled(True)
         self._home_query.setFocus()
-        self._ai_label.setText(
-            f"<b style='color:#81c784;'>OKF Assistant:</b> "
-            f"<span style='color:#d4d4d4;'>{self._home_response_text}</span>"
-        )
+        html = self._chat_display.toHtml()
+        marker = "<div id='ai'></div>"
+        if marker in html:
+            new_html = html.replace(marker,
+                f"<div style='margin-bottom:12px; padding:8px 12px; background:#0f172a; border-radius:8px;'>"
+                f"<b style='color:#10b981;'>OKF Assistant:</b> "
+                f"<span style='color:#e2e8f0;'>{self._home_response_text}</span></div>"
+            )
+            self._chat_display.setHtml(new_html)
+        sb = self._chat_display.verticalScrollBar()
+        sb.setValue(sb.maximum())
 
     def _on_chat_error(self, error_msg):
         self._chat_streaming = False
         self._home_query.setEnabled(True)
         self._home_send_btn.setEnabled(True)
-        self._ai_label.setText(
-            f"<b style='color:#e94560;'>[ERROR]</b> <span style='color:#e94560;'>{error_msg}</span>"
-        )
+        html = self._chat_display.toHtml()
+        marker = "<div id='ai'></div>"
+        if marker in html:
+            new_html = html.replace(marker,
+                f"<div style='margin-bottom:12px; padding:8px 12px; background:#2d1215; border-radius:8px;'>"
+                f"<b style='color:#ef4444;'>[ERROR]</b> <span style='color:#ef4444;'>{error_msg}</span></div>"
+            )
+            self._chat_display.setHtml(new_html)
 
     def _switch(self, index):
         self.stack.setCurrentIndex(index)

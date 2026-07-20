@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500">
+  <defs>
+    <linearGradient id="bg8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111633"/>
+    </linearGradient>
+    <linearGradient id="cyan8" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="500" fill="url(#bg8)" rx="12"/>
+  <text x="450" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">TECHNOLOGY STACK</text>
+  <line x1="370" y1="55" x2="530" y2="55" stroke="url(#cyan8)" stroke-width="2"/>
+
+  <!-- AI/ML Section -->
+  <g transform="translate(30, 80)">
+    <rect width="260" height="180" rx="8" fill="#111633" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="130" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#00d4ff" text-anchor="middle" letter-spacing="2">AI / MACHINE LEARNING</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">PyTorch</text>
+    </g>
+    <g transform="translate(135, 40)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Ultralytics</text>
+    </g>
+    <g transform="translate(15, 80)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">YOLOv8</text>
+    </g>
+    <g transform="translate(135, 80)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">DINOv2</text>
+    </g>
+    <g transform="translate(15, 120)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">TrOCR</text>
+    </g>
+    <g transform="translate(135, 120)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">CRAFT</text>
+    </g>
+  </g>
+
+  <!-- Backend Section -->
+  <g transform="translate(320, 80)">
+    <rect width="260" height="180" rx="8" fill="#111633" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="130" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#a855f7" text-anchor="middle" letter-spacing="2">BACKEND</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Python 3.10+</text>
+    </g>
+    <g transform="translate(135, 40)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Flask</text>
+    </g>
+    <g transform="translate(15, 80)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Groq API</text>
+    </g>
+    <g transform="translate(135, 80)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">NetworkX</text>
+    </g>
+    <g transform="translate(15, 120)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">SAHI</text>
+    </g>
+    <g transform="translate(135, 120)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">OpenCV</text>
+    </g>
+  </g>
+
+  <!-- Frontend Section -->
+  <g transform="translate(610, 80)">
+    <rect width="260" height="180" rx="8" fill="#111633" stroke="#ff6b35" stroke-width="1.5"/>
+    <text x="130" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#ff6b35" text-anchor="middle" letter-spacing="2">FRONTEND</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">PyQt6</text>
+    </g>
+    <g transform="translate(135, 40)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">HTML/CSS</text>
+    </g>
+    <g transform="translate(15, 80)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">JavaScript</text>
+    </g>
+    <g transform="translate(135, 80)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">pyvis</text>
+    </g>
+    <g transform="translate(15, 120)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">GraphML Viewer</text>
+    </g>
+    <g transform="translate(135, 120)">
+      <rect width="110" height="32" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="55" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">JSON Export</text>
+    </g>
+  </g>
+
+  <!-- Data/Standards Section -->
+  <g transform="translate(30, 290)">
+    <rect width="840" height="100" rx="8" fill="#111633" stroke="#ffd700" stroke-width="1.5"/>
+    <text x="420" y="25" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#ffd700" text-anchor="middle" letter-spacing="2">DATA STANDARDS & FORMATS</text>
+    
+    <g transform="translate(20, 40)">
+      <rect width="120" height="36" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">DEXPI JSON</text>
+    </g>
+    <g transform="translate(160, 40)">
+      <rect width="120" height="36" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">GraphML</text>
+    </g>
+    <g transform="translate(300, 40)">
+      <rect width="120" height="36" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">CSV Export</text>
+    </g>
+    <g transform="translate(440, 40)">
+      <rect width="120" height="36" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">OKF Format</text>
+    </g>
+    <g transform="translate(580, 40)">
+      <rect width="120" height="36" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">ISO 15926</text>
+    </g>
+    <g transform="translate(720, 40)">
+      <rect width="100" height="36" rx="4" fill="#0d1230" stroke="#1e2a4a"/>
+      <text x="50" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">ISA-88</text>
+    </g>
+  </g>
+
+  <text x="450" y="435" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" text-anchor="middle">Built with modern AI/ML stack for industrial-grade performance</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 350" width="850" height="350">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111633"/>
+    </linearGradient>
+    <linearGradient id="cyan4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00e5c0"/>
+    </linearGradient>
+    <marker id="a4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#00d4ff"/></marker>
+  </defs>
+  <style>
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes drawLine { from { stroke-dashoffset:30; } to { stroke-dashoffset:0; } }
+    @keyframes pulse { 0%,100% { stroke-width:1.5; } 50% { stroke-width:2.5; } }
+    @keyframes scanMove { 0%,100% { opacity:0.3; } 50% { opacity:0.8; } }
+    .s1 { animation: fadeInUp 0.5s ease-out 0.1s both; }
+    .s2 { animation: fadeInUp 0.5s ease-out 0.25s both; }
+    .s3 { animation: fadeInUp 0.5s ease-out 0.4s both; }
+    .s4 { animation: fadeInUp 0.5s ease-out 0.55s both; }
+    .s5 { animation: fadeInUp 0.5s ease-out 0.7s both; }
+    .arrow { animation: drawLine 0.6s ease-out both; stroke-dasharray:30; }
+    .step-pulse { animation: pulse 2s ease-in-out infinite; }
+    .scan { animation: scanMove 1.8s ease-in-out infinite; }
+  </style>
+  <rect width="850" height="350" fill="url(#bg4)" rx="12"/>
+  <text x="425" y="40" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle" class="s1">PROCESSING PIPELINE</text>
+  <line x1="340" y1="50" x2="510" y2="50" stroke="url(#cyan4)" stroke-width="2"/>
+
+  <!-- Step 1: Upload -->
+  <g transform="translate(30, 80)" class="s1">
+    <rect width="140" height="100" rx="8" fill="#111633" stroke="#00d4ff" stroke-width="1.5"/>
+    <circle cx="70" cy="40" r="20" fill="none" stroke="#00d4ff" stroke-width="2"/>
+    <line x1="70" y1="25" x2="70" y2="55" stroke="#00d4ff" stroke-width="2"/>
+    <line x1="55" y1="40" x2="85" y2="40" stroke="#00d4ff" stroke-width="2"/>
+    <text x="70" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">Upload</text>
+    <text x="70" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">PDF / PNG / DWG</text>
+  </g>
+  <line x1="170" y1="130" x2="200" y2="130" stroke="#00d4ff" stroke-width="2" marker-end="url(#a4)" class="arrow"/>
+
+  <!-- Step 2: Detect -->
+  <g transform="translate(200, 80)" class="s2">
+    <rect width="140" height="100" rx="8" fill="#111633" stroke="#00d4ff" stroke-width="1.5" class="step-pulse"/>
+    <rect x="25" y="22" width="90" height="40" rx="3" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+    <rect x="35" y="28" width="20" height="12" rx="2" fill="#00d4ff" opacity="0.3" stroke="#00d4ff" stroke-width="1" class="scan"/>
+    <rect x="65" y="34" width="35" height="12" rx="2" fill="#00e5c0" opacity="0.3" stroke="#00e5c0" stroke-width="1" class="scan" style="animation-delay:0.3s"/>
+    <text x="70" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">Detect</text>
+    <text x="70" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">CRAFT text regions</text>
+  </g>
+  <line x1="340" y1="130" x2="370" y2="130" stroke="#00d4ff" stroke-width="2" marker-end="url(#a4)" class="arrow" style="animation-delay:0.2s"/>
+
+  <!-- Step 3: Recognize -->
+  <g transform="translate(370, 80)" class="s3">
+    <rect width="140" height="100" rx="8" fill="#111633" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="70" y="48" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#a855f7" text-anchor="middle" font-weight="700">T</text>
+    <circle cx="70" cy="38" r="20" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="70" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">Recognize</text>
+    <text x="70" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">TrOCR adaptive</text>
+  </g>
+  <line x1="510" y1="130" x2="540" y2="130" stroke="#00d4ff" stroke-width="2" marker-end="url(#a4)" class="arrow" style="animation-delay:0.4s"/>
+
+  <!-- Step 4: Classify -->
+  <g transform="translate(540, 80)" class="s4">
+    <rect width="140" height="100" rx="8" fill="#111633" stroke="#ff6b35" stroke-width="1.5"/>
+    <polygon points="70,20 90,40 70,60 50,40" fill="none" stroke="#ff6b35" stroke-width="2" class="step-pulse"/>
+    <text x="70" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle" font-weight="600">605</text>
+    <text x="70" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">Classify</text>
+    <text x="70" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">DINOv2 embeddings</text>
+  </g>
+  <line x1="680" y1="130" x2="710" y2="130" stroke="#00d4ff" stroke-width="2" marker-end="url(#a4)" class="arrow" style="animation-delay:0.6s"/>
+
+  <!-- Step 5: Graph -->
+  <g transform="translate(710, 80)" class="s5">
+    <rect width="120" height="100" rx="8" fill="#111633" stroke="#ffd700" stroke-width="1.5"/>
+    <circle cx="40" cy="35" r="8" fill="none" stroke="#ffd700" stroke-width="1.5" class="step-pulse"/>
+    <circle cx="80" cy="28" r="8" fill="none" stroke="#ffd700" stroke-width="1.5" class="step-pulse" style="animation-delay:0.3s"/>
+    <circle cx="65" cy="52" r="8" fill="none" stroke="#ffd700" stroke-width="1.5" class="step-pulse" style="animation-delay:0.6s"/>
+    <line x1="47" y1="33" x2="73" y2="30" stroke="#ffd700" stroke-width="1"/>
+    <line x1="44" y1="42" x2="60" y2="48" stroke="#ffd700" stroke-width="1"/>
+    <line x1="72" y1="36" x2="68" y2="45" stroke="#ffd700" stroke-width="1"/>
+    <text x="60" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">Graph</text>
+    <text x="60" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#7a8ba8" text-anchor="middle">Topology + KG</text>
+  </g>
+
+  <!-- Bottom: Output formats -->
+  <text x="425" y="225" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" text-anchor="middle" letter-spacing="3">OUTPUT FORMATS</text>
+  <g transform="translate(100, 245)"><rect width="120" height="36" rx="6" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">DEXPI JSON</text></g>
+  <g transform="translate(245, 245)"><rect width="120" height="36" rx="6" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">GraphML</text></g>
+  <g transform="translate(390, 245)"><rect width="120" height="36" rx="6" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">CSV</text></g>
+  <g transform="translate(535, 245)"><rect width="120" height="36" rx="6" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">OKF Format</text></g>
+  <g transform="translate(680, 245)"><rect width="120" height="36" rx="6" fill="#0d1230" stroke="#1e2a4a"/><text x="60" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">Visual Overlay</text></g>
+
+  <text x="425" y="315" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#7a8ba8" text-anchor="middle">End-to-end: image in → structured knowledge out</text>
+</svg>

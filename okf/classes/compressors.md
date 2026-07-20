@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Compressors"
 description: "51 symbol subclasses in the Compressors category."
-tags: [pid, ontology, compressors]
+tags: [pid, compressors]
 ---
 
 # Compressors

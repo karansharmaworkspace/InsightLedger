@@ -1,4 +1,4 @@
-# P&ID Symbol Ontology
+# P&ID Symbol Knowledge Bundle
 
 Total parent classes: 15
 Total subclasses: 605

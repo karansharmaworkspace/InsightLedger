@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Crushers"
 description: "12 symbol subclasses in the Crushers category."
-tags: [pid, ontology, crushers]
+tags: [pid, crushers]
 ---
 
 # Crushers

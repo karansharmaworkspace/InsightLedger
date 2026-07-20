@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Peripheral"
 description: "41 symbol subclasses in the Peripheral category."
-tags: [pid, ontology, peripheral]
+tags: [pid, peripheral]
 ---
 
 # Peripheral

@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Mixers"
 description: "17 symbol subclasses in the Mixers category."
-tags: [pid, ontology, mixers]
+tags: [pid, mixers]
 ---
 
 # Mixers

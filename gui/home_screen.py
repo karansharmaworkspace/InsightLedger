@@ -99,10 +99,10 @@ class HomeScreen(QMainWindow):
         self._in_chat_mode = False
 
         try:
-            from core.okf_rag import OntologyRAGChat
-            self._rag_chat = OntologyRAGChat()
+            from core.okf_rag import OKFRAGChat
+            self._rag_chat = OKFRAGChat()
         except Exception as e:
-            print(f"[OntologyRAG] Init failed: {e}")
+            print(f"[OKF-RAG] Init failed: {e}")
             self._rag_chat = None
 
         p = QPalette()

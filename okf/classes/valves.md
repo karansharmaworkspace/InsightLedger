@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Valves"
 description: "73 symbol subclasses in the Valves category."
-tags: [pid, ontology, valves]
+tags: [pid, valves]
 ---
 
 # Valves

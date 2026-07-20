@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "General"
 description: "10 symbol subclasses in the General category."
-tags: [pid, ontology, general]
+tags: [pid, general]
 ---
 
 # General

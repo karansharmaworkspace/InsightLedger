@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Pumps"
 description: "44 symbol subclasses in the Pumps category."
-tags: [pid, ontology, pumps]
+tags: [pid, pumps]
 ---
 
 # Pumps

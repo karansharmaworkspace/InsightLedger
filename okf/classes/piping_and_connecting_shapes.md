@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Piping_and_Connecting_Shapes"
 description: "70 symbol subclasses in the Piping_and_Connecting_Shapes category."
-tags: [pid, ontology, piping_and_connecting_shapes]
+tags: [pid, piping_and_connecting_shapes]
 ---
 
 # Piping_and_Connecting_Shapes

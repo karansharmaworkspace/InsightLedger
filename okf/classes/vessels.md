@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Vessels"
 description: "57 symbol subclasses in the Vessels category."
-tags: [pid, ontology, vessels]
+tags: [pid, vessels]
 ---
 
 # Vessels

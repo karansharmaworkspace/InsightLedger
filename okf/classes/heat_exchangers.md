@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Heat_Exchangers"
 description: "49 symbol subclasses in the Heat_Exchangers category."
-tags: [pid, ontology, heat_exchangers]
+tags: [pid, heat_exchangers]
 ---
 
 # Heat_Exchangers

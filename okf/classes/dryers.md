@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Dryers"
 description: "13 symbol subclasses in the Dryers category."
-tags: [pid, ontology, dryers]
+tags: [pid, dryers]
 ---
 
 # Dryers

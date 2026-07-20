@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Filters"
 description: "55 symbol subclasses in the Filters category."
-tags: [pid, ontology, filters]
+tags: [pid, filters]
 ---
 
 # Filters

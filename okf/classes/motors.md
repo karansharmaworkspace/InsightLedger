@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Motors"
 description: "20 symbol subclasses in the Motors category."
-tags: [pid, ontology, motors]
+tags: [pid, motors]
 ---
 
 # Motors

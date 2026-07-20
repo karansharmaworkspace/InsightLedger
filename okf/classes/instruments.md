@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Instruments"
 description: "86 symbol subclasses in the Instruments category."
-tags: [pid, ontology, instruments]
+tags: [pid, instruments]
 ---
 
 # Instruments

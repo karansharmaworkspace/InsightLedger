@@ -2,7 +2,7 @@
 type: P&ID Parent Class
 title: "Centrifuges"
 description: "7 symbol subclasses in the Centrifuges category."
-tags: [pid, ontology, centrifuges]
+tags: [pid, centrifuges]
 ---
 
 # Centrifuges

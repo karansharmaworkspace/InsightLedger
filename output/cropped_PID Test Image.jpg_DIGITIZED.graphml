@@ -1,0 +1,326 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:y="http://www.yworks.com/xml/graphml">
+  <key id="d0" for="node" attr.name="label" attr.type="string"/>
+  <key id="d1" for="node" attr.name="Labels" attr.type="string"/>
+  <key id="d2" for="node" attr.name="raw_id" attr.type="int"/>
+  <key id="d3" for="node" attr.name="fine_class" attr.type="string"/>
+  <key id="d4" for="node" attr.name="fine_raw_id" attr.type="string"/>
+  <key id="d5" for="node" attr.name="type_key" attr.type="string"/>
+  <key id="d6" for="node" attr.name="xmin" attr.type="double"/>
+  <key id="d7" for="node" attr.name="ymin" attr.type="double"/>
+  <key id="d8" for="node" attr.name="xmax" attr.type="double"/>
+  <key id="d9" for="node" attr.name="ymax" attr.type="double"/>
+  <key id="d10" for="edge" attr.name="edge_label" attr.type="string"/>
+  <key id="d11" for="node" yfiles.type="nodegraphics" attr.name="nodegraphics"/>
+  <key id="d12" for="edge" yfiles.type="edgegraphics" attr.name="edgegraphics"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="Electrically_Insulated1">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">DDL 218</data>
+      <data key="d2">28</data>
+      <data key="d6">206.5</data>
+      <data key="d7">966.7</data>
+      <data key="d8">339.4</data>
+      <data key="d9">1099.0</data>
+      <data key="d5">digital_data_link</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="206.5" y="966.7" width="132.9" height="132.3"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated2">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">DDL 577</data>
+      <data key="d2">28</data>
+      <data key="d6">626.9</data>
+      <data key="d7">1127.6</data>
+      <data key="d8">763.3</data>
+      <data key="d9">1253.1</data>
+      <data key="d5">digital_data_link</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="626.9" y="1127.6" width="136.4" height="125.5"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated2</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated3">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">ZLC 764</data>
+      <data key="d2">30</data>
+      <data key="d6">1194.5</data>
+      <data key="d7">269.5</data>
+      <data key="d8">1311.9</data>
+      <data key="d9">400.7</data>
+      <data key="d5">position_switch_closed</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="1194.5" y="269.5" width="117.4" height="131.2"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated3</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated4">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">GH-44138</data>
+      <data key="d2">3</data>
+      <data key="d6">671.8</data>
+      <data key="d7">305.5</data>
+      <data key="d8">759.4</data>
+      <data key="d9">366.2</data>
+      <data key="d5">gate_valve_horizontal</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="671.8" y="305.5" width="87.6" height="60.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated4</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated5">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">KL-70233</data>
+      <data key="d2">5</data>
+      <data key="d6">814.2</data>
+      <data key="d7">709.7</data>
+      <data key="d8">876.1</data>
+      <data key="d9">808.4</data>
+      <data key="d5">plug_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="814.2" y="709.7" width="61.9" height="98.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated5</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="globe_valve1">
+      <data key="d0">globe_valve</data>
+      <data key="d1">CD-95861</data>
+      <data key="d2">1</data>
+      <data key="d6">919.1</data>
+      <data key="d7">875.8</data>
+      <data key="d8">995.0</data>
+      <data key="d9">936.5</data>
+      <data key="d5">globe_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="919.1" y="875.8" width="75.9" height="60.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="diamond"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">globe_valve1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="drain_funnel1">
+      <data key="d0">drain_funnel</data>
+      <data key="d1">3"X4"</data>
+      <data key="d2">19</data>
+      <data key="d6">357.5</data>
+      <data key="d7">298.7</data>
+      <data key="d8">436.5</data>
+      <data key="d9">371.8</data>
+      <data key="d5">drain_funnel</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="357.5" y="298.7" width="79.0" height="73.1"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">drain_funnel1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated6">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">F INS ( 54oC)</data>
+      <data key="d2">22</data>
+      <data key="d6">621.5</data>
+      <data key="d7">877.6</data>
+      <data key="d8">766.0</data>
+      <data key="d9">933.2</data>
+      <data key="d5">air_cooler</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="621.5" y="877.6" width="144.5" height="55.6"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated6</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated7">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">S</data>
+      <data key="d2">5</data>
+      <data key="d6">526.1</data>
+      <data key="d7">412.5</data>
+      <data key="d8">587.8</data>
+      <data key="d9">500.2</data>
+      <data key="d5">plug_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="526.1" y="412.5" width="61.7" height="87.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated7</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated8">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">17</data>
+      <data key="d6">83.3</data>
+      <data key="d7">873.7</data>
+      <data key="d8">131.1</data>
+      <data key="d9">1025.9</data>
+      <data key="d5">vertical_vessel</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="83.3" y="873.7" width="47.8" height="152.2"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated8</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated9">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">20</data>
+      <data key="d6">969.5</data>
+      <data key="d7">19.3</data>
+      <data key="d8">1002.2</data>
+      <data key="d9">80.7</data>
+      <data key="d5">orifice_plate</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="969.5" y="19.3" width="32.7" height="61.4"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated9</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated10">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">26</data>
+      <data key="d6">1060.3</data>
+      <data key="d7">1254.1</data>
+      <data key="d8">1195.2</data>
+      <data key="d9">1297.0</data>
+      <data key="d5">restriction_orifice</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="1060.3" y="1254.1" width="134.9" height="42.9"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated10</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="e0" source="Electrically_Insulated1" target="Electrically_Insulated8">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="Electrically_Insulated2" target="Electrically_Insulated6">
+      <data key="d10">signal</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">signal</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="Electrically_Insulated4" target="drain_funnel1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="Electrically_Insulated4" target="Electrically_Insulated7">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="Electrically_Insulated5" target="globe_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e5" source="Electrically_Insulated5" target="Electrically_Insulated6">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e6" source="globe_valve1" target="Electrically_Insulated6">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e7" source="drain_funnel1" target="Electrically_Insulated7">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+</graphml>

@@ -74,3 +74,10 @@ archive/
 *.rar
 *.7z
 *.pdf
+
+
+# Virtual environment
+.venv/
+
+# Local user settings
+storage/settings.json

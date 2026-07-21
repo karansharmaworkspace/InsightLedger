@@ -59,7 +59,7 @@ class DashboardPage(QWidget):
         # --- Toolbar ---
         toolbar = QFrame()
         toolbar.setFixedHeight(40)
-        toolbar.setStyleSheet("background: #252526; border-bottom: 1px solid #333;")
+        toolbar.setStyleSheet("background: #111827; border-bottom: 1px solid #334155;")
         tb_layout = QHBoxLayout(toolbar)
         tb_layout.setContentsMargins(8, 0, 8, 0)
         tb_layout.setSpacing(4)
@@ -68,10 +68,10 @@ class DashboardPage(QWidget):
             b = QPushButton(text)
             b.setEnabled(enabled)
             b.setStyleSheet("""
-                QPushButton { background: #333; color: #ccc; border: none;
-                              padding: 5px 12px; border-radius: 4px; font-size: 12px; }
-                QPushButton:hover { background: #444; }
-                QPushButton:disabled { background: #2a2a2a; color: #666; }
+                QPushButton { background: #1E293B; color: #F8FAFC; border: 1px solid #334155;
+                              padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+                QPushButton:hover { background: #253449; border-color: #3B82F6; }
+                QPushButton:disabled { background: #111827; color: #64748B; border-color: #1E293B; }
             """)
             if slot:
                 b.clicked.connect(slot)
@@ -90,13 +90,13 @@ class DashboardPage(QWidget):
         self.tile_size.setSingleStep(64)
         self.tile_size.setValue(640)
         self.tile_size.setFixedWidth(70)
-        self.tile_size.setStyleSheet("background: #333; color: #ccc; border: 1px solid #555; border-radius: 3px; padding: 2px;")
+        self.tile_size.setStyleSheet("background: #1E293B; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 2px;")
 
         self.lang_combo = QtWidgets.QComboBox()
         for _code, name in SUPPORTED_LANGUAGES:
             self.lang_combo.addItem(name)
         self.lang_combo.setFixedWidth(140)
-        self.lang_combo.setStyleSheet("QComboBox { background: #333; color: #ccc; border: 1px solid #555; border-radius: 3px; padding: 2px; } QComboBox::drop-down { border: none; } QComboBox QAbstractItemView { background: #333; color: #ccc; selection-background-color: #0078d4; }")
+        self.lang_combo.setStyleSheet("QComboBox { background: #1E293B; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 2px 6px; } QComboBox::drop-down { border: none; } QComboBox QAbstractItemView { background: #1E293B; color: #F8FAFC; selection-background-color: #3B82F6; }")
         self.lang_combo.currentIndexChanged.connect(self._on_language_changed)
 
         for w in [self.btn_open, None, self.btn_crop, self.btn_crop_confirm, self.btn_crop_cancel,
@@ -133,21 +133,21 @@ class DashboardPage(QWidget):
         right_layout.setContentsMargins(0, 0, 0, 0)
 
         self.tabs = QTabWidget()
-        self.tabs.setStyleSheet("QTabWidget::pane { border: none; } QTabBar::tab { background: #333; color: #ccc; padding: 5px; } QTabBar::tab:selected { background: #0078d4; }")
+        self.tabs.setStyleSheet("QTabWidget::pane { border: none; background: #1E293B; } QTabBar::tab { background: #111827; color: #94A3B8; padding: 7px 14px; font-weight: 600; } QTabBar::tab:selected { background: #1E293B; color: #3B82F6; }")
 
         self.tree = QTreeWidget()
         self.tree.setHeaderLabel("Topology Explorer")
-        self.tree.setStyleSheet("background-color: #252526; color: #ccc; border: none;")
+        self.tree.setStyleSheet("background-color: #1E293B; color: #E2E8F0; border: none;")
         self.tabs.addTab(self.tree, "Hierarchy")
 
         chat_container = QWidget()
         chat_layout = QVBoxLayout(chat_container)
         self.chat_display = QTextEdit()
         self.chat_display.setReadOnly(True)
-        self.chat_display.setStyleSheet("background-color: #1a1a1a; color: #e0e0e0; border: 1px solid #333; border-radius: 5px; padding: 10px; font-size: 13px;")
+        self.chat_display.setStyleSheet("background-color: #0F172A; color: #F8FAFC; border: 1px solid #334155; border-radius: 10px; padding: 10px; font-size: 13px;")
         self.chat_input = QLineEdit()
         self.chat_input.setPlaceholderText("Ask AI Assistant...")
-        self.chat_input.setStyleSheet("background-color: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 15px; padding: 8px 15px; margin-top: 5px;")
+        self.chat_input.setStyleSheet("background-color: #0F172A; color: #F8FAFC; border: 1px solid #334155; border-radius: 15px; padding: 8px 15px; margin-top: 5px;")
         self.chat_input.returnPressed.connect(self.send_chat)
         chat_layout.addWidget(self.chat_display)
         chat_layout.addWidget(self.chat_input)
@@ -162,19 +162,19 @@ class DashboardPage(QWidget):
         # --- Bottom panels (table + console) ---
         bottom_tabs = QTabWidget()
         bottom_tabs.setFixedHeight(180)
-        bottom_tabs.setStyleSheet("QTabWidget::pane { border: none; } QTabBar::tab { background: #333; color: #ccc; padding: 4px 8px; font-size: 11px; } QTabBar::tab:selected { background: #0078d4; }")
+        bottom_tabs.setStyleSheet("QTabWidget::pane { border: none; background: #1E293B; } QTabBar::tab { background: #111827; color: #94A3B8; padding: 5px 10px; font-size: 11px; font-weight: 600; } QTabBar::tab:selected { background: #1E293B; color: #3B82F6; }")
 
         self.table = QTableWidget()
         self.table.setColumnCount(4)
         self.table.setHorizontalHeaderLabels(["ID", "Class", "Labels", "Coordinates"])
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-        self.table.setStyleSheet("background-color: #1e1e1e; color: #bbb; gridline-color: #333; font-size: 11px;")
+        self.table.setStyleSheet("background-color: #1E293B; color: #E2E8F0; gridline-color: #334155; font-size: 11px;")
         bottom_tabs.addTab(self.table, "Detection Metadata")
 
         self.console = QTextEdit()
         self.console.setReadOnly(True)
         self.console.setFont(QFont("Consolas", 10))
-        self.console.setStyleSheet("background-color: #000; color: #00ff00; border: none;")
+        self.console.setStyleSheet("background-color: #0F172A; color: #10B981; border: none; padding: 6px;")
         bottom_tabs.addTab(self.console, "Neural Console")
 
         layout.addWidget(bottom_tabs)
@@ -494,13 +494,13 @@ class DashboardPage(QWidget):
             return
         self.chat_input.clear()
         self.chat_display.append(
-            f"<div style='margin-bottom:8px;padding:6px;background:#2a2a2a;border-radius:4px;'>"
-            f"<b style='color:#4fc3f7;'>You:</b> <span style='color:#e0e0e0;'>{query}</span></div>"
+            f"<div style='margin-bottom:8px;padding:8px 10px;background:#1E293B;border-radius:8px;'>"
+            f"<b style='color:#3B82F6;'>You:</b> <span style='color:#F8FAFC;'>{query}</span></div>"
         )
         self.chat_display.append(
-            "<div style='margin-bottom:8px;padding:6px;background:#1a2a1a;border-radius:4px;'>"
-            "<b style='color:#81c784;'>AI:</b> <span id='ai-text' style='color:#e0e0e0;'></span>"
-            "<span style='color:#81c784;'>|</span></div>"
+            "<div style='margin-bottom:8px;padding:8px 10px;background:#0F172A;border-radius:8px;'>"
+            "<b style='color:#10B981;'>AI:</b> <span id='ai-text' style='color:#F8FAFC;'></span>"
+            "<span style='color:#10B981;'>|</span></div>"
         )
         self._chat_streaming = True
         self._chat_full_response = ""

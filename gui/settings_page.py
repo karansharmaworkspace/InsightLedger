@@ -1,9 +1,8 @@
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QFrame, QGridLayout,
-    QPushButton, QProgressBar, QTextEdit, QLineEdit, QComboBox
+    QPushButton, QLineEdit, QComboBox, QCheckBox, QScrollArea, QSpinBox
 )
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
 import os
 from dotenv import load_dotenv
 
@@ -16,215 +15,173 @@ class EngineSettingsPage(QWidget):
         self._setup_ui()
 
     def _setup_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(30, 30, 30, 30)
-        layout.setSpacing(20)
+        main_layout = QVBoxLayout(self)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.Shape.NoFrame)
+        scroll.setStyleSheet("QScrollArea { background: transparent; border: none; }")
 
-        title = QLabel("Engine Settings")
-        title.setStyleSheet("color: #fff; font-size: 24px; font-weight: bold;")
-        layout.addWidget(title)
+        page = QWidget()
+        layout = QVBoxLayout(page)
+        layout.setContentsMargins(32, 24, 32, 32)
+        layout.setSpacing(24)
 
-        subtitle = QLabel("Manage API keys, model configuration, and engine health")
-        subtitle.setStyleSheet("color: #888; font-size: 13px;")
+        # Header
+        header = QLabel("Settings")
+        header.setStyleSheet("color: #F8FAFC; font-size: 28px; font-weight: bold;")
+        layout.addWidget(header)
+        
+        subtitle = QLabel("System preferences, AI configurations, and processing parameters")
+        subtitle.setStyleSheet("color: #94A3B8; font-size: 15px; margin-bottom: 8px;")
         layout.addWidget(subtitle)
 
-        # --- API Key Section ---
-        api_card = self._card("Groq API Key")
-        api_layout = QVBoxLayout()
+        # Grid for Cards
+        grid = QGridLayout()
+        grid.setSpacing(24)
 
-        self.api_input = QLineEdit()
-        self.api_input.setEchoMode(QLineEdit.EchoMode.Password)
-        self.api_input.setText(os.getenv("GROQ_API_KEY", ""))
-        self.api_input.setPlaceholderText("gsk_...")
-        self.api_input.setStyleSheet("""
-            QLineEdit { background: #2d2d2d; color: #fff; border: 1px solid #444;
-                        border-radius: 6px; padding: 12px; font-size: 13px; min-height: 20px; }
-        """)
-        api_layout.addWidget(self.api_input)
+        # --- General Card ---
+        general_card = self._create_card("General")
+        g_layout = QVBoxLayout()
+        g_layout.setSpacing(16)
+        
+        g_layout.addWidget(self._create_field("Appearance", "combo", ["Dark", "Light", "System Auto"]))
+        g_layout.addWidget(self._create_field("Language", "combo", ["English", "German", "Spanish", "Japanese"]))
+        g_layout.addWidget(self._create_field("Notifications", "check", "Enable system notifications", checked=True))
+        
+        general_card.layout().addLayout(g_layout)
+        grid.addWidget(general_card, 0, 0)
 
-        api_btn_row = QHBoxLayout()
-        self.toggle_vis_btn = QPushButton("Show")
-        self.toggle_vis_btn.setFixedWidth(80)
-        self.toggle_vis_btn.clicked.connect(self._toggle_api_visibility)
-        self.save_api_btn = QPushButton("Save")
-        self.save_api_btn.setFixedWidth(80)
-        self.save_api_btn.clicked.connect(self._save_api_key)
-        api_btn_row.addWidget(self.toggle_vis_btn)
-        api_btn_row.addWidget(self.save_api_btn)
-        api_btn_row.addStretch()
-        api_layout.addLayout(api_btn_row)
+        # --- AI Models Card ---
+        ai_card = self._create_card("AI Models")
+        ai_layout = QVBoxLayout()
+        ai_layout.setSpacing(16)
+        
+        ai_layout.addWidget(self._create_field("Vision Model", "text", os.getenv("VISION_MODEL", "llama-3.2-11b-vision-preview")))
+        ai_layout.addWidget(self._create_field("Chat Model", "text", os.getenv("CHAT_MODEL", "mixtral-8x7b-32768")))
+        ai_layout.addWidget(self._create_field("Embedding Model", "text", "nomic-embed-text-v1_5"))
+        ai_layout.addWidget(self._create_field("Groq API Key", "password", os.getenv("GROQ_API_KEY", "")))
+        
+        ai_card.layout().addLayout(ai_layout)
+        grid.addWidget(ai_card, 0, 1)
 
-        self.api_status = QLabel("")
-        self.api_status.setStyleSheet("font-size: 11px;")
-        api_layout.addWidget(self.api_status)
+        # --- Processing Card ---
+        proc_card = self._create_card("Processing")
+        p_layout = QVBoxLayout()
+        p_layout.setSpacing(16)
+        
+        p_layout.addWidget(self._create_field("GPU Acceleration (CUDA)", "check", "Enable hardware acceleration", checked=True))
+        p_layout.addWidget(self._create_field("Max Threads", "spin", value=8, vrange=(1, 32)))
+        p_layout.addWidget(self._create_field("OCR Engine", "combo", ["Tesseract", "EasyOCR", "PaddleOCR"]))
+        p_layout.addWidget(self._create_field("Batch Size", "spin", value=16, vrange=(1, 128)))
+        
+        proc_card.layout().addLayout(p_layout)
+        grid.addWidget(proc_card, 1, 0)
 
-        api_card_layout = api_card.findChild(QVBoxLayout)
-        if api_card_layout:
-            api_card_layout.addLayout(api_layout)
-        layout.addWidget(api_card)
+        # --- Export Card ---
+        exp_card = self._create_card("Export")
+        e_layout = QVBoxLayout()
+        e_layout.setSpacing(16)
+        
+        e_layout.addWidget(self._create_field("Auto-Export DEXPI", "check", "Export DEXPI JSON automatically", checked=True))
+        e_layout.addWidget(self._create_field("Auto-Export GraphML", "check", "Export Knowledge Graph to GraphML", checked=False))
+        e_layout.addWidget(self._create_field("Auto-Export JSON", "check", "Export raw JSON data", checked=True))
+        e_layout.addWidget(self._create_field("Auto-Export CSV", "check", "Export tabular data to CSV", checked=False))
+        
+        exp_card.layout().addLayout(e_layout)
+        grid.addWidget(exp_card, 1, 1)
 
-        # --- Model Config ---
-        model_card = self._card("Model Configuration")
-        model_layout = QVBoxLayout()
+        layout.addLayout(grid)
 
-        row = QGridLayout()
-        row.setSpacing(10)
-
-        row.addWidget(QLabel("Vision Model:"), 0, 0)
-        self.vision_model = QLineEdit(os.getenv("VISION_MODEL", ""))
-        self.vision_model.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 12px; min-height: 20px;")
-        row.addWidget(self.vision_model, 0, 1)
-
-        row.addWidget(QLabel("Chat Model:"), 1, 0)
-        self.chat_model = QLineEdit(os.getenv("CHAT_MODEL", ""))
-        self.chat_model.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 12px; min-height: 20px;")
-        row.addWidget(self.chat_model, 1, 1)
-
-        row.addWidget(QLabel("Model Path:"), 2, 0)
-        self.model_path = QLineEdit(os.getenv("PT_MODEL_PATH", "models/32class.pt"))
-        self.model_path.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 12px; min-height: 20px;")
-        row.addWidget(self.model_path, 2, 1)
-
-        model_layout.addLayout(row)
-
-        self.save_model_btn = QPushButton("Save Configuration")
-        self.save_model_btn.clicked.connect(self._save_model_config)
-        model_layout.addWidget(self.save_model_btn)
-
-        model_card_layout = model_card.findChild(QVBoxLayout)
-        if model_card_layout:
-            model_card_layout.addLayout(model_layout)
-        layout.addWidget(model_card)
-
-        # --- Engine Health ---
-        health_card = self._card("Engine Health")
-        health_layout = QVBoxLayout()
-
-        self.health_log = QTextEdit()
-        self.health_log.setReadOnly(True)
-        self.health_log.setMaximumHeight(150)
-        self.health_log.setStyleSheet("background: #000; color: #0f0; border: none; font-family: Consolas; font-size: 11px;")
-        health_layout.addWidget(self.health_log)
-
-        self.check_health_btn = QPushButton("Run Health Check")
-        self.check_health_btn.clicked.connect(self._run_health_check)
-        health_layout.addWidget(self.check_health_btn)
-
-        health_card_layout = health_card.findChild(QVBoxLayout)
-        if health_card_layout:
-            health_card_layout.addLayout(health_layout)
-        layout.addWidget(health_card)
-
+        # --- Logs & Maintenance ---
+        logs_card = self._create_card("System Maintenance")
+        l_layout = QHBoxLayout()
+        l_layout.setSpacing(16)
+        
+        def make_btn(text, style_color):
+            btn = QPushButton(text)
+            btn.setCursor(Qt.CursorShape.PointingHandCursor)
+            btn.setFixedHeight(44)
+            btn.setStyleSheet(f"""
+                QPushButton {{ background: {style_color}22; color: {style_color}; border: 1px solid {style_color}; border-radius: 8px; font-weight: bold; padding: 0 20px; }}
+                QPushButton:hover {{ background: {style_color}; color: #FFFFFF; }}
+            """)
+            return btn
+            
+        l_layout.addWidget(make_btn("Open Logs", "#3B82F6"))
+        l_layout.addWidget(make_btn("Clear Cache", "#F59E0B"))
+        l_layout.addStretch()
+        l_layout.addWidget(make_btn("Reset Settings", "#EF4444"))
+        
+        logs_card.layout().addLayout(l_layout)
+        layout.addWidget(logs_card)
+        
         layout.addStretch()
+        scroll.setWidget(page)
+        main_layout.addWidget(scroll)
 
-    def _card(self, title_text):
+    def _create_card(self, title_text):
         card = QFrame()
-        card.setStyleSheet("""
-            QFrame { background: #16213e; border: 1px solid #1a1a3e; border-radius: 8px; }
-        """)
+        card.setObjectName("card")
+        card.setStyleSheet("QFrame#card { background: #1E293B; border: 1px solid #334155; border-radius: 16px; }")
+        
         layout = QVBoxLayout(card)
-        layout.setSpacing(10)
-        layout.setContentsMargins(15, 15, 15, 15)
+        layout.setContentsMargins(24, 24, 24, 24)
+        layout.setSpacing(20)
+        
         title = QLabel(title_text)
-        title.setStyleSheet("color: #e94560; font-size: 15px; font-weight: bold; border: none;")
+        title.setStyleSheet("color: #F8FAFC; font-size: 18px; font-weight: bold; border: none;")
         layout.addWidget(title)
+        
         return card
 
-    def _toggle_api_visibility(self):
-        if self.api_input.echoMode() == QLineEdit.EchoMode.Password:
-            self.api_input.setEchoMode(QLineEdit.EchoMode.Normal)
-            self.toggle_vis_btn.setText("Hide")
-        else:
-            self.api_input.setEchoMode(QLineEdit.EchoMode.Password)
-            self.toggle_vis_btn.setText("Show")
-
-    def _save_api_key(self):
-        key = self.api_input.text().strip()
-        env_path = os.path.join(os.getcwd(), ".env")
-        lines = []
-        if os.path.exists(env_path):
-            with open(env_path, "r") as f:
-                lines = f.readlines()
-        found = False
-        for i, line in enumerate(lines):
-            if line.startswith("GROQ_API_KEY="):
-                lines[i] = f"GROQ_API_KEY={key}\n"
-                found = True
-                break
-        if not found:
-            lines.append(f"GROQ_API_KEY={key}\n")
-        with open(env_path, "w") as f:
-            f.writelines(lines)
-        os.environ["GROQ_API_KEY"] = key
-        self.api_status.setText("API key saved.")
-        self.api_status.setStyleSheet("color: #0f0; font-size: 11px;")
-
-    def _save_model_config(self):
-        env_path = os.path.join(os.getcwd(), ".env")
-        lines = []
-        if os.path.exists(env_path):
-            with open(env_path, "r") as f:
-                lines = f.readlines()
-
-        updates = {
-            "VISION_MODEL=": self.vision_model.text().strip(),
-            "CHAT_MODEL=": self.chat_model.text().strip(),
-            "PT_MODEL_PATH=": self.model_path.text().strip(),
-        }
-        for prefix, value in updates.items():
-            found = False
-            for i, line in enumerate(lines):
-                if line.startswith(prefix):
-                    lines[i] = f"{prefix}{value}\n"
-                    found = True
-                    break
-            if not found:
-                lines.append(f"{prefix}{value}\n")
-
-        with open(env_path, "w") as f:
-            f.writelines(lines)
-        self.api_status.setText("Configuration saved. Restart to apply.")
-        self.api_status.setStyleSheet("color: #ff0; font-size: 11px;")
-
-    def _run_health_check(self):
-        self.health_log.clear()
-        self.health_log.append("[HEALTH] Running checks...")
-
-        # Check .env
-        key = os.getenv("GROQ_API_KEY", "")
-        if key:
-            self.health_log.append(f"[OK] GROQ_API_KEY set ({key[:8]}...)")
-        else:
-            self.health_log.append("[FAIL] GROQ_API_KEY not set")
-
-        # Check model file
-        model = os.getenv("PT_MODEL_PATH", "models/32class.pt")
-        if os.path.exists(model):
-            size_mb = os.path.getsize(model) / (1024 * 1024)
-            self.health_log.append(f"[OK] Model file exists ({size_mb:.1f} MB)")
-        else:
-            self.health_log.append(f"[FAIL] Model not found: {model}")
-
-        # Check Groq connection
-        try:
-            from groq import Groq
-            client = Groq(api_key=key)
-            self.health_log.append("[OK] Groq client initialized")
-        except Exception as e:
-            self.health_log.append(f"[FAIL] Groq init error: {e}")
-
-        # Check PyTorch
-        try:
-            import torch
-            self.health_log.append(f"[OK] PyTorch {torch.__version__}")
-        except ImportError:
-            self.health_log.append("[FAIL] PyTorch not installed")
-
-        # Check OpenCV
-        try:
-            import cv2
-            self.health_log.append(f"[OK] OpenCV {cv2.__version__}")
-        except ImportError:
-            self.health_log.append("[FAIL] OpenCV not installed")
-
-        self.health_log.append("[HEALTH] Check complete.")
+    def _create_field(self, label_text, ftype, val=None, checked=False, vrange=None, value=None):
+        w = QWidget()
+        w.setStyleSheet("border: none; background: transparent;")
+        l = QHBoxLayout(w)
+        l.setContentsMargins(0, 0, 0, 0)
+        
+        lbl = QLabel(label_text)
+        lbl.setStyleSheet("color: #E2E8F0; font-size: 14px; font-weight: 500;")
+        lbl.setMinimumWidth(150)
+        
+        if ftype == "check":
+            l.addWidget(lbl)
+            cb = QCheckBox(val) # val acts as label
+            cb.setChecked(checked)
+            cb.setStyleSheet("QCheckBox { color: #94A3B8; font-size: 13px; } QCheckBox::indicator { width: 18px; height: 18px; border-radius: 4px; border: 1px solid #475569; } QCheckBox::indicator:checked { background: #3B82F6; border: none; }")
+            l.addWidget(cb)
+            l.addStretch()
+            return w
+            
+        l.addWidget(lbl)
+        
+        if ftype == "combo":
+            cb = QComboBox()
+            cb.addItems(val)
+            cb.setFixedHeight(36)
+            cb.setStyleSheet("QComboBox { background: #0F172A; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 4px 12px; } QComboBox::drop-down { border: none; }")
+            l.addWidget(cb, 1)
+        elif ftype == "text":
+            le = QLineEdit(val)
+            le.setFixedHeight(36)
+            le.setStyleSheet("QLineEdit { background: #0F172A; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 4px 12px; } QLineEdit:focus { border-color: #3B82F6; }")
+            l.addWidget(le, 1)
+        elif ftype == "password":
+            le = QLineEdit(val)
+            le.setEchoMode(QLineEdit.EchoMode.Password)
+            le.setFixedHeight(36)
+            le.setStyleSheet("QLineEdit { background: #0F172A; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 4px 12px; } QLineEdit:focus { border-color: #3B82F6; }")
+            l.addWidget(le, 1)
+        elif ftype == "spin":
+            sb = QSpinBox()
+            if vrange:
+                sb.setRange(vrange[0], vrange[1])
+            if value:
+                sb.setValue(value)
+            sb.setFixedHeight(36)
+            sb.setStyleSheet("QSpinBox { background: #0F172A; color: #F8FAFC; border: 1px solid #334155; border-radius: 6px; padding: 4px 12px; }")
+            l.addWidget(sb, 1)
+            
+        return w

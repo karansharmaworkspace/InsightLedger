@@ -7,8 +7,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QStackedWidget, QPushButton, QLabel, QFrame,
-    QScrollArea, QLineEdit, QTextEdit, QFileDialog
+    QScrollArea, QLineEdit, QTextEdit, QFileDialog,
+    QGridLayout
 )
+from gui.style import GLOBAL_QSS
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QPropertyAnimation, QEasingCurve
 from PyQt6.QtGui import QColor, QPalette, QTextCursor
 
@@ -50,22 +52,23 @@ class NavBtn(QPushButton):
         self.setStyleSheet("""
             QPushButton {
                 background: transparent;
-                color: #888;
+                color: #94A3B8;
                 border: none;
                 text-align: left;
                 padding-left: 14px;
-                font-size: 13px;
-                border-radius: 6px;
-                margin: 1px 8px;
+                font-size: 14px;
+                font-weight: 500;
+                border-radius: 12px;
+                margin: 2px 8px;
             }
             QPushButton:hover {
-                background: rgba(0,120,212,0.10);
-                color: #d4d4d4;
+                background: rgba(59, 130, 246, 0.10);
+                color: #F8FAFC;
             }
             QPushButton:checked {
-                background: rgba(0,120,212,0.18);
-                color: #0078d4;
-                font-weight: bold;
+                background: rgba(59, 130, 246, 0.15);
+                color: #3B82F6;
+                font-weight: 600;
             }
         """)
 
@@ -114,12 +117,13 @@ class HomeScreen(QMainWindow):
             self._platform = None
 
         p = QPalette()
-        p.setColor(QPalette.ColorRole.Window, QColor("#1e1e1e"))
-        p.setColor(QPalette.ColorRole.WindowText, QColor("#d4d4d4"))
-        p.setColor(QPalette.ColorRole.Base, QColor("#252526"))
-        p.setColor(QPalette.ColorRole.Button, QColor("#333"))
-        p.setColor(QPalette.ColorRole.Highlight, QColor("#0078d4"))
+        p.setColor(QPalette.ColorRole.Window, QColor("#0F172A"))
+        p.setColor(QPalette.ColorRole.WindowText, QColor("#F8FAFC"))
+        p.setColor(QPalette.ColorRole.Base, QColor("#0F172A"))
+        p.setColor(QPalette.ColorRole.Button, QColor("#1E293B"))
+        p.setColor(QPalette.ColorRole.Highlight, QColor("#3B82F6"))
         self.setPalette(p)
+        self.setStyleSheet(GLOBAL_QSS)
 
         central = QWidget()
         self.setCentralWidget(central)
@@ -131,8 +135,8 @@ class HomeScreen(QMainWindow):
         self._sidebar.setFixedWidth(self.SIDEBAR_W_EXPANDED)
         self._sidebar.setStyleSheet("""
             QFrame {
-                background: #252526;
-                border-right: 1px solid #333;
+                background: #111827;
+                border-right: 1px solid #1E293B;
             }
         """)
         self._sb_layout = QVBoxLayout(self._sidebar)
@@ -145,8 +149,8 @@ class HomeScreen(QMainWindow):
         self._brand_icon.setFixedWidth(36)
         self._brand_icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._brand_icon.setStyleSheet("""
-            color: #0078d4; font-size: 13px; font-weight: bold;
-            background: #1e1e1e; border: 1px solid #333; border-radius: 6px;
+            color: #3B82F6; font-size: 14px; font-weight: bold;
+            background: #1E293B; border: 1px solid #334155; border-radius: 8px;
             padding: 4px;
         """)
         self._brand_row.addWidget(self._brand_icon)
@@ -162,10 +166,10 @@ class HomeScreen(QMainWindow):
         self._toggle_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self._toggle_btn.setStyleSheet("""
             QPushButton {
-                background: #333; color: #888; border: 1px solid #444;
-                border-radius: 5px; font-size: 11px;
+                background: #1E293B; color: #94A3B8; border: 1px solid #334155;
+                border-radius: 8px; font-size: 11px;
             }
-            QPushButton:hover { background: #0078d4; color: #fff; border-color: #0078d4; }
+            QPushButton:hover { background: #3B82F6; color: #fff; border-color: #3B82F6; }
         """)
         self._toggle_btn.clicked.connect(self._toggle_sidebar)
         self._brand_row.addWidget(self._toggle_btn)
@@ -173,25 +177,39 @@ class HomeScreen(QMainWindow):
         div = QFrame()
         div.setFrameShape(QFrame.Shape.HLine)
         div.setFixedHeight(1)
-        div.setStyleSheet("background: #333;")
+        div.setStyleSheet("background: #1E293B;")
         self._sb_layout.addWidget(div)
         self._sb_layout.addSpacing(6)
 
         self._nav_btns = []
-        nav_items = [
-            ("\u2B21", "Home"),
-            ("\u25CE", "PID Digitization"),
-            ("\u229E", "OKF Dashboard"),
-            ("\u2699", "Engine Settings"),
-            ("\u2295", "Users Management"),
-            ("\u2692", "Settings"),
-            ("\u263A", "Team"),
-        ]
-        for icon, label in nav_items:
+        self._nav_groups = []
+
+        def add_group(name):
+            lbl = QLabel(name.upper())
+            lbl.setStyleSheet("color: #64748B; font-size: 10px; font-weight: bold; margin: 12px 8px 4px 12px;")
+            self._sb_layout.addWidget(lbl)
+            self._nav_groups.append(lbl)
+
+        def add_btn(icon, label):
             btn = NavBtn(icon, label)
             btn.clicked.connect(lambda _, i=len(self._nav_btns): self._switch(i))
             self._sb_layout.addWidget(btn)
             self._nav_btns.append(btn)
+
+        add_group("Dashboard")
+        add_btn("⬡", "Home")
+
+        add_group("Document Processing")
+        add_btn("◎", "PID Digitization")
+
+        add_group("AI Intelligence")
+        add_btn("⬢", "OKF Dashboard")
+
+        add_group("Administration")
+        add_btn("⚙", "Engine Settings")
+        add_btn("👥", "Users Management")
+        add_btn("🛠", "Settings")
+        add_btn("🏢", "Team")
 
         self._sb_layout.addStretch()
 
@@ -203,7 +221,7 @@ class HomeScreen(QMainWindow):
         self._root.addWidget(self._sidebar)
 
         self.stack = QStackedWidget()
-        self.stack.setStyleSheet("background: #1e1e1e;")
+        self.stack.setObjectName("central_widget")
         self._root.addWidget(self.stack)
 
         self._build_pages()
@@ -232,6 +250,9 @@ class HomeScreen(QMainWindow):
         self._brand_text.setVisible(expanded)
         self._team_label.setText("Team InsightLedger" if expanded else "IL")
 
+        for lbl in self._nav_groups:
+            lbl.setVisible(expanded)
+
         for btn in self._nav_btns:
             btn.set_expanded(expanded)
 
@@ -255,172 +276,260 @@ class HomeScreen(QMainWindow):
 
     def _home_page(self):
         outer = QWidget()
-        outer.setStyleSheet("background: #1e1e1e;")
+        outer.setObjectName("home_page")
         outer_layout = QVBoxLayout(outer)
         outer_layout.setContentsMargins(0, 0, 0, 0)
+        outer_layout.setSpacing(0)
 
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.Shape.NoFrame)
-        scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
 
         page = QWidget()
-        page.setStyleSheet("background: transparent;")
+        page.setObjectName("home_page_content")
         page_layout = QVBoxLayout(page)
-        page_layout.setContentsMargins(24, 8, 24, 20)
-        page_layout.setSpacing(16)
+        page_layout.setContentsMargins(32, 24, 32, 32)
+        page_layout.setSpacing(24)
 
-        stats_grid = QHBoxLayout()
-        stats_grid.setSpacing(12)
+        # Welcome Header (Top Header)
+        header_layout = QHBoxLayout()
+        header_left = QVBoxLayout()
+        welcome_lbl = QLabel("Welcome, Admin")
+        welcome_lbl.setStyleSheet("font-size: 28px; font-weight: 700; color: #F8FAFC;")
+        sub_lbl = QLabel("Current Project: Alpha Plant Modernization")
+        sub_lbl.setStyleSheet("font-size: 15px; color: #94A3B8; margin-bottom: 8px;")
+        header_left.addWidget(welcome_lbl)
+        header_left.addWidget(sub_lbl)
+        
+        header_right = QVBoxLayout()
+        status_lbl = QLabel("● System Status: Online")
+        status_lbl.setStyleSheet("color: #10B981; font-weight: bold; font-size: 13px;")
+        status_lbl.setAlignment(Qt.AlignmentFlag.AlignRight)
+        sync_lbl = QLabel("Last Sync: Just now")
+        sync_lbl.setStyleSheet("color: #94A3B8; font-size: 12px;")
+        sync_lbl.setAlignment(Qt.AlignmentFlag.AlignRight)
+        header_right.addWidget(status_lbl)
+        header_right.addWidget(sync_lbl)
+        header_right.addStretch()
+
+        header_layout.addLayout(header_left)
+        header_layout.addStretch()
+        header_layout.addLayout(header_right)
+        
+        page_layout.addLayout(header_layout)
+
+        # KPI Cards Row
+        stats_grid = QGridLayout()
+        stats_grid.setSpacing(16)
         stats_data = [
-            ("Knowledge Nodes", "#3b82f6", "\u2B21"),
-            ("Relationships", "#8b5cf6", "\u25CE"),
-            ("Entity Types", "#10b981", "\u229E"),
-            ("Documents", "#f59e0b", "\u2295"),
+            ("Documents Ingested", "#3B82F6", "📄", "—", "Live"),
+            ("Knowledge Nodes", "#8B5CF6", "⬡", "—", "Live"),
+            ("Relationships", "#10B981", "◎", "—", "Live"),
+            ("Entity Types", "#F59E0B", "⊟", "—", "Live"),
+            ("Total Users", "#06B6D4", "👥", "—", "Live"),
+            ("RAG Chunks", "#EC4899", "✧", "—", "Live"),
         ]
         self._stat_vals = []
-        for label, color, icon in stats_data:
+        for i, (label, color, icon, default_val, trend) in enumerate(stats_data):
             card = QFrame()
+            card.setObjectName("card")
+            card.setFixedHeight(95)
             card.setStyleSheet(f"""
-                QFrame {{
-                    background: #111827;
-                    border: 1px solid #1e293b;
-                    border-radius: 12px;
-                }}
-                QFrame:hover {{ border-color: {color}; }}
+                QFrame#card {{ background: #1E293B; border: 1px solid #334155; border-radius: 16px; }}
+                QFrame#card:hover {{ border-color: {color}; }}
             """)
-            card.setFixedHeight(72)
             row = QHBoxLayout(card)
-            row.setContentsMargins(16, 10, 16, 10)
-            row.setSpacing(12)
+            row.setContentsMargins(20, 16, 20, 16)
+            row.setSpacing(16)
 
             icon_box = QLabel(icon)
-            icon_box.setFixedSize(44, 44)
+            icon_box.setFixedSize(48, 48)
             icon_box.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            icon_box.setStyleSheet(f"""
-                background: {color}22; color: {color};
-                border-radius: 10px; font-size: 18px;
-            """)
+            icon_box.setStyleSheet(f"background: {color}15; color: {color}; border-radius: 12px; font-size: 22px;")
             row.addWidget(icon_box)
 
             info = QVBoxLayout()
             info.setSpacing(2)
-            val = QLabel("—")
-            val.setStyleSheet("color: #fff; font-size: 22px; font-weight: 700; border: none;")
+            
+            val_row = QHBoxLayout()
+            val = QLabel(default_val)
+            val.setStyleSheet("color: #F8FAFC; font-size: 24px; font-weight: 700; border: none;")
             self._stat_vals.append(val)
-            info.addWidget(val)
+            val_row.addWidget(val)
+            
+            trend_lbl = QLabel(trend)
+            trend_color = "#10B981" if "↑" in trend else "#94A3B8"
+            trend_lbl.setStyleSheet(f"color: {trend_color}; font-size: 11px; font-weight: bold; border: none;")
+            val_row.addStretch()
+            val_row.addWidget(trend_lbl)
+            
+            info.addLayout(val_row)
+            
             lbl = QLabel(label)
-            lbl.setStyleSheet("color: #64748b; font-size: 11px; border: none;")
+            lbl.setStyleSheet("color: #94A3B8; font-size: 13px; font-weight: 500; border: none;")
             info.addWidget(lbl)
+            
             row.addLayout(info)
-            row.addStretch()
-
-            stats_grid.addWidget(card)
+            stats_grid.addWidget(card, i // 3, i % 3)
+        
         page_layout.addLayout(stats_grid)
 
-        upload_row = QHBoxLayout()
-        upload_row.setSpacing(12)
+        # Main Content Split
+        main_split = QHBoxLayout()
+        main_split.setSpacing(24)
 
-        self._upload_btn = QPushButton("\u2B06  Upload Document")
+        # Left Column
+        left_col = QVBoxLayout()
+        left_col.setSpacing(24)
+
+        # Quick Actions
+        actions_card = QFrame()
+        actions_card.setObjectName("card")
+        act_layout = QVBoxLayout(actions_card)
+        act_layout.setContentsMargins(20, 20, 20, 20)
+        act_layout.setSpacing(12)
+        
+        act_header = QLabel("Quick Actions")
+        act_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
+        act_layout.addWidget(act_header)
+
+        btn_grid = QGridLayout()
+        btn_grid.setSpacing(12)
+        
+        self._upload_btn = QPushButton("⬑ Upload Document")
         self._upload_btn.setFixedHeight(44)
-        self._upload_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._upload_btn.setStyleSheet("""
-            QPushButton {
-                background: qlineargradient(x1:0,y1:0,x2:1,y2:1, stop:0 #3b82f6, stop:1 #8b5cf6);
-                color: #fff;
-                border: none;
-                border-radius: 10px;
-                font-size: 14px;
-                font-weight: 600;
-                padding: 0 24px;
-            }
-            QPushButton:hover { opacity: 0.9; }
-            QPushButton:disabled { background: #334155; color: #64748b; }
-        """)
+        self._upload_btn.setStyleSheet("QPushButton { background: #3B82F6; color: white; border-radius: 8px; font-weight: bold; } QPushButton:hover { background: #2563EB; }")
         self._upload_btn.clicked.connect(self._pick_upload_file)
-        upload_row.addWidget(self._upload_btn)
+        btn_grid.addWidget(self._upload_btn, 0, 0)
 
+        self._ocr_btn = QPushButton("◎ Run OCR")
+        self._ocr_btn.setFixedHeight(44)
+        self._ocr_btn.setStyleSheet("QPushButton { background: #1E293B; color: white; border: 1px solid #334155; border-radius: 8px; font-weight: bold; } QPushButton:hover { background: #334155; }")
+        btn_grid.addWidget(self._ocr_btn, 0, 1)
+
+        self._kg_btn = QPushButton("⬡ Generate Knowledge Graph")
+        self._kg_btn.setFixedHeight(44)
+        self._kg_btn.setStyleSheet("QPushButton { background: #1E293B; color: white; border: 1px solid #334155; border-radius: 8px; font-weight: bold; } QPushButton:hover { background: #334155; }")
+        btn_grid.addWidget(self._kg_btn, 1, 0)
+
+        self._ai_btn = QPushButton("✧ Open AI Assistant")
+        self._ai_btn.setFixedHeight(44)
+        self._ai_btn.setStyleSheet("QPushButton { background: #1E293B; color: white; border: 1px solid #334155; border-radius: 8px; font-weight: bold; } QPushButton:hover { background: #334155; }")
+        btn_grid.addWidget(self._ai_btn, 1, 1)
+
+        act_layout.addLayout(btn_grid)
+        
         self._upload_status = QLabel("")
-        self._upload_status.setStyleSheet("color: #10b981; font-size: 12px; border: none;")
-        upload_row.addWidget(self._upload_status)
-        upload_row.addStretch()
-        page_layout.addLayout(upload_row)
+        self._upload_status.setStyleSheet("color: #10B981; font-size: 13px; margin-top: 4px;")
+        act_layout.addWidget(self._upload_status)
+        
+        left_col.addWidget(actions_card)
 
+        # Recent Documents (Placeholder)
+        docs_card = QFrame()
+        docs_card.setObjectName("card")
+        docs_layout = QVBoxLayout(docs_card)
+        docs_layout.setContentsMargins(20, 20, 20, 20)
+        docs_layout.setSpacing(16)
+        docs_header = QLabel("Recent Documents")
+        docs_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
+        docs_layout.addWidget(docs_header)
+        
+        for doc, stat, prog in [("P&ID_Area_1A.pdf", "Completed", "100%"), ("Compressor_Schematic.jpg", "Processing", "65%"), ("Valve_Matrix.xlsx", "Pending", "0%")]:
+            d_row = QHBoxLayout()
+            d_lbl = QLabel(f"📄 {doc}")
+            d_lbl.setStyleSheet("color: #E2E8F0; font-size: 13px;")
+            d_stat = QLabel(stat)
+            col = "#10B981" if stat == "Completed" else ("#F59E0B" if stat == "Processing" else "#64748B")
+            d_stat.setStyleSheet(f"color: {col}; font-size: 11px; border: 1px solid {col}; border-radius: 4px; padding: 2px 6px;")
+            d_prog = QLabel(prog)
+            d_prog.setStyleSheet("color: #94A3B8; font-size: 12px;")
+            d_row.addWidget(d_lbl)
+            d_row.addStretch()
+            d_row.addWidget(d_stat)
+            d_row.addWidget(d_prog)
+            docs_layout.addLayout(d_row)
+            
+        left_col.addWidget(docs_card)
+
+        # Recent Activity Timeline (Placeholder)
+        activity_card = QFrame()
+        activity_card.setObjectName("card")
+        actv_layout = QVBoxLayout(activity_card)
+        actv_layout.setContentsMargins(20, 20, 20, 20)
+        actv_layout.setSpacing(16)
+        actv_header = QLabel("Recent Activity Timeline")
+        actv_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
+        actv_layout.addWidget(actv_header)
+        
+        for act in ["Uploaded document: Pump_Station_7.pdf", "OCR completed for Area 1A", "Knowledge Graph generated", "AI answered question"]:
+            lbl = QLabel(f"• {act}")
+            lbl.setStyleSheet("color: #94A3B8; font-size: 13px; padding: 4px 0;")
+            actv_layout.addWidget(lbl)
+        
+        actv_layout.addStretch()
+        left_col.addWidget(activity_card, 1)
+
+        main_split.addLayout(left_col, 1)
+
+        # Right Column (AI Assistant)
         chat_card = QFrame()
-        chat_card.setStyleSheet("""
-            QFrame {
-                background: #111827;
-                border: 1px solid #1e293b;
-                border-radius: 12px;
-            }
-        """)
+        chat_card.setObjectName("card")
         chat_layout = QVBoxLayout(chat_card)
-        chat_layout.setContentsMargins(16, 16, 16, 16)
-        chat_layout.setSpacing(12)
+        chat_layout.setContentsMargins(20, 20, 20, 20)
+        chat_layout.setSpacing(16)
 
-        chat_header = QLabel("\u25CE  OKF Knowledge Assistant")
-        chat_header.setStyleSheet("color: #fff; font-size: 15px; font-weight: 600; border: none;")
+        chat_header = QLabel("✧  Digitwin AI Assistant")
+        chat_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
         chat_layout.addWidget(chat_header)
 
         self._chat_display = QTextEdit()
         self._chat_display.setReadOnly(True)
-        self._chat_display.setMinimumHeight(200)
+        self._chat_display.setMinimumHeight(350)
         self._chat_display.setStyleSheet("""
             QTextEdit {
-                background: #0f172a;
-                color: #e2e8f0;
-                border: 1px solid #1e293b;
-                border-radius: 8px;
-                padding: 12px;
-                font-size: 13px;
+                background: #0F172A; color: #F8FAFC; border: 1px solid #334155;
+                border-radius: 12px; padding: 16px; font-size: 14px;
             }
         """)
         self._chat_display.setPlaceholderText("Ask anything about the OKF knowledge base...")
         chat_layout.addWidget(self._chat_display, 1)
 
         input_row = QHBoxLayout()
-        input_row.setSpacing(8)
+        input_row.setSpacing(12)
 
         self._home_query = QLineEdit()
-        self._home_query.setPlaceholderText("Ask the OKF knowledge base...")
-        self._home_query.setFixedHeight(40)
+        self._home_query.setPlaceholderText("Message Digitwin...")
+        self._home_query.setFixedHeight(48)
         self._home_query.setStyleSheet("""
             QLineEdit {
-                background: #0f172a;
-                color: #fff;
-                border: 1px solid #1e293b;
-                border-radius: 8px;
-                padding: 0 14px;
-                font-size: 13px;
+                background: #0F172A; color: #F8FAFC; border: 1px solid #334155;
+                border-radius: 24px; padding: 0 20px; font-size: 14px;
             }
-            QLineEdit:focus { border-color: #3b82f6; }
+            QLineEdit:focus { border-color: #3B82F6; background: #111827; }
         """)
         self._home_query.returnPressed.connect(self._send_home_query)
         input_row.addWidget(self._home_query, 1)
 
-        self._home_send_btn = QPushButton("\u2191")
-        self._home_send_btn.setFixedSize(40, 40)
+        self._home_send_btn = QPushButton("↑")
+        self._home_send_btn.setFixedSize(48, 48)
         self._home_send_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self._home_send_btn.setStyleSheet("""
             QPushButton {
-                background: #3b82f6;
-                color: #fff;
-                border: none;
-                border-radius: 8px;
-                font-size: 16px;
-                font-weight: bold;
+                background: #3B82F6; color: #FFFFFF; border: none;
+                border-radius: 24px; font-size: 20px; font-weight: bold;
             }
-            QPushButton:hover { background: #2563eb; }
-            QPushButton:disabled { background: #334155; color: #64748b; }
+            QPushButton:hover { background: #2563EB; }
+            QPushButton:disabled { background: #1E293B; color: #64748B; }
         """)
         self._home_send_btn.clicked.connect(self._send_home_query)
         input_row.addWidget(self._home_send_btn)
 
         chat_layout.addLayout(input_row)
-        page_layout.addWidget(chat_card, 1)
+        main_split.addWidget(chat_card, 2)
 
-        page_layout.addStretch()
-
+        page_layout.addLayout(main_split, 1)
+        
         scroll.setWidget(page)
         outer_layout.addWidget(scroll)
         return outer
@@ -559,21 +668,61 @@ class HomeScreen(QMainWindow):
         self._refresh_chat()
 
     def _load_stats(self):
-        if not hasattr(self, '_platform') or self._platform is None:
-            print("[Stats] Platform not available")
-            return
+        """Load real statistics from backend KnowledgeGraph and storage."""
+        import json, os
+        # --- KG Stats (real) ---
         try:
-            kg_stats = self._platform.kg.get_stats()
-            self._stat_vals[0].setText(str(kg_stats.get("total_nodes", 0)))
-            self._stat_vals[1].setText(str(kg_stats.get("total_edges", 0)))
-            self._stat_vals[2].setText(str(len(kg_stats.get("types", {}))))
+            kg_path = os.path.join(os.getcwd(), "storage", "knowledge_graph.json")
+            if os.path.exists(kg_path):
+                with open(kg_path, "r", encoding="utf-8") as f:
+                    kg_data = json.load(f)
+                nodes = kg_data.get("nodes", {})
+                edges = kg_data.get("edges", [])
+                # Count unique source documents
+                sources = set()
+                type_set = set()
+                for node in nodes.values():
+                    type_set.add(node.get("type", ""))
+                    for src in node.get("sources", []):
+                        sources.add(src)
+                # KPI index 0 = Documents (unique sources)
+                self._stat_vals[0].setText(str(len(sources)))
+                # KPI index 1 = Knowledge Nodes
+                self._stat_vals[1].setText(str(len(nodes)))
+                # KPI index 2 = Relationships (edges)
+                self._stat_vals[2].setText(str(len(edges)))
+                # KPI index 3 = Entity Types
+                self._stat_vals[3].setText(str(len(type_set)))
         except Exception as e:
             print(f"[Stats] KG failed: {e}")
+
+        # --- Platform-based stats if available ---
+        if hasattr(self, '_platform') and self._platform is not None:
+            try:
+                kg_stats = self._platform.kg.get_stats()
+                self._stat_vals[1].setText(str(kg_stats.get("total_nodes", 0)))
+                self._stat_vals[2].setText(str(kg_stats.get("total_edges", 0)))
+                self._stat_vals[3].setText(str(len(kg_stats.get("types", {}))))
+                self._stat_vals[0].setText(str(kg_stats.get("sources", 0)))
+            except Exception as e:
+                print(f"[Stats] Platform KG failed: {e}")
+            try:
+                rag_stats = self._platform.rag.get_stats()
+                # KPI index 5 = AI Queries (chunks as proxy)
+                self._stat_vals[5].setText(str(rag_stats.get("total_chunks", 0)))
+            except Exception as e:
+                print(f"[Stats] RAG failed: {e}")
+
+        # --- Users count ---
         try:
-            rag_stats = self._platform.rag.get_stats()
-            self._stat_vals[3].setText(str(rag_stats.get("total_chunks", 0)))
+            users_path = os.path.join(os.getcwd(), "storage", "users.json")
+            if os.path.exists(users_path):
+                with open(users_path, "r", encoding="utf-8") as f:
+                    users = json.load(f)
+                # KPI index 4 = Users Count
+                self._stat_vals[4].setText(str(len(users)))
         except Exception as e:
-            print(f"[Stats] RAG failed: {e}")
+            print(f"[Stats] Users failed: {e}")
 
     def _switch(self, index):
         self.stack.setCurrentIndex(index)

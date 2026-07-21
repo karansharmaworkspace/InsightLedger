@@ -1,10 +1,12 @@
 from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel, QFrame, QGridLayout,
-    QPushButton, QComboBox, QCheckBox, QLineEdit, QSpinBox
+    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QFrame, QGridLayout,
+    QPushButton, QComboBox, QCheckBox, QLineEdit, QSpinBox, QScrollArea
 )
 from PyQt6.QtCore import Qt
 import json
 import os
+
+from gui.style import TEXT, TEXT_MUTED, SUCCESS, DANGER, PRIMARY
 
 
 class GeneralSettingsPage(QWidget):
@@ -16,109 +18,152 @@ class GeneralSettingsPage(QWidget):
         self._setup_ui()
 
     def _setup_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(30, 30, 30, 30)
-        layout.setSpacing(20)
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(0, 0, 0, 0)
 
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.Shape.NoFrame)
+
+        page = QWidget()
+        layout = QVBoxLayout(page)
+        layout.setContentsMargins(32, 24, 32, 32)
+        layout.setSpacing(24)
+
+        # Header
         title = QLabel("Settings")
-        title.setStyleSheet("color: #fff; font-size: 24px; font-weight: bold;")
+        title.setObjectName("page_title")
         layout.addWidget(title)
 
-        # --- Appearance ---
-        appearance_card = self._card("Appearance")
-        app_layout = QGridLayout()
-        app_layout.setSpacing(10)
+        subtitle = QLabel("General application preferences, processing defaults, and export behavior")
+        subtitle.setObjectName("page_subtitle")
+        layout.addWidget(subtitle)
 
-        app_layout.addWidget(QLabel("Theme:"), 0, 0)
+        # --- Appearance ---
+        appearance_card, app_body = self._card("\U0001F3A8", "Appearance", "Theme and language preferences")
+        app_layout = QGridLayout()
+        app_layout.setSpacing(14)
+        app_layout.setColumnStretch(1, 1)
+
+        app_layout.addWidget(self._field_label("Theme"), 0, 0)
         self.theme_combo = QComboBox()
         self.theme_combo.addItems(["Dark", "Light", "System"])
         self.theme_combo.setCurrentText(self.config.get("theme", "Dark"))
-        self.theme_combo.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
         app_layout.addWidget(self.theme_combo, 0, 1)
 
-        app_layout.addWidget(QLabel("Language:"), 1, 0)
+        app_layout.addWidget(self._field_label("Language"), 1, 0)
         self.lang_combo = QComboBox()
         self.lang_combo.addItems(["English", "Hindi", "German", "Japanese", "Chinese"])
         self.lang_combo.setCurrentText(self.config.get("language", "English"))
-        self.lang_combo.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
         app_layout.addWidget(self.lang_combo, 1, 1)
 
-        card_layout = appearance_card.findChild(QVBoxLayout)
-        if card_layout:
-            card_layout.addLayout(app_layout)
+        app_body.addLayout(app_layout)
         layout.addWidget(appearance_card)
 
         # --- Processing ---
-        processing_card = self._card("Processing Defaults")
+        processing_card, proc_body = self._card("\u2699", "Processing Defaults", "Defaults applied to new digitization jobs")
         proc_layout = QGridLayout()
-        proc_layout.setSpacing(10)
+        proc_layout.setSpacing(14)
+        proc_layout.setColumnStretch(1, 1)
 
-        proc_layout.addWidget(QLabel("Default tile size:"), 0, 0)
+        proc_layout.addWidget(self._field_label("Default tile size"), 0, 0)
         self.tile_spin = QSpinBox()
         self.tile_spin.setRange(320, 1920)
         self.tile_spin.setSingleStep(64)
+        self.tile_spin.setSuffix(" px")
         self.tile_spin.setValue(self.config.get("tile_size", 640))
-        self.tile_spin.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
         proc_layout.addWidget(self.tile_spin, 0, 1)
 
         self.auto_crop = QCheckBox("Enable auto-crop detection")
         self.auto_crop.setChecked(self.config.get("auto_crop", False))
-        self.auto_crop.setStyleSheet("color: #ccc;")
         proc_layout.addWidget(self.auto_crop, 1, 0, 1, 2)
 
         self.gpu_accel = QCheckBox("GPU acceleration (CUDA)")
         self.gpu_accel.setChecked(self.config.get("gpu_accel", False))
-        self.gpu_accel.setStyleSheet("color: #ccc;")
         proc_layout.addWidget(self.gpu_accel, 2, 0, 1, 2)
 
-        card_layout = processing_card.findChild(QVBoxLayout)
-        if card_layout:
-            card_layout.addLayout(proc_layout)
+        proc_body.addLayout(proc_layout)
         layout.addWidget(processing_card)
 
         # --- Output ---
-        output_card = self._card("Output")
+        output_card, out_body = self._card("\U0001F4E4", "Output & Export", "Where results are written and how exports behave")
         out_layout = QGridLayout()
-        out_layout.setSpacing(10)
+        out_layout.setSpacing(14)
+        out_layout.setColumnStretch(1, 1)
 
-        out_layout.addWidget(QLabel("Default output dir:"), 0, 0)
+        out_layout.addWidget(self._field_label("Default output directory"), 0, 0)
         self.output_dir = QLineEdit(self.config.get("output_dir", "output"))
-        self.output_dir.setStyleSheet("background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 8px;")
         out_layout.addWidget(self.output_dir, 0, 1)
 
         self.auto_export = QCheckBox("Auto-export DEXPI JSON after digitization")
         self.auto_export.setChecked(self.config.get("auto_export", False))
-        self.auto_export.setStyleSheet("color: #ccc;")
         out_layout.addWidget(self.auto_export, 1, 0, 1, 2)
 
-        card_layout = output_card.findChild(QVBoxLayout)
-        if card_layout:
-            card_layout.addLayout(out_layout)
+        out_body.addLayout(out_layout)
         layout.addWidget(output_card)
 
-        # Save button
+        # Save row
+        save_row = QHBoxLayout()
         save_btn = QPushButton("Save Settings")
-        save_btn.setFixedWidth(150)
+        save_btn.setObjectName("primary_btn")
+        save_btn.setFixedHeight(40)
+        save_btn.setFixedWidth(160)
+        save_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         save_btn.clicked.connect(self._save_config)
-        layout.addWidget(save_btn)
+        save_row.addWidget(save_btn)
 
         self.status_label = QLabel("")
-        self.status_label.setStyleSheet("font-size: 11px;")
-        layout.addWidget(self.status_label)
+        self.status_label.setStyleSheet(f"font-size: 12px; color: {TEXT_MUTED};")
+        save_row.addWidget(self.status_label)
+        save_row.addStretch()
+        layout.addLayout(save_row)
 
         layout.addStretch()
 
-    def _card(self, title_text):
+        scroll.setWidget(page)
+        outer.addWidget(scroll)
+
+    def _field_label(self, text):
+        lbl = QLabel(text)
+        lbl.setStyleSheet(f"color: {TEXT_MUTED}; font-size: 13px;")
+        return lbl
+
+    def _card(self, icon, title_text, description):
         card = QFrame()
-        card.setStyleSheet("""
-            QFrame { background: #16213e; border: 1px solid #1a1a3e; border-radius: 8px; padding: 15px; }
-        """)
+        card.setObjectName("card")
         layout = QVBoxLayout(card)
-        layout.setSpacing(10)
+        layout.setContentsMargins(22, 20, 22, 22)
+        layout.setSpacing(16)
+
+        header = QHBoxLayout()
+        header.setSpacing(12)
+        icon_lbl = QLabel(icon)
+        icon_lbl.setFixedSize(38, 38)
+        icon_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        icon_lbl.setStyleSheet(
+            f"background: {PRIMARY}22; color: {PRIMARY}; border-radius: 10px; font-size: 16px;"
+        )
+        header.addWidget(icon_lbl)
+
+        title_col = QVBoxLayout()
+        title_col.setSpacing(1)
         title = QLabel(title_text)
-        title.setStyleSheet("color: #e94560; font-size: 15px; font-weight: bold; border: none;")
-        layout.addWidget(title)
-        return card
+        title.setObjectName("section_title")
+        desc = QLabel(description)
+        desc.setObjectName("muted")
+        title_col.addWidget(title)
+        title_col.addWidget(desc)
+        header.addLayout(title_col)
+        header.addStretch()
+
+        layout.addLayout(header)
+
+        div = QFrame()
+        div.setFixedHeight(1)
+        div.setStyleSheet("background: #334155;")
+        layout.addWidget(div)
+
+        return card, layout
 
     def _load_config(self):
         if os.path.exists(self.config_file):
@@ -139,5 +184,5 @@ class GeneralSettingsPage(QWidget):
         os.makedirs(os.path.dirname(self.config_file), exist_ok=True)
         with open(self.config_file, "w") as f:
             json.dump(self.config, f, indent=2)
-        self.status_label.setText("Settings saved.")
-        self.status_label.setStyleSheet("color: #0f0; font-size: 11px;")
+        self.status_label.setText("\u2713 Settings saved")
+        self.status_label.setStyleSheet(f"color: {SUCCESS}; font-size: 12px; font-weight: 600;")

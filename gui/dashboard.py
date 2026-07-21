@@ -36,30 +36,31 @@ class ReclassifySidebar(QWidget):
         self.setMinimumWidth(350)
         self.setMaximumWidth(450)
         self.setStyleSheet("""
-            QWidget { background-color: #1e1e1e; color: #d4d4d4; }
-            QTabWidget::pane { border: 1px solid #333; }
-            QTabBar::tab { background: #333; color: #ccc; padding: 6px 10px; font-size: 11px; }
-            QTabBar::tab:selected { background: #0078d4; }
-            QLineEdit { background: #2d2d2d; color: #fff; border: 1px solid #444;
-                         border-radius: 4px; padding: 5px; font-size: 12px; }
-            QPushButton { background: #0078d4; color: white; border: none;
-                          padding: 6px 14px; border-radius: 4px; font-size: 12px; }
-            QPushButton:hover { background: #1a8fe3; }
-            QPushButton:disabled { background: #555; color: #999; }
+            QWidget { background-color: #111827; color: #F8FAFC; }
+            QTabWidget::pane { border: 1px solid #334155; border-radius: 8px; }
+            QTabBar::tab { background: #1E293B; color: #94A3B8; padding: 6px 12px; font-size: 11px; font-weight: 600; }
+            QTabBar::tab:selected { background: #253449; color: #3B82F6; }
+            QLineEdit { background: #0F172A; color: #F8FAFC; border: 1px solid #334155;
+                         border-radius: 8px; padding: 6px 10px; font-size: 12px; }
+            QLineEdit:focus { border: 1px solid #3B82F6; }
+            QPushButton { background: #3B82F6; color: white; border: none;
+                          padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+            QPushButton:hover { background: #2563EB; }
+            QPushButton:disabled { background: #1E293B; color: #64748B; }
         """)
 
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(6, 6, 6, 6)
-        layout.setSpacing(4)
+        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setSpacing(8)
 
         header = QLabel("Reclassify Symbol")
-        header.setStyleSheet("color: #0078d4; font-size: 14px; font-weight: bold; padding: 4px;")
+        header.setStyleSheet("color: #F8FAFC; font-size: 15px; font-weight: 700; padding: 2px;")
         layout.addWidget(header)
 
         self.crop_preview = QLabel()
         self.crop_preview.setFixedSize(120, 120)
         self.crop_preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.crop_preview.setStyleSheet("background: #252526; border: 1px solid #333; border-radius: 4px;")
+        self.crop_preview.setStyleSheet("background: #1E293B; border: 1px solid #334155; border-radius: 12px; color: #94A3B8;")
         self.crop_preview.setText("No symbol")
         layout.addWidget(self.crop_preview, alignment=Qt.AlignmentFlag.AlignCenter)
 
@@ -72,7 +73,7 @@ class ReclassifySidebar(QWidget):
         layout.addWidget(self.tabs)
 
         self.selected_label = QLabel("No class selected")
-        self.selected_label.setStyleSheet("color: #aaa; font-size: 11px;")
+        self.selected_label.setStyleSheet("color: #94A3B8; font-size: 11px;")
         layout.addWidget(self.selected_label)
 
         btn_row = QHBoxLayout()
@@ -155,8 +156,8 @@ class ReclassifySidebar(QWidget):
     def _create_class_card(self, class_name, parent_name, gallery_dir):
         card = QFrame()
         card.setFixedSize(160, 70)
-        card.setStyleSheet("QFrame { background: #252526; border: 1px solid #333; border-radius: 3px; }"
-                           "QFrame:hover { border: 1px solid #0078d4; }")
+        card.setStyleSheet("QFrame { background: #1E293B; border: 1px solid #334155; border-radius: 10px; }"
+                           "QFrame:hover { border: 1px solid #3B82F6; }")
         card.setCursor(Qt.CursorShape.PointingHandCursor)
 
         layout = QHBoxLayout(card)
@@ -176,7 +177,7 @@ class ReclassifySidebar(QWidget):
         layout.addWidget(img_label)
 
         name_label = QLabel(class_name.replace("_", " "))
-        name_label.setStyleSheet("color: #ccc; font-size: 10px;")
+        name_label.setStyleSheet("color: #E2E8F0; font-size: 10px;")
         name_label.setWordWrap(True)
         layout.addWidget(name_label)
 
@@ -187,7 +188,7 @@ class ReclassifySidebar(QWidget):
         self._selected_class = class_name
         self._selected_parent = parent_name
         self.selected_label.setText(f"Selected: {class_name}")
-        self.selected_label.setStyleSheet("color: #0078d4; font-size: 11px; font-weight: bold;")
+        self.selected_label.setStyleSheet("color: #3B82F6; font-size: 11px; font-weight: bold;")
         self.confirm_btn.setEnabled(True)
 
     def _confirm_selection(self):
@@ -209,7 +210,7 @@ class ReclassifySidebar(QWidget):
         layout.setContentsMargins(8, 8, 8, 8)
 
         title = QLabel("New Class")
-        title.setStyleSheet("color: #0078d4; font-size: 12px; font-weight: bold;")
+        title.setStyleSheet("color: #3B82F6; font-size: 12px; font-weight: bold;")
         layout.addWidget(title)
 
         self.new_class_input = QLineEdit()
@@ -228,7 +229,7 @@ class ReclassifySidebar(QWidget):
         self.new_class_input.textChanged.connect(lambda t: self.create_btn.setEnabled(len(t.strip()) > 0))
 
         self.new_class_status = QLabel("")
-        self.new_class_status.setStyleSheet("color: #aaa; font-size: 10px;")
+        self.new_class_status.setStyleSheet("color: #94A3B8; font-size: 10px;")
         layout.addWidget(self.new_class_status)
 
         layout.addStretch()
@@ -272,7 +273,7 @@ class ReclassifySidebar(QWidget):
         self._selected_class = class_name
         self._selected_parent = parent_name
         self.new_class_status.setText(f"Created: {class_name}")
-        self.new_class_status.setStyleSheet("color: #00ff00; font-size: 10px;")
+        self.new_class_status.setStyleSheet("color: #10B981; font-size: 10px; font-weight: 600;")
         self.confirm_btn.setEnabled(True)
 
 

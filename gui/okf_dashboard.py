@@ -20,35 +20,35 @@ from pyqtgraph.opengl import (
 )
 
 
-# ── Theme ────────────────────────────────────────────────────────────
-BG_DARK = "#1a1a2e"
-BG_CARD = "#16213e"
-BG_INPUT = "#0f3460"
-ACCENT = "#0078d4"
-TEXT = "#e0e0e0"
-TEXT_DIM = "#888"
-BORDER = "#1a1a3e"
+# ── Theme (DocuPID Enterprise Design System) ──────────────────────────
+BG_DARK = "#0F172A"
+BG_CARD = "#1E293B"
+BG_INPUT = "#0F172A"
+ACCENT = "#3B82F6"
+TEXT = "#F8FAFC"
+TEXT_DIM = "#94A3B8"
+BORDER = "#334155"
 
 ENTITY_COLORS: dict[str, tuple[int, int, int, int]] = {
-    "equipment_tag":  (52, 152, 219, 255),
-    "personnel":      (46, 204, 113, 255),
-    "regulatory_ref": (231, 76, 60, 255),
-    "date":           (243, 156, 18, 255),
-    "parameter":      (155, 89, 182, 255),
-    "work_order":     (26, 188, 156, 255),
-    "failure_mode":   (230, 126, 34, 255),
-    "location":       (52, 73, 94, 255),
-    "okf_class":      (0, 200, 255, 255),
-    "okf_symbol":     (0, 150, 200, 180),
-    "unknown":        (149, 165, 166, 255),
+    "equipment_tag":  (59, 130, 246, 255),
+    "personnel":      (16, 185, 129, 255),
+    "regulatory_ref": (239, 68, 68, 255),
+    "date":           (245, 158, 11, 255),
+    "parameter":      (139, 92, 246, 255),
+    "work_order":     (6, 182, 212, 255),
+    "failure_mode":   (249, 115, 22, 255),
+    "location":       (148, 163, 184, 255),
+    "okf_class":      (56, 189, 248, 255),
+    "okf_symbol":     (59, 130, 246, 180),
+    "unknown":        (100, 116, 139, 255),
 }
 
-EDGE_COLOR = (100, 100, 100, 60)
-DOC_COLOR = (255, 255, 255, 180)
+EDGE_COLOR = (100, 116, 139, 60)
+DOC_COLOR = (248, 250, 252, 180)
 
 CARD_STYLE = (
     f"QFrame {{ background: {BG_CARD}; border: 1px solid {BORDER}; "
-    f"border-radius: 6px; }}"
+    f"border-radius: 16px; }}"
 )
 
 
@@ -84,7 +84,7 @@ class Scene3D(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.view = GLViewWidget()
-        self.view.setBackgroundColor(26, 26, 46)
+        self.view.setBackgroundColor(15, 23, 42)
         self.view.setCameraPosition(distance=40, elevation=25, azimuth=45)
 
         grid = GLGridItem()
@@ -157,45 +157,64 @@ class OKFDashboardPage(QWidget):
 
     # ── UI ───────────────────────────────────────────────────────────
     def _setup_ui(self):
-        root = QHBoxLayout(self)
-        root.setContentsMargins(12, 12, 12, 12)
-        root.setSpacing(10)
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(28, 22, 28, 22)
+        outer.setSpacing(16)
+
+        # ── Page header ─────────────────────────────────────────────
+        header_row = QHBoxLayout()
+        header_col = QVBoxLayout()
+        header_col.setSpacing(2)
+        title = QLabel("Knowledge Graph")
+        title.setStyleSheet(f"color: {TEXT}; font-size: 26px; font-weight: 700;")
+        subtitle = QLabel("Explore documents, entities, and relationships in an interactive 3D map")
+        subtitle.setStyleSheet(f"color: {TEXT_DIM}; font-size: 13px;")
+        header_col.addWidget(title)
+        header_col.addWidget(subtitle)
+        header_row.addLayout(header_col)
+        header_row.addStretch()
+
+        self.stats_lbl = QLabel("")
+        self.stats_lbl.setStyleSheet(
+            f"color: {ACCENT}; font-size: 12px; font-weight: 600; background: {ACCENT}1A;"
+            f"border: 1px solid {ACCENT}55; border-radius: 10px; padding: 8px 16px;"
+        )
+        self.stats_lbl.setWordWrap(True)
+        header_row.addWidget(self.stats_lbl)
+        outer.addLayout(header_row)
+
+        root = QHBoxLayout()
+        root.setSpacing(16)
+        outer.addLayout(root, 1)
 
         # ── Left panel ───────────────────────────────────────────────
         left = QVBoxLayout()
-        left.setSpacing(8)
-
-        title = QLabel("3D Knowledge Explorer")
-        title.setStyleSheet(f"color: #fff; font-size: 20px; font-weight: bold;")
-        left.addWidget(title)
-
-        # Stats
-        self.stats_lbl = QLabel("")
-        self.stats_lbl.setStyleSheet(f"color: {TEXT_DIM}; font-size: 11px;")
-        self.stats_lbl.setWordWrap(True)
-        left.addWidget(self.stats_lbl)
+        left.setSpacing(12)
 
         # Search
         self.search = QLineEdit()
-        self.search.setPlaceholderText("Filter nodes...")
-        self.search.setStyleSheet(
-            f"QLineEdit {{ background: {BG_INPUT}; color: {TEXT}; border: 1px solid {BORDER}; "
-            f"border-radius: 5px; padding: 6px 10px; font-size: 12px; }}"
-        )
+        self.search.setObjectName("search_field")
+        self.search.setPlaceholderText("\U0001F50D  Search nodes...")
+        self.search.setFixedHeight(38)
         self.search.textChanged.connect(self._apply_filter)
         left.addWidget(self.search)
 
         # Type filters
         filters_frame = QFrame()
-        filters_frame.setStyleSheet(CARD_STYLE)
+        filters_frame.setObjectName("card")
         flay = QVBoxLayout(filters_frame)
-        flay.setContentsMargins(8, 6, 8, 6)
-        flay.setSpacing(2)
+        flay.setContentsMargins(14, 12, 14, 12)
+        flay.setSpacing(6)
+        filt_title = QLabel("FILTER BY TYPE")
+        filt_title.setStyleSheet(f"color: {TEXT_DIM}; font-size: 10px; font-weight: 700; letter-spacing: 1px;")
+        flay.addWidget(filt_title)
         self._filter_checks: dict[str, QCheckBox] = {}
         for etype in ENTITY_COLORS:
+            r, g, b, _a = ENTITY_COLORS[etype]
+            swatch_color = f"rgb({r},{g},{b})"
             cb = QCheckBox(etype.replace("_", " ").title())
             cb.setChecked(True)
-            cb.setStyleSheet(f"color: {TEXT}; font-size: 11px;")
+            cb.setStyleSheet(f"color: {TEXT}; font-size: 12px; padding: 2px 0;")
             cb.stateChanged.connect(self._apply_filter)
             self._filter_checks[etype] = cb
             flay.addWidget(cb)
@@ -204,40 +223,56 @@ class OKFDashboardPage(QWidget):
         left.addStretch()
 
         # Tree
+        tree_label = QLabel("NODE EXPLORER")
+        tree_label.setStyleSheet(f"color: {TEXT_DIM}; font-size: 10px; font-weight: 700; letter-spacing: 1px;")
+        left.addWidget(tree_label)
+
         self.tree = QTreeWidget()
-        self.tree.setHeaderLabel("Nodes")
-        self.tree.setMaximumWidth(260)
-        self.tree.setStyleSheet(
-            f"QTreeWidget {{ background: {BG_CARD}; color: #ccc; border: 1px solid {BORDER}; "
-            f"font-size: 11px; }}"
-            f"QTreeWidget::item:selected {{ background: {ACCENT}; color: #fff; }}"
-        )
+        self.tree.setHeaderHidden(True)
+        self.tree.setMaximumWidth(280)
         self.tree.itemClicked.connect(self._on_tree_click)
         left.addWidget(self.tree, 1)
 
         left_widget = QWidget()
         left_widget.setLayout(left)
-        left_widget.setMaximumWidth(280)
+        left_widget.setMaximumWidth(300)
 
         root.addWidget(left_widget)
 
         # ── Right: 3D + detail ───────────────────────────────────────
         right_splitter = QSplitter(Qt.Orientation.Vertical)
 
+        scene_wrap = QFrame()
+        scene_wrap.setObjectName("card")
+        scene_wrap.setStyleSheet(
+            f"QFrame#card {{ background: {BG_DARK}; border: 1px solid {BORDER}; border-radius: 16px; }}"
+        )
+        scene_lay = QVBoxLayout(scene_wrap)
+        scene_lay.setContentsMargins(2, 2, 2, 2)
         self.scene3d = Scene3D()
-        right_splitter.addWidget(self.scene3d)
+        scene_lay.addWidget(self.scene3d)
+        right_splitter.addWidget(scene_wrap)
+
+        detail_wrap = QFrame()
+        detail_wrap.setObjectName("card")
+        detail_lay = QVBoxLayout(detail_wrap)
+        detail_lay.setContentsMargins(16, 14, 16, 14)
+        detail_lay.setSpacing(8)
+        detail_header = QLabel("Node Details")
+        detail_header.setStyleSheet(f"color: {TEXT}; font-size: 14px; font-weight: 600;")
+        detail_lay.addWidget(detail_header)
 
         self.detail = QTextEdit()
         self.detail.setReadOnly(True)
-        self.detail.setMaximumHeight(200)
+        self.detail.setFrameShape(QFrame.Shape.NoFrame)
         self.detail.setStyleSheet(
-            f"QTextEdit {{ background: {BG_INPUT}; color: {TEXT}; border: 1px solid {BORDER}; "
-            f"border-radius: 6px; padding: 12px; font-size: 12px; }}"
+            f"QTextEdit {{ background: transparent; color: {TEXT}; border: none; padding: 0; font-size: 12px; }}"
         )
         self.detail.setPlaceholderText("Click a node in the 3D scene or tree to view details...")
-        right_splitter.addWidget(self.detail)
+        detail_lay.addWidget(self.detail)
+        right_splitter.addWidget(detail_wrap)
 
-        right_splitter.setSizes([500, 200])
+        right_splitter.setSizes([560, 180])
         root.addWidget(right_splitter, 1)
 
     # ── Data loading ─────────────────────────────────────────────────

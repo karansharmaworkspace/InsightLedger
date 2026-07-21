@@ -49,7 +49,4 @@
   <!-- Tagline -->
   <text x="120" y="82" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" letter-spacing="3" class="fade-in" style="animation-delay: 0.4s">INDUSTRIAL P&amp;ID DIGITIZATION</text>
   <line x1="120" y1="88" x2="370" y2="88" stroke="url(#g2)" stroke-width="1" opacity="0.3" class="line-draw" style="animation-delay: 0.6s"/>
-  <!-- AI badge -->
-  <rect x="380" y="32" width="44" height="24" rx="6" fill="url(#g1)" class="fade-in" style="animation-delay: 0.8s"/>
-  <text x="390" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#0a0e27" class="fade-in" style="animation-delay: 0.8s">AI</text>
 </svg>

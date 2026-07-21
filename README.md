@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/svg/01-logo.svg" alt="InsightLedger Logo" width="400">
+</p>
+
 # InsightLedger
 
 **AI-Powered P&ID Digitization — From Paper to Knowledge in Minutes**
@@ -7,10 +11,6 @@ ET Hackathon 2.0 | Team InsightLedger
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange.svg)](https://pytorch.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](#license)
-
-<p align="center">
-  <img src="assets/svg/01-logo.svg" alt="InsightLedger Logo" width="400">
-</p>
 
 ---
 

@@ -1,0 +1,549 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:y="http://www.yworks.com/xml/graphml">
+  <key id="d0" for="node" attr.name="label" attr.type="string"/>
+  <key id="d1" for="node" attr.name="Labels" attr.type="string"/>
+  <key id="d2" for="node" attr.name="raw_id" attr.type="int"/>
+  <key id="d3" for="node" attr.name="fine_class" attr.type="string"/>
+  <key id="d4" for="node" attr.name="fine_raw_id" attr.type="string"/>
+  <key id="d5" for="node" attr.name="type_key" attr.type="string"/>
+  <key id="d6" for="node" attr.name="xmin" attr.type="double"/>
+  <key id="d7" for="node" attr.name="ymin" attr.type="double"/>
+  <key id="d8" for="node" attr.name="xmax" attr.type="double"/>
+  <key id="d9" for="node" attr.name="ymax" attr.type="double"/>
+  <key id="d10" for="edge" attr.name="edge_label" attr.type="string"/>
+  <key id="d11" for="node" yfiles.type="nodegraphics" attr.name="nodegraphics"/>
+  <key id="d12" for="edge" yfiles.type="edgegraphics" attr.name="edgegraphics"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="pinch_valve1">
+      <data key="d0">pinch_valve</data>
+      <data key="d1">:</data>
+      <data key="d2">11</data>
+      <data key="d6">70.7</data>
+      <data key="d7">74.5</data>
+      <data key="d8">97.1</data>
+      <data key="d9">115.0</data>
+      <data key="d5">pinch_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="70.7" y="74.5" width="26.4" height="40.5"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="diamond"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">pinch_valve1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Flexible_Hose1">
+      <data key="d0">Flexible_Hose</data>
+      <data key="d1">*</data>
+      <data key="d2">21</data>
+      <data key="d6">129.8</data>
+      <data key="d7">24.1</data>
+      <data key="d8">170.6</data>
+      <data key="d9">78.7</data>
+      <data key="d5">heat_exchanger</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="129.8" y="24.1" width="40.8" height="54.6"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Flexible_Hose1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="ystrainer1">
+      <data key="d0">y-strainer</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">37.4</data>
+      <data key="d7">16.7</data>
+      <data key="d8">80.4</data>
+      <data key="d9">42.3</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="37.4" y="16.7" width="43.0" height="25.6"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">ystrainer1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="heat_exchanger1">
+      <data key="d0">heat_exchanger</data>
+      <data key="d1">*</data>
+      <data key="d2">21</data>
+      <data key="d6">146.1</data>
+      <data key="d7">0.4</data>
+      <data key="d8">171.1</data>
+      <data key="d9">40.1</data>
+      <data key="d5">heat_exchanger</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="146.1" y="0.4" width="25.0" height="39.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">heat_exchanger1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="status_indicator1">
+      <data key="d0">status_indicator</data>
+      <data key="d1">N/A</data>
+      <data key="d2">29</data>
+      <data key="d6">5.8</data>
+      <data key="d7">29.1</data>
+      <data key="d8">43.2</data>
+      <data key="d9">83.0</data>
+      <data key="d5">status_indicator</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="5.8" y="29.1" width="37.4" height="53.9"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="hexagon"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">status_indicator1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="ystrainer2">
+      <data key="d0">y-strainer</data>
+      <data key="d1">:</data>
+      <data key="d2">23</data>
+      <data key="d6">33.8</data>
+      <data key="d7">61.1</data>
+      <data key="d8">79.2</data>
+      <data key="d9">92.0</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="33.8" y="61.1" width="45.4" height="30.9"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">ystrainer2</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Flexible_Hose2">
+      <data key="d0">Flexible_Hose</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">88.8</data>
+      <data key="d7">153.6</data>
+      <data key="d8">135.0</data>
+      <data key="d9">177.0</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="88.8" y="153.6" width="46.2" height="23.4"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Flexible_Hose2</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="plug_valve1">
+      <data key="d0">plug_valve</data>
+      <data key="d1">N/A</data>
+      <data key="d2">5</data>
+      <data key="d6">72.8</data>
+      <data key="d7">6.5</data>
+      <data key="d8">100.9</data>
+      <data key="d9">27.9</data>
+      <data key="d5">plug_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="72.8" y="6.5" width="28.1" height="21.4"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="diamond"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">plug_valve1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated1">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">3</data>
+      <data key="d6">5.0</data>
+      <data key="d7">8.4</data>
+      <data key="d8">26.9</data>
+      <data key="d9">37.2</data>
+      <data key="d5">gate_valve_horizontal</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="5.0" y="8.4" width="21.9" height="28.8"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="e0" source="pinch_valve1" target="Flexible_Hose1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="pinch_valve1" target="ystrainer1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="pinch_valve1" target="heat_exchanger1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="pinch_valve1" target="status_indicator1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="pinch_valve1" target="ystrainer2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e5" source="pinch_valve1" target="Flexible_Hose2">
+      <data key="d10">signal</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">signal</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e6" source="pinch_valve1" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e7" source="pinch_valve1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e8" source="Flexible_Hose1" target="ystrainer1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e9" source="Flexible_Hose1" target="heat_exchanger1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e10" source="Flexible_Hose1" target="status_indicator1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e11" source="Flexible_Hose1" target="ystrainer2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e12" source="Flexible_Hose1" target="Flexible_Hose2">
+      <data key="d10">signal</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">signal</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e13" source="Flexible_Hose1" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e14" source="Flexible_Hose1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e15" source="ystrainer1" target="heat_exchanger1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e16" source="ystrainer1" target="status_indicator1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e17" source="ystrainer1" target="ystrainer2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e18" source="ystrainer1" target="Flexible_Hose2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e19" source="ystrainer1" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e20" source="ystrainer1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e21" source="heat_exchanger1" target="status_indicator1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e22" source="heat_exchanger1" target="ystrainer2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e23" source="heat_exchanger1" target="Flexible_Hose2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e24" source="heat_exchanger1" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e25" source="heat_exchanger1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e26" source="status_indicator1" target="ystrainer2">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e27" source="status_indicator1" target="Flexible_Hose2">
+      <data key="d10">signal</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">signal</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e28" source="status_indicator1" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e29" source="status_indicator1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e30" source="ystrainer2" target="Flexible_Hose2">
+      <data key="d10">signal</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">signal</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e31" source="ystrainer2" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e32" source="ystrainer2" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e33" source="Flexible_Hose2" target="plug_valve1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e34" source="Flexible_Hose2" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e35" source="plug_valve1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+      <data key="d12">
+        <y:PolyLineEdge>
+          <y:Arrows source="none" target="standard"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:EdgeLabel alignment="center" fontSize="9">software</y:EdgeLabel>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+</graphml>

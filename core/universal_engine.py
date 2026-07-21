@@ -737,9 +737,10 @@ class UniversalEngine:
         return result
 
 if __name__ == "__main__":
+    import sys
     from dotenv import load_dotenv
     load_dotenv()
     model = os.getenv("PT_MODEL_PATH", "models/32class.pt")
-    img = r"d:\College\Ongoing Projects\Digitwin Technologies\pre_evaluation\val\image\109.png"
+    img = sys.argv[1] if len(sys.argv) > 1 else "assets/class_gallery/Centrifugal_pump.png"
     engine = UniversalEngine(model)
     engine.process(img)

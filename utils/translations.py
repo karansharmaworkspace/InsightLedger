@@ -1,4 +1,4 @@
-"""Multi-language support for DPID AI dashboard and detection output.
+"""Multi-language support for DOCOKF dashboard and detection output.
 
 Uses dynamic Google Translate via deep-translator for unlimited languages,
 with manual dictionary fallback for P&ID class name accuracy.
@@ -489,7 +489,7 @@ OCR_LANG = {
 # GUI static text translations
 GUI_TEXT = {
     "en": {
-        "window_title": "DPID AI - Universal Intelligence Engine",
+        "window_title": "DOCOKF - Universal Intelligence Engine",
         "topology_explorer": "Topology Explorer",
         "ai_assistant": "AI Assistant",
         "detection_metadata": "Detection Metadata",
@@ -511,13 +511,13 @@ GUI_TEXT = {
         "new_class": "New Class",
         "class_name_placeholder": "Class name...",
         "create_select": "Create & Select",
-        "ask_placeholder": "Ask Digitwin AI Assistant...",
+        "ask_placeholder": "Ask InsightLedger AI Assistant...",
         "load_pid": "Load a P&ID diagram to begin...",
         "hierarchy": "Hierarchy",
         "reclassify": "Reclassify Symbol",
     },
     "ja": {
-        "window_title": "DPID AI - 汎用インテリジェンスエンジン",
+        "window_title": "DOCOKF - 汎用インテリジェンスエンジン",
         "topology_explorer": "トポロジエクスプローラ",
         "ai_assistant": "AIアシスタント",
         "detection_metadata": "検出メタデータ",
@@ -539,13 +539,13 @@ GUI_TEXT = {
         "new_class": "新規クラス",
         "class_name_placeholder": "クラス名...",
         "create_select": "作成して選択",
-        "ask_placeholder": "Digitwin AIアシスタントに質問...",
+        "ask_placeholder": "InsightLedger AIアシスタントに質問...",
         "load_pid": "P&ID図面を読み込んでください...",
         "hierarchy": "階層",
         "reclassify": "シンボル再分類",
     },
     "zh": {
-        "window_title": "DPID AI - 通用智能引擎",
+        "window_title": "DOCOKF - 通用智能引擎",
         "topology_explorer": "拓扑浏览器",
         "ai_assistant": "AI助手",
         "detection_metadata": "检测元数据",
@@ -567,7 +567,7 @@ GUI_TEXT = {
         "new_class": "新类别",
         "class_name_placeholder": "类别名称...",
         "create_select": "创建并选择",
-        "ask_placeholder": "询问Digitwin AI助手...",
+        "ask_placeholder": "询问InsightLedger AI助手...",
         "load_pid": "请加载P&ID图纸...",
         "hierarchy": "层级",
         "reclassify": "重新分类符号",

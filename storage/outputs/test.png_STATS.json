@@ -1,0 +1,14 @@
+{
+  "total_nodes": 7,
+  "total_edges": 21,
+  "nodes_by_type": {
+    "y-strainer": 3,
+    "diaphragm_valve": 2,
+    "air_cooler": 1,
+    "globe_valve": 1
+  },
+  "edges_by_label": {
+    "mechanical": 13,
+    "software": 8
+  }
+}

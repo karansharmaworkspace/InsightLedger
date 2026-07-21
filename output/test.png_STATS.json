@@ -1,0 +1,16 @@
+{
+  "total_nodes": 9,
+  "total_edges": 36,
+  "nodes_by_type": {
+    "y-strainer": 3,
+    "heat_exchanger": 2,
+    "pinch_valve": 1,
+    "status_indicator": 1,
+    "plug_valve": 1,
+    "gate_valve_horizontal": 1
+  },
+  "edges_by_label": {
+    "software": 32,
+    "signal": 4
+  }
+}

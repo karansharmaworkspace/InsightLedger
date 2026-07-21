@@ -425,7 +425,6 @@ class HomeScreen(QMainWindow):
         
         left_col.addWidget(actions_card)
 
-        # Recent Documents (Placeholder)
         docs_card = QFrame()
         docs_card.setObjectName("card")
         docs_layout = QVBoxLayout(docs_card)
@@ -434,39 +433,23 @@ class HomeScreen(QMainWindow):
         docs_header = QLabel("Recent Documents")
         docs_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
         docs_layout.addWidget(docs_header)
-        
-        for doc, stat, prog in [("P&ID_Area_1A.pdf", "Completed", "100%"), ("Compressor_Schematic.jpg", "Processing", "65%"), ("Valve_Matrix.xlsx", "Pending", "0%")]:
-            d_row = QHBoxLayout()
-            d_lbl = QLabel(f"📄 {doc}")
-            d_lbl.setStyleSheet("color: #E2E8F0; font-size: 13px;")
-            d_stat = QLabel(stat)
-            col = "#10B981" if stat == "Completed" else ("#F59E0B" if stat == "Processing" else "#64748B")
-            d_stat.setStyleSheet(f"color: {col}; font-size: 11px; border: 1px solid {col}; border-radius: 4px; padding: 2px 6px;")
-            d_prog = QLabel(prog)
-            d_prog.setStyleSheet("color: #94A3B8; font-size: 12px;")
-            d_row.addWidget(d_lbl)
-            d_row.addStretch()
-            d_row.addWidget(d_stat)
-            d_row.addWidget(d_prog)
-            docs_layout.addLayout(d_row)
-            
+        docs_empty = QLabel("No documents yet. Upload a P&ID to get started.")
+        docs_empty.setStyleSheet("color: #64748B; font-size: 13px;")
+        docs_empty.setWordWrap(True)
+        docs_layout.addWidget(docs_empty)
         left_col.addWidget(docs_card)
 
-        # Recent Activity Timeline (Placeholder)
         activity_card = QFrame()
         activity_card.setObjectName("card")
         actv_layout = QVBoxLayout(activity_card)
         actv_layout.setContentsMargins(20, 20, 20, 20)
         actv_layout.setSpacing(16)
-        actv_header = QLabel("Recent Activity Timeline")
+        actv_header = QLabel("Recent Activity")
         actv_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
         actv_layout.addWidget(actv_header)
-        
-        for act in ["Uploaded document: Pump_Station_7.pdf", "OCR completed for Area 1A", "Knowledge Graph generated", "AI answered question"]:
-            lbl = QLabel(f"• {act}")
-            lbl.setStyleSheet("color: #94A3B8; font-size: 13px; padding: 4px 0;")
-            actv_layout.addWidget(lbl)
-        
+        actv_empty = QLabel("No activity yet.")
+        actv_empty.setStyleSheet("color: #64748B; font-size: 13px;")
+        actv_layout.addWidget(actv_empty)
         actv_layout.addStretch()
         left_col.addWidget(activity_card, 1)
 
@@ -479,7 +462,7 @@ class HomeScreen(QMainWindow):
         chat_layout.setContentsMargins(20, 20, 20, 20)
         chat_layout.setSpacing(16)
 
-        chat_header = QLabel("✧  Digitwin AI Assistant")
+        chat_header = QLabel("✧  InsightLedger AI Assistant")
         chat_header.setStyleSheet("color: #F8FAFC; font-size: 16px; font-weight: 600;")
         chat_layout.addWidget(chat_header)
 
@@ -492,14 +475,14 @@ class HomeScreen(QMainWindow):
                 border-radius: 12px; padding: 16px; font-size: 14px;
             }
         """)
-        self._chat_display.setPlaceholderText("Ask anything about the OKF knowledge base...")
+        self._chat_display.setPlaceholderText("Ask anything about the P&ID knowledge base...")
         chat_layout.addWidget(self._chat_display, 1)
 
         input_row = QHBoxLayout()
         input_row.setSpacing(12)
 
         self._home_query = QLineEdit()
-        self._home_query.setPlaceholderText("Message Digitwin...")
+        self._home_query.setPlaceholderText("Message InsightLedger...")
         self._home_query.setFixedHeight(48)
         self._home_query.setStyleSheet("""
             QLineEdit {

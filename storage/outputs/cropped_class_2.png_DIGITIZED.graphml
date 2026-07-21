@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:y="http://www.yworks.com/xml/graphml">
+  <key id="d0" for="node" attr.name="label" attr.type="string"/>
+  <key id="d1" for="node" attr.name="Labels" attr.type="string"/>
+  <key id="d2" for="node" attr.name="raw_id" attr.type="int"/>
+  <key id="d3" for="node" attr.name="fine_class" attr.type="string"/>
+  <key id="d4" for="node" attr.name="fine_raw_id" attr.type="string"/>
+  <key id="d5" for="node" attr.name="type_key" attr.type="string"/>
+  <key id="d6" for="node" attr.name="xmin" attr.type="double"/>
+  <key id="d7" for="node" attr.name="ymin" attr.type="double"/>
+  <key id="d8" for="node" attr.name="xmax" attr.type="double"/>
+  <key id="d9" for="node" attr.name="ymax" attr.type="double"/>
+  <key id="d10" for="edge" attr.name="edge_label" attr.type="string"/>
+  <key id="d11" for="node" yfiles.type="nodegraphics" attr.name="nodegraphics"/>
+  <key id="d12" for="edge" yfiles.type="edgegraphics" attr.name="edgegraphics"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="Electrically_Insulated1">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">70.3</data>
+      <data key="d7">7.5</data>
+      <data key="d8">98.7</data>
+      <data key="d9">26.3</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="70.3" y="7.5" width="28.4" height="18.8"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated2">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">6.6</data>
+      <data key="d7">5.7</data>
+      <data key="d8">34.3</data>
+      <data key="d9">24.9</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="6.6" y="5.7" width="27.7" height="19.2"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated2</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Electrically_Insulated3">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">6.3</data>
+      <data key="d7">41.4</data>
+      <data key="d8">35.8</data>
+      <data key="d9">61.5</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="6.3" y="41.4" width="29.5" height="20.1"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">Electrically_Insulated3</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="ystrainer1">
+      <data key="d0">y-strainer</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">76.1</data>
+      <data key="d7">42.6</data>
+      <data key="d8">100.8</data>
+      <data key="d9">60.3</data>
+      <data key="d5">y-strainer</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="76.1" y="42.6" width="24.7" height="17.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="rectangle"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">ystrainer1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="diaphragm_valve1">
+      <data key="d0">diaphragm_valve</data>
+      <data key="d1">N/A</data>
+      <data key="d2">12</data>
+      <data key="d6">27.7</data>
+      <data key="d7">15.3</data>
+      <data key="d8">52.0</data>
+      <data key="d9">32.0</data>
+      <data key="d5">diaphragm_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="27.7" y="15.3" width="24.3" height="16.7"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="diamond"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">diaphragm_valve1</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="diaphragm_valve2">
+      <data key="d0">diaphragm_valve</data>
+      <data key="d1">N/A</data>
+      <data key="d2">12</data>
+      <data key="d6">27.0</data>
+      <data key="d7">37.2</data>
+      <data key="d8">48.3</data>
+      <data key="d9">52.2</data>
+      <data key="d5">diaphragm_valve</data>
+      <data key="d11">
+        <y:ShapeNode>
+          <y:Geometry x="27.0" y="37.2" width="21.3" height="15.0"/>
+          <y:Fill color="#99CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:Shape type="diamond"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontSize="10" fontFamily="Dialog">diaphragm_valve2</y:NodeLabel>
+        </y:ShapeNode>
+      </data>
+    </node>
+  </graph>
+</graphml>

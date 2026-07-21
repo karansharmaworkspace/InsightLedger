@@ -1,0 +1,721 @@
+{
+  "@type": "DEXPI",
+  "@schemaLocation": "https://www.dexpi.org/schema/1.3/DEXPI.xsd",
+  "p&idHeader": {
+    "project": "",
+    "plant": "",
+    "documentNumber": "",
+    "revision": "",
+    "description": ""
+  },
+  "pipingNetwork": {
+    "pipingNetworkItems": [
+      {
+        "id": "ystrainer1",
+        "type_key": "y-strainer",
+        "attrs": {
+          "label": "y-strainer",
+          "Labels": "GST",
+          "raw_id": 23,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 132.4,
+          "ymin": 137.3,
+          "xmax": 153.6,
+          "ymax": 159.8,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "ystrainer2",
+        "type_key": "y-strainer",
+        "attrs": {
+          "label": "y-strainer",
+          "Labels": "N/A",
+          "raw_id": 23,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 44.5,
+          "ymin": 154.2,
+          "xmax": 87.5,
+          "ymax": 176.8,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "diaphragm_valve1",
+        "type_key": "diaphragm_valve",
+        "attrs": {
+          "label": "diaphragm_valve",
+          "Labels": "N/A",
+          "raw_id": 12,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 77.2,
+          "ymin": 73.9,
+          "xmax": 109.9,
+          "ymax": 119.9,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "Electrically_Insulated1",
+        "type_key": "diaphragm_valve",
+        "attrs": {
+          "label": "Electrically_Insulated",
+          "Labels": "N/A",
+          "raw_id": 12,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 0.8,
+          "ymin": 3.1,
+          "xmax": 32.4,
+          "ymax": 32.7,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "ystrainer3",
+        "type_key": "y-strainer",
+        "attrs": {
+          "label": "y-strainer",
+          "Labels": "GST",
+          "raw_id": 23,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 87.6,
+          "ymin": 149.5,
+          "xmax": 133.6,
+          "ymax": 179.4,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "air_cooler1",
+        "type_key": "air_cooler",
+        "attrs": {
+          "label": "air_cooler",
+          "Labels": "N/A",
+          "raw_id": 22,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 128.8,
+          "ymin": 46.4,
+          "xmax": 175.8,
+          "ymax": 81.9,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "globe_valve1",
+        "type_key": "globe_valve",
+        "attrs": {
+          "label": "globe_valve",
+          "Labels": "N/A",
+          "raw_id": 1,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 101.3,
+          "ymin": 48.6,
+          "xmax": 145.9,
+          "ymax": 81.6,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      }
+    ],
+    "pipingConnectors": [
+      {
+        "source": "ystrainer1",
+        "target": "ystrainer2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "diaphragm_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "ystrainer3",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "air_cooler1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "globe_valve1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "diaphragm_valve1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "ystrainer3",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "air_cooler1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "globe_valve1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "diaphragm_valve1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "diaphragm_valve1",
+        "target": "ystrainer3",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "diaphragm_valve1",
+        "target": "air_cooler1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "diaphragm_valve1",
+        "target": "globe_valve1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Electrically_Insulated1",
+        "target": "ystrainer3",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Electrically_Insulated1",
+        "target": "air_cooler1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Electrically_Insulated1",
+        "target": "globe_valve1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer3",
+        "target": "air_cooler1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer3",
+        "target": "globe_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "air_cooler1",
+        "target": "globe_valve1",
+        "attrs": {
+          "edge_label": "mechanical",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "ystrainer1",
+      "type_key": "y-strainer",
+      "attrs": {
+        "label": "y-strainer",
+        "Labels": "GST",
+        "raw_id": 23,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 132.4,
+        "ymin": 137.3,
+        "xmax": 153.6,
+        "ymax": 159.8,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "ystrainer2",
+      "type_key": "y-strainer",
+      "attrs": {
+        "label": "y-strainer",
+        "Labels": "N/A",
+        "raw_id": 23,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 44.5,
+        "ymin": 154.2,
+        "xmax": 87.5,
+        "ymax": 176.8,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "diaphragm_valve1",
+      "type_key": "diaphragm_valve",
+      "attrs": {
+        "label": "diaphragm_valve",
+        "Labels": "N/A",
+        "raw_id": 12,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 77.2,
+        "ymin": 73.9,
+        "xmax": 109.9,
+        "ymax": 119.9,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "Electrically_Insulated1",
+      "type_key": "diaphragm_valve",
+      "attrs": {
+        "label": "Electrically_Insulated",
+        "Labels": "N/A",
+        "raw_id": 12,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 0.8,
+        "ymin": 3.1,
+        "xmax": 32.4,
+        "ymax": 32.7,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "ystrainer3",
+      "type_key": "y-strainer",
+      "attrs": {
+        "label": "y-strainer",
+        "Labels": "GST",
+        "raw_id": 23,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 87.6,
+        "ymin": 149.5,
+        "xmax": 133.6,
+        "ymax": 179.4,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "air_cooler1",
+      "type_key": "air_cooler",
+      "attrs": {
+        "label": "air_cooler",
+        "Labels": "N/A",
+        "raw_id": 22,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 128.8,
+        "ymin": 46.4,
+        "xmax": 175.8,
+        "ymax": 81.9,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "globe_valve1",
+      "type_key": "globe_valve",
+      "attrs": {
+        "label": "globe_valve",
+        "Labels": "N/A",
+        "raw_id": 1,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 101.3,
+        "ymin": 48.6,
+        "xmax": 145.9,
+        "ymax": 81.6,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "ystrainer1",
+      "target": "ystrainer2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "diaphragm_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "ystrainer3",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "air_cooler1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "globe_valve1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "diaphragm_valve1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "ystrainer3",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "air_cooler1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "globe_valve1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "diaphragm_valve1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "diaphragm_valve1",
+      "target": "ystrainer3",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "diaphragm_valve1",
+      "target": "air_cooler1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "diaphragm_valve1",
+      "target": "globe_valve1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Electrically_Insulated1",
+      "target": "ystrainer3",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Electrically_Insulated1",
+      "target": "air_cooler1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Electrically_Insulated1",
+      "target": "globe_valve1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer3",
+      "target": "air_cooler1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer3",
+      "target": "globe_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "air_cooler1",
+      "target": "globe_valve1",
+      "attrs": {
+        "edge_label": "mechanical",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,1119 @@
+{
+  "@type": "DEXPI",
+  "@schemaLocation": "https://www.dexpi.org/schema/1.3/DEXPI.xsd",
+  "p&idHeader": {
+    "project": "",
+    "plant": "",
+    "documentNumber": "",
+    "revision": "",
+    "description": ""
+  },
+  "pipingNetwork": {
+    "pipingNetworkItems": [
+      {
+        "id": "pinch_valve1",
+        "type_key": "pinch_valve",
+        "attrs": {
+          "label": "pinch_valve",
+          "Labels": ":",
+          "raw_id": 11,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 70.7,
+          "ymin": 74.5,
+          "xmax": 97.1,
+          "ymax": 115.0,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "Flexible_Hose1",
+        "type_key": "heat_exchanger",
+        "attrs": {
+          "label": "Flexible_Hose",
+          "Labels": "*",
+          "raw_id": 21,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 129.8,
+          "ymin": 24.1,
+          "xmax": 170.6,
+          "ymax": 78.7,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "ystrainer1",
+        "type_key": "y-strainer",
+        "attrs": {
+          "label": "y-strainer",
+          "Labels": "N/A",
+          "raw_id": 23,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 37.4,
+          "ymin": 16.7,
+          "xmax": 80.4,
+          "ymax": 42.3,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "heat_exchanger1",
+        "type_key": "heat_exchanger",
+        "attrs": {
+          "label": "heat_exchanger",
+          "Labels": "*",
+          "raw_id": 21,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 146.1,
+          "ymin": 0.4,
+          "xmax": 171.1,
+          "ymax": 40.1,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "status_indicator1",
+        "type_key": "status_indicator",
+        "attrs": {
+          "label": "status_indicator",
+          "Labels": "N/A",
+          "raw_id": 29,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 5.8,
+          "ymin": 29.1,
+          "xmax": 43.2,
+          "ymax": 83.0,
+          "loop_id": "prox_loop_0",
+          "is_instrument": true
+        }
+      },
+      {
+        "id": "ystrainer2",
+        "type_key": "y-strainer",
+        "attrs": {
+          "label": "y-strainer",
+          "Labels": ":",
+          "raw_id": 23,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 33.8,
+          "ymin": 61.1,
+          "xmax": 79.2,
+          "ymax": 92.0,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "Flexible_Hose2",
+        "type_key": "y-strainer",
+        "attrs": {
+          "label": "Flexible_Hose",
+          "Labels": "N/A",
+          "raw_id": 23,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 88.8,
+          "ymin": 153.6,
+          "xmax": 135.0,
+          "ymax": 177.0,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "plug_valve1",
+        "type_key": "plug_valve",
+        "attrs": {
+          "label": "plug_valve",
+          "Labels": "N/A",
+          "raw_id": 5,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 72.8,
+          "ymin": 6.5,
+          "xmax": 100.9,
+          "ymax": 27.9,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      },
+      {
+        "id": "Electrically_Insulated1",
+        "type_key": "gate_valve_horizontal",
+        "attrs": {
+          "label": "Electrically_Insulated",
+          "Labels": "N/A",
+          "raw_id": 3,
+          "fine_class": "",
+          "fine_raw_id": "",
+          "xmin": 5.0,
+          "ymin": 8.4,
+          "xmax": 26.9,
+          "ymax": 37.2,
+          "loop_id": "",
+          "is_instrument": false
+        }
+      }
+    ],
+    "pipingConnectors": [
+      {
+        "source": "pinch_valve1",
+        "target": "Flexible_Hose1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "ystrainer1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "heat_exchanger1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "status_indicator1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "ystrainer2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "Flexible_Hose2",
+        "attrs": {
+          "edge_label": "signal",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "pinch_valve1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "ystrainer1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "heat_exchanger1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "status_indicator1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "ystrainer2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "Flexible_Hose2",
+        "attrs": {
+          "edge_label": "signal",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "heat_exchanger1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "status_indicator1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "ystrainer2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "Flexible_Hose2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "heat_exchanger1",
+        "target": "status_indicator1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "heat_exchanger1",
+        "target": "ystrainer2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "heat_exchanger1",
+        "target": "Flexible_Hose2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "heat_exchanger1",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "heat_exchanger1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "status_indicator1",
+        "target": "ystrainer2",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "status_indicator1",
+        "target": "Flexible_Hose2",
+        "attrs": {
+          "edge_label": "signal",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "status_indicator1",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "status_indicator1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "Flexible_Hose2",
+        "attrs": {
+          "edge_label": "signal",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "ystrainer2",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose2",
+        "target": "plug_valve1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "Flexible_Hose2",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      },
+      {
+        "source": "plug_valve1",
+        "target": "Electrically_Insulated1",
+        "attrs": {
+          "edge_label": "software",
+          "designPressure": "",
+          "designTemperature": "",
+          "pipeSpecification": "",
+          "insulationClass": ""
+        }
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "pinch_valve1",
+      "type_key": "pinch_valve",
+      "attrs": {
+        "label": "pinch_valve",
+        "Labels": ":",
+        "raw_id": 11,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 70.7,
+        "ymin": 74.5,
+        "xmax": 97.1,
+        "ymax": 115.0,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "Flexible_Hose1",
+      "type_key": "heat_exchanger",
+      "attrs": {
+        "label": "Flexible_Hose",
+        "Labels": "*",
+        "raw_id": 21,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 129.8,
+        "ymin": 24.1,
+        "xmax": 170.6,
+        "ymax": 78.7,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "ystrainer1",
+      "type_key": "y-strainer",
+      "attrs": {
+        "label": "y-strainer",
+        "Labels": "N/A",
+        "raw_id": 23,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 37.4,
+        "ymin": 16.7,
+        "xmax": 80.4,
+        "ymax": 42.3,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "heat_exchanger1",
+      "type_key": "heat_exchanger",
+      "attrs": {
+        "label": "heat_exchanger",
+        "Labels": "*",
+        "raw_id": 21,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 146.1,
+        "ymin": 0.4,
+        "xmax": 171.1,
+        "ymax": 40.1,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "status_indicator1",
+      "type_key": "status_indicator",
+      "attrs": {
+        "label": "status_indicator",
+        "Labels": "N/A",
+        "raw_id": 29,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 5.8,
+        "ymin": 29.1,
+        "xmax": 43.2,
+        "ymax": 83.0,
+        "loop_id": "prox_loop_0",
+        "is_instrument": true
+      }
+    },
+    {
+      "id": "ystrainer2",
+      "type_key": "y-strainer",
+      "attrs": {
+        "label": "y-strainer",
+        "Labels": ":",
+        "raw_id": 23,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 33.8,
+        "ymin": 61.1,
+        "xmax": 79.2,
+        "ymax": 92.0,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "Flexible_Hose2",
+      "type_key": "y-strainer",
+      "attrs": {
+        "label": "Flexible_Hose",
+        "Labels": "N/A",
+        "raw_id": 23,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 88.8,
+        "ymin": 153.6,
+        "xmax": 135.0,
+        "ymax": 177.0,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "plug_valve1",
+      "type_key": "plug_valve",
+      "attrs": {
+        "label": "plug_valve",
+        "Labels": "N/A",
+        "raw_id": 5,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 72.8,
+        "ymin": 6.5,
+        "xmax": 100.9,
+        "ymax": 27.9,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    },
+    {
+      "id": "Electrically_Insulated1",
+      "type_key": "gate_valve_horizontal",
+      "attrs": {
+        "label": "Electrically_Insulated",
+        "Labels": "N/A",
+        "raw_id": 3,
+        "fine_class": "",
+        "fine_raw_id": "",
+        "xmin": 5.0,
+        "ymin": 8.4,
+        "xmax": 26.9,
+        "ymax": 37.2,
+        "loop_id": "",
+        "is_instrument": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "pinch_valve1",
+      "target": "Flexible_Hose1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "ystrainer1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "heat_exchanger1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "status_indicator1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "ystrainer2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "Flexible_Hose2",
+      "attrs": {
+        "edge_label": "signal",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "pinch_valve1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "ystrainer1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "heat_exchanger1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "status_indicator1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "ystrainer2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "Flexible_Hose2",
+      "attrs": {
+        "edge_label": "signal",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "heat_exchanger1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "status_indicator1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "ystrainer2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "Flexible_Hose2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "heat_exchanger1",
+      "target": "status_indicator1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "heat_exchanger1",
+      "target": "ystrainer2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "heat_exchanger1",
+      "target": "Flexible_Hose2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "heat_exchanger1",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "heat_exchanger1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "status_indicator1",
+      "target": "ystrainer2",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "status_indicator1",
+      "target": "Flexible_Hose2",
+      "attrs": {
+        "edge_label": "signal",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "status_indicator1",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "status_indicator1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "Flexible_Hose2",
+      "attrs": {
+        "edge_label": "signal",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "ystrainer2",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose2",
+      "target": "plug_valve1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "Flexible_Hose2",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    },
+    {
+      "source": "plug_valve1",
+      "target": "Electrically_Insulated1",
+      "attrs": {
+        "edge_label": "software",
+        "designPressure": "",
+        "designTemperature": "",
+        "pipeSpecification": "",
+        "insulationClass": ""
+      }
+    }
+  ]
+}

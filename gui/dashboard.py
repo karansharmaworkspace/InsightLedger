@@ -583,7 +583,7 @@ class DPIDDashboard(QMainWindow):
     def __init__(self):
         super().__init__()
         self.lang = "en"
-        self.setWindowTitle("DPID AI - Universal Intelligence Engine")
+        self.setWindowTitle("DOCOKF - Universal Intelligence Engine")
         self.resize(1400, 900)
         _icon = QPixmap(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png"))
         if not _icon.isNull():
@@ -642,7 +642,7 @@ class DPIDDashboard(QMainWindow):
         self.chat_display.setReadOnly(True)
         self.chat_display.setStyleSheet("background-color: #1a1a1a; color: #e0e0e0; border: 1px solid #333; border-radius: 5px; padding: 10px; font-size: 13px;")
         self.chat_input = QLineEdit()
-        self.chat_input.setPlaceholderText("Ask Digitwin AI Assistant...")
+        self.chat_input.setPlaceholderText("Ask InsightLedger AI Assistant...")
         self.chat_input.setStyleSheet("background-color: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 15px; padding: 8px 15px; margin-top: 5px;")
         self.chat_input.returnPressed.connect(self.send_chat)
         chat_layout.addWidget(self.chat_display)
@@ -754,7 +754,7 @@ class DPIDDashboard(QMainWindow):
             logo_label.setStyleSheet("background: transparent; padding: 0; margin-right: 8px;")
             logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         else:
-            logo_label.setText("DPID AI")
+            logo_label.setText("DOCOKF")
             logo_label.setStyleSheet("color: #00d4ff; font-weight: bold; font-family: 'Segoe UI', sans-serif; font-size: 14px; letter-spacing: 1px; margin-right: 10px;")
         bar.addWidget(logo_label)
 

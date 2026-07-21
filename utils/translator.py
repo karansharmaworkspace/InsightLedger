@@ -1,6 +1,6 @@
 """Lightweight dynamic translation using deep-translator (Google Translate backend).
 
-Protects numbers and the software name 'DPID AI' / 'Digitwin' from translation.
+Protects numbers and the software name 'DOCOKF' / 'InsightLedger' from translation.
 Caches results aggressively and uses batch API calls to avoid rate limits.
 
 Persistent disk cache: translations are saved to a JSON file so each language
@@ -19,7 +19,7 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # patterns to protect from translation
 # ---------------------------------------------------------------------------
-_PROTECTED_WORDS = ["DPID AI", "Digitwin"]
+_PROTECTED_WORDS = ["DOCOKF", "InsightLedger"]
 _NUM_PATTERN = re.compile(r"\b\d+(?:[.,]\d+)+\b|\b\d+\b")
 _PH = "_PH_"  # placeholder prefix — Google Translate preserves it
 

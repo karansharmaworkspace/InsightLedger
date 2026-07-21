@@ -1,0 +1,298 @@
+{
+  "nodes": {
+    "process_parameter:0.3K": {
+      "id": "process_parameter:0.3K",
+      "type": "process_parameter",
+      "value": "0.3K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "least at temperatures down to 0.3K [J. Phys. Soc. Jpn. 87, 07470",
+        "1 at other temperatures above 0.3K.30) As discussed in\nlongitudi",
+        "fCu-3dspins\n0.4 4 stops below 0.3K without any tendency toward a"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:1.8K": {
+      "id": "process_parameter:1.8K",
+      "type": "process_parameter",
+      "value": "1.8K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "herein quantumeffects down to 1.8K according to the results of m"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:Rajiv Gandhi Inst Of Petroleum Tech on": {
+      "id": "personnel:Rajiv Gandhi Inst Of Petroleum Tech on",
+      "type": "personnel",
+      "value": "Rajiv Gandhi Inst Of Petroleum Tech on",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by Rajiv Gandhi Inst Of Petroleum Tech on"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:Muon Spin Relaxation": {
+      "id": "personnel:Muon Spin Relaxation",
+      "type": "personnel",
+      "value": "Muon Spin Relaxation",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by Muon Spin Relaxation"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:macroscopic measurements": {
+      "id": "personnel:macroscopic measurements",
+      "type": "personnel",
+      "value": "macroscopic measurements",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by macroscopic measurements"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:the LF": {
+      "id": "personnel:the LF",
+      "type": "personnel",
+      "value": "the LF",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by the LF"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:the RIKEN": {
+      "id": "personnel:the RIKEN",
+      "type": "personnel",
+      "value": "the RIKEN",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by the RIKEN"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:Katayama et al": {
+      "id": "personnel:Katayama et al",
+      "type": "personnel",
+      "value": "Katayama et al",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by Katayama et al"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.330K": {
+      "id": "process_parameter:0.330K",
+      "type": "process_parameter",
+      "value": "0.330K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "ig. 1(a). The plotted data at 0.330K is from Ref. 30. Both\nmounted"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:026K": {
+      "id": "process_parameter:026K",
+      "type": "process_parameter",
+      "value": "026K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "was perpen- Ref. 30. For T\u00bc0:026K, (cid:3) 1 \u00bc0:31, (cid:3) 2 \u00bc",
+        "gre,\nhighfrequenciesremainat0.026K.Fromtheseresultsofthe Phys.Re"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.026K": {
+      "id": "process_parameter:0.026K",
+      "type": "process_parameter",
+      "value": "0.026K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "n in LF 100 gauss spectrum at 0.026K.\nyrtemmysA\n(b) LF 100 gauss\n1",
+        "e slower temperatures down to 0.026K.\nrelaxation rate and (cid:3)",
+        "y toward a magnetic\norder. At 0.026K, the lower average fluctuatin"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.330 K": {
+      "id": "process_parameter:0.330 K",
+      "type": "process_parameter",
+      "value": "0.330 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "yrtemmysA\n(b) LF 100 gauss\n1\n0.330 K\n0.130 K\n0.060 K\n0.026 K\n0.5\n0"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.130 K": {
+      "id": "process_parameter:0.130 K",
+      "type": "process_parameter",
+      "value": "0.130 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "sA\n(b) LF 100 gauss\n1\n0.330 K\n0.130 K\n0.060 K\n0.026 K\n0.5\n0\n0 3 6 9"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.060 K": {
+      "id": "process_parameter:0.060 K",
+      "type": "process_parameter",
+      "value": "0.060 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "F 100 gauss\n1\n0.330 K\n0.130 K\n0.060 K\n0.026 K\n0.5\n0\n0 3 6 9 12\nt (\u03bc"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.026 K": {
+      "id": "process_parameter:0.026 K",
+      "type": "process_parameter",
+      "value": "0.026 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "uss\n1\n0.330 K\n0.130 K\n0.060 K\n0.026 K\n0.5\n0\n0 3 6 9 12\nt (\u03bcs)\nrtemm",
+        "500,and(d)100gauss.\nyrtemmysA\n0.026 K\nLF3000G\nLF1000G\nLF100G\nLF700G",
+        "89,074701(2020) T.Suzukietal.\n0.026 K\n\u03bb\n1 \u03bb\n2\nFig. 5. Longitudinal"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:4 K": {
+      "id": "process_parameter:4 K",
+      "type": "process_parameter",
+      "value": "4 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "89,074701(2020) T.Suzukietal.\n4 K\n2 K\n0.3 K\n0.026 K\nFig. 4. (Co"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:2 K": {
+      "id": "process_parameter:2 K",
+      "type": "process_parameter",
+      "value": "2 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "74701(2020) T.Suzukietal.\n4 K\n2 K\n0.3 K\n0.026 K\nFig. 4. (Coloro"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "process_parameter:0.3 K": {
+      "id": "process_parameter:0.3 K",
+      "type": "process_parameter",
+      "value": "0.3 K",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "1(2020) T.Suzukietal.\n4 K\n2 K\n0.3 K\n0.026 K\nFig. 4. (Coloronline)"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:fluctuating internal fields with no magnetic order nor tendency to": {
+      "id": "personnel:fluctuating internal fields with no magnetic order nor tendency to",
+      "type": "personnel",
+      "value": "fluctuating internal fields with no magnetic order nor tendency to",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by fluctuating internal fields with no magnetic order nor tendency to"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:comparing with the LF de": {
+      "id": "personnel:comparing with the LF de",
+      "type": "personnel",
+      "value": "comparing with the LF de",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "By comparing with the LF de"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:external fields": {
+      "id": "personnel:external fields",
+      "type": "personnel",
+      "value": "external fields",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by external fields"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    "personnel:LFs leads need more measurements by other methods": {
+      "id": "personnel:LFs leads need more measurements by other methods",
+      "type": "personnel",
+      "value": "LFs leads need more measurements by other methods",
+      "sources": [
+        "D:\\College\\Ongoing Projects\\Fitting Work\\jpsj.89.074701.pdf"
+      ],
+      "contexts": [
+        "by LFs leads need more measurements by other methods"
+      ],
+      "confidence": 0.8,
+      "metadata": {}
+    }
+  },
+  "edges": []
+}

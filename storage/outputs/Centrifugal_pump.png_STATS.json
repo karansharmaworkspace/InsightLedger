@@ -1,0 +1,12 @@
+{
+  "total_nodes": 4,
+  "total_edges": 6,
+  "nodes_by_type": {
+    "y-strainer": 4
+  },
+  "edges_by_label": {
+    "software": 3,
+    "mechanical": 2,
+    "process": 1
+  }
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+  <key id="d0" for="node" attr.name="label" attr.type="string"/>
+  <key id="d1" for="node" attr.name="Labels" attr.type="string"/>
+  <key id="d2" for="node" attr.name="raw_id" attr.type="int"/>
+  <key id="d3" for="node" attr.name="fine_class" attr.type="string"/>
+  <key id="d4" for="node" attr.name="fine_raw_id" attr.type="string"/>
+  <key id="d5" for="node" attr.name="type_key" attr.type="string"/>
+  <key id="d6" for="node" attr.name="xmin" attr.type="double"/>
+  <key id="d7" for="node" attr.name="ymin" attr.type="double"/>
+  <key id="d8" for="node" attr.name="xmax" attr.type="double"/>
+  <key id="d9" for="node" attr.name="ymax" attr.type="double"/>
+  <key id="d10" for="edge" attr.name="edge_label" attr.type="string"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="Separator_Major_Straight_Line_Pipe_Nuclear1">
+      <data key="d0">Separator_Major_Straight_Line_Pipe_Nuclear</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">74.3</data>
+      <data key="d7">79.8</data>
+      <data key="d8">93.7</data>
+      <data key="d9">112.1</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="Electrically_Insulated1">
+      <data key="d0">Electrically_Insulated</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">149.6</data>
+      <data key="d7">4.2</data>
+      <data key="d8">167.2</data>
+      <data key="d9">36.2</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="ystrainer1">
+      <data key="d0">y-strainer</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">132.7</data>
+      <data key="d7">33.2</data>
+      <data key="d8">164.4</data>
+      <data key="d9">75.5</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <node id="ystrainer2">
+      <data key="d0">y-strainer</data>
+      <data key="d1">N/A</data>
+      <data key="d2">23</data>
+      <data key="d6">9.9</data>
+      <data key="d7">33.7</data>
+      <data key="d8">39.6</data>
+      <data key="d9">79.7</data>
+      <data key="d5">y-strainer</data>
+    </node>
+    <edge id="e0" source="Separator_Major_Straight_Line_Pipe_Nuclear1" target="Electrically_Insulated1">
+      <data key="d10">software</data>
+    </edge>
+    <edge id="e1" source="Separator_Major_Straight_Line_Pipe_Nuclear1" target="ystrainer1">
+      <data key="d10">software</data>
+    </edge>
+    <edge id="e2" source="Separator_Major_Straight_Line_Pipe_Nuclear1" target="ystrainer2">
+      <data key="d10">process</data>
+    </edge>
+    <edge id="e3" source="Electrically_Insulated1" target="ystrainer1">
+      <data key="d10">software</data>
+    </edge>
+    <edge id="e4" source="Electrically_Insulated1" target="ystrainer2">
+      <data key="d10">mechanical</data>
+    </edge>
+    <edge id="e5" source="ystrainer1" target="ystrainer2">
+      <data key="d10">mechanical</data>
+    </edge>
+  </graph>
+</graphml>

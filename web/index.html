@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DPID AI — Knowledge Platform</title>
+<title>InsightLedger — Knowledge Platform</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0a0e1a;--card:#111827;--card2:#1a2235;--border:#1e293b;
-  --accent:#3b82f6;--accent2:#8b5cf6;--green:#10b981;--red:#ef4444;--yellow:#f59e0b;--orange:#f97316;
+  --accent:#3b82f6;--green:#10b981;--red:#ef4444;--yellow:#f59e0b;--orange:#f97316;
   --text:#e2e8f0;--dim:#64748b;--input:#0f172a;
-  --grad:linear-gradient(135deg,#3b82f6,#8b5cf6)
+  --grad:linear-gradient(135deg,#3b82f6,#10b981)
 }
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column}
 a{color:var(--accent);text-decoration:none}
@@ -133,6 +135,33 @@ tr:hover td{background:rgba(255,255,255,.02)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+
+/* Mobile */
+@media(max-width:768px){
+  nav{flex-direction:column;height:auto;padding:10px 12px;gap:8px}
+  .logo{font-size:16px}
+  .tabs{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;width:100%}
+  .tabs button{padding:6px 8px;font-size:11px;white-space:nowrap}
+  .tabs button i{display:none}
+  nav .status{margin-left:0;justify-content:center}
+  .page{padding:12px!important}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr!important}
+  .action-grid{grid-template-columns:1fr!important}
+  .card{padding:12px!important}
+  .hero-upload{padding:20px!important}
+  .upload-zone{padding:24px 16px!important}
+  .upload-zone .upload-icon{font-size:32px}
+  h2{font-size:16px!important}
+  #page-storage > div:last-child{grid-template-columns:1fr!important;height:auto!important}
+  .chat-input{flex-direction:column}
+  .chat-input input{width:100%!important}
+  .chat-input button{width:100%}
+  .stat-card{padding:12px;gap:10px}
+  .stat-card .icon-box{width:36px;height:36px;font-size:16px;border-radius:8px}
+  .stat-card .info .val{font-size:18px}
+  table{font-size:11px;display:block;overflow-x:auto}
+  th,td{padding:6px 8px!important;white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -140,15 +169,16 @@ tr:hover td{background:rgba(255,255,255,.02)}
 <nav>
   <div class="logo">
     <div class="icon"><i class="fas fa-cube"></i></div>
-    DPID AI
+    InsightLedger
   </div>
   <div class="tabs">
-    <button class="active" onclick="showPage('home')"><i class="fas fa-home"></i> Home</button>
+    <button onclick="showPage('home')"><i class="fas fa-home"></i> Home</button>
     <button onclick="showPage('kg')"><i class="fas fa-project-diagram"></i> Knowledge Graph</button>
     <button onclick="showPage('okf')"><i class="fas fa-book"></i> OKF</button>
     <button onclick="showPage('docs')"><i class="fas fa-file-alt"></i> Documents</button>
     <button onclick="showPage('pid')"><i class="fas fa-cogs"></i> P&ID</button>
     <button onclick="showPage('chat')"><i class="fas fa-robot"></i> AI Chat</button>
+    <button onclick="showPage('storage')"><i class="fas fa-folder-open"></i> Storage</button>
     <button onclick="showPage('team')"><i class="fas fa-users"></i> Team</button>
   </div>
   <div class="status"><span class="dot dot-green" id="statusDot"></span><span id="statusText">Connected</span></div>
@@ -233,10 +263,11 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <button class="btn btn-outline btn-sm" onclick="loadKgGraph()"><i class="fas fa-sync-alt"></i> Refresh</button>
     </div>
   </div>
-  <div class="card" style="padding:0;overflow:hidden">
-    <canvas id="kgCanvas" height="480"></canvas>
-    <div style="padding:12px 16px;display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border)" id="kgLegend"></div>
-  </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div id="kgContainer" style="width:100%;height:480px;background:#0a0e1a"></div>
+      <div style="padding:12px 16px;display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border)" 
+id="kgLegend"></div>
+    </div>
   <div class="grid2">
     <div class="card">
       <h3><i class="fas fa-info-circle"></i> Node Detail</h3>
@@ -348,6 +379,40 @@ tr:hover td{background:rgba(255,255,255,.02)}
   </div>
 </div>
 
+<!-- STORAGE -->
+<div class="page" id="page-storage">
+  <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
+    <i class="fas fa-folder-open" style="color:var(--green)"></i> Storage
+  </h2>
+  <div style="display:grid;grid-template-columns:280px 1fr;gap:16px;height:calc(100vh - 140px)">
+    <div class="card" style="overflow:auto;padding:0">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-weight:600;font-size:13px;color:var(--dim)">
+        <i class="fas fa-folder-tree"></i> Folders
+      </div>
+      <div id="storageTree" style="padding:8px"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="card" style="flex:1;overflow:auto;padding:0">
+        <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <span id="storageBreadcrumb" style="font-weight:600;font-size:13px;color:var(--dim)"><i class="fas fa-home"></i> /</span>
+          <button class="btn btn-sm btn-outline" onclick="loadStorage()"><i class="fas fa-sync-alt"></i></button>
+        </div>
+        <div id="storageFiles" style="padding:12px 16px"></div>
+      </div>
+      <div class="card" id="storageViewer" style="display:none;padding:0;max-height:50vh;overflow:auto">
+        <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <span id="storageViewerName" style="font-weight:600;font-size:13px;color:var(--dim)"></span>
+          <div style="display:flex;gap:8px">
+            <a id="storageDownloadLink" href="#" download class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Download</a>
+            <button class="btn btn-sm btn-outline" onclick="closeStorageViewer()"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div id="storageViewerContent" style="padding:16px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- TEAM -->
 <div class="page" id="page-team">
   <h2 style="font-size:20px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px">
@@ -356,7 +421,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
   <div class="grid2">
     <div class="card" style="padding:0;overflow:hidden">
       <div style="padding:20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.1))">
-        <h3 style="margin-bottom:4px"><i class="fas fa-users-cog"></i> DPID AI — Development Team</h3>
+        <h3 style="margin-bottom:4px"><i class="fas fa-users-cog"></i> InsightLedger — Development Team</h3>
         <p style="color:var(--dim);font-size:12px">Building the future of industrial document intelligence</p>
       </div>
       <div style="padding:8px">
@@ -403,7 +468,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="card">
       <h3><i class="fas fa-info-circle"></i> About the Project</h3>
       <div style="font-size:13px;line-height:1.8;color:var(--dim)">
-        <p><b style="color:var(--text)">DPID AI</b> is a Universal Industrial P&ID Digitization Suite that automatically detects, classifies, and extracts symbols from Piping & Instrumentation Diagrams.</p>
+        <p><b style="color:var(--text)">InsightLedger</b> is a Universal Industrial P&ID Digitization Suite that automatically detects, classifies, and extracts symbols from Piping & Instrumentation Diagrams.</p>
         <br>
         <p><b style="color:var(--text)">Key Features:</b></p>
         <ul style="margin:8px 0 0 20px">
@@ -475,6 +540,7 @@ function showPage(name) {
   if(name === 'kg') loadKgGraph();
   if(name === 'okf') loadOKFClasses();
   if(name === 'docs') loadDocuments();
+  if(name === 'storage') loadStorage();
 }
 
 // ── Home ─────────────────────────────────────────────────────────────
@@ -527,7 +593,7 @@ async function quickSearch() {
   return { kg: kgRes || [], okf: okfRes || [] };
 }
 
-// ── Knowledge Graph ──────────────────────────────────────────────────
+// ── Knowledge Graph (3D) ──────────────────────────────────────────────
 const KG_COLORS = {
   equipment_tag:'#3b82f6', personnel:'#10b981', regulatory_ref:'#ef4444',
   date:'#f59e0b', parameter:'#8b5cf6', work_order:'#14b8a6',
@@ -535,7 +601,8 @@ const KG_COLORS = {
   okf_symbol:'#0891b2', unknown:'#64748b'
 };
 
-let kgNodes = [], kgEdges = [], kgDragging = null, kgOffset = {x:0,y:0}, kgSelected = null;
+let kgNodes = [], kgEdges = [], kgSelected = null;
+let kgScene, kgCamera, kgRenderer, kgControls, kgMeshes = [], kgLines = [];
 
 async function loadKgGraph() {
   const typeFilter = $('#kgTypeFilter')?.value || '';
@@ -560,88 +627,125 @@ async function loadKgGraph() {
     }
   }
 
-  const typeGroups = {};
-  kgNodes.forEach((n,i) => { (typeGroups[n.type] ??= []).push(i); });
-  const typeKeys = Object.keys(typeGroups);
-  const canvas = $('#kgCanvas');
-  if(!canvas) return;
-  canvas.width = canvas.parentElement.clientWidth;
-  const W = canvas.width, H = canvas.height, cx = W/2, cy = H/2;
-
-  typeKeys.forEach((t, ti) => {
-    const angle = 2*Math.PI*ti/typeKeys.length;
-    const r = Math.min(W,H)*0.3 + (ti%3)*30;
-    const bx = cx + r*Math.cos(angle), by = cy + r*Math.sin(angle);
-    typeGroups[t].forEach((idx, ii) => {
-      const a2 = 2*Math.PI*ii/typeGroups[t].length;
-      const r2 = 15 + typeGroups[t].length*1.5;
-      kgNodes[idx]._x = bx + r2*Math.cos(a2);
-      kgNodes[idx]._y = by + r2*Math.sin(a2);
-      kgNodes[idx]._type = t;
-    });
-  });
-
   const legend = $('#kgLegend');
-  if(legend) legend.innerHTML = typeKeys.slice(0,12).map(t =>
+  if(legend) legend.innerHTML = Object.keys(KG_COLORS).slice(0,12).map(t =>
     `<span style="font-size:12px;display:flex;align-items:center;gap:4px">
-      <span style="width:8px;height:8px;border-radius:50%;background:${KG_COLORS[t]||KG_COLORS.unknown}"></span>
+      <span style="width:8px;height:8px;border-radius:50%;background:${KG_COLORS[t]}"></span>
       ${t.replace(/_/g,' ')}
     </span>`
   ).join('');
 
-  drawKgGraph();
-  initKgInteraction();
-  window.onresize = () => { loadKgGraph(); };
+  init3DKgGraph();
+  window.onresize = () => { if(kgRenderer) kgRenderer.setSize($('#kgContainer').clientWidth, 480); };
 }
 
-function drawKgGraph() {
-  const canvas = $('#kgCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  ctx.clearRect(0,0,W,H);
+function init3DKgGraph() {
+  const container = $('#kgContainer');
+  if(!container) return;
+  container.innerHTML = '';
 
-  ctx.strokeStyle = 'rgba(100,116,139,0.1)';
-  ctx.lineWidth = 0.5;
+  kgScene = new THREE.Scene();
+  kgScene.background = new THREE.Color(0x0a0e1a);
+
+  kgCamera = new THREE.PerspectiveCamera(60, container.clientWidth/480, 0.1, 2000);
+  kgCamera.position.set(0, 0, 300);
+
+  kgRenderer = new THREE.WebGLRenderer({antialias:true});
+  kgRenderer.setSize(container.clientWidth, 480);
+  kgRenderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(kgRenderer.domElement);
+
+  kgControls = new THREE.OrbitControls(kgCamera, kgRenderer.domElement);
+  kgControls.enableDamping = true;
+  kgControls.dampingFactor = 0.05;
+
+  kgScene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  dirLight.position.set(100, 200, 150);
+  kgScene.add(dirLight);
+
+  // Clear old objects
+  kgMeshes.forEach(m => kgScene.remove(m));
+  kgLines.forEach(l => kgScene.remove(l));
+  kgMeshes = [];
+  kgLines = [];
+
+  const typeGroups = {};
+  kgNodes.forEach((n,i) => { (typeGroups[n.type] ??= []).push(i); });
+  const typeKeys = Object.keys(typeGroups);
+  const typeCount = typeKeys.length;
+
+  typeKeys.forEach((t, ti) => {
+    const phi = Math.acos(2*ti/typeCount - 1);
+    const theta = 2*Math.PI*ti/typeCount;
+    const R = 120;
+    const bx = R*Math.sin(phi)*Math.cos(theta);
+    const by = R*Math.sin(phi)*Math.sin(theta);
+    const bz = R*Math.cos(phi);
+
+    typeGroups[t].forEach((idx, ii) => {
+      const a2 = 2*Math.PI*ii/typeGroups[t].length;
+      const r2 = 15 + typeGroups[t].length*2;
+      const nx = bx + r2*Math.cos(a2);
+      const ny = by + r2*Math.sin(a2)*0.5;
+      const nz = bz + r2*Math.sin(a2)*0.3;
+
+      kgNodes[idx]._x3d = nx;
+      kgNodes[idx]._y3d = ny;
+      kgNodes[idx]._z3d = nz;
+      kgNodes[idx]._type = t;
+
+      const col = new THREE.Color(KG_COLORS[t] || KG_COLORS.unknown);
+      const isOkf = t === 'okf_class';
+      const geo = new THREE.SphereGeometry(isOkf ? 3 : 2, 12, 12);
+      const mat = new THREE.MeshPhongMaterial({color:col, emissive:col, emissiveIntensity:0.3});
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set(nx, ny, nz);
+      mesh.userData = {nodeIdx:idx};
+      kgScene.add(mesh);
+      kgMeshes.push(mesh);
+    });
+  });
+
   kgEdges.forEach(e => {
     const s = kgNodes.find(n => n.id===e.source);
     const t = kgNodes.find(n => n.id===e.target);
-    if(s?.[ '_x'] && t?._x) {
-      ctx.beginPath(); ctx.moveTo(s._x,s._y); ctx.lineTo(t._x,t._y); ctx.stroke();
+    if(s?._x3d != null && t?._x3d != null) {
+      const geo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(s._x3d, s._y3d, s._z3d),
+        new THREE.Vector3(t._x3d, t._y3d, t._z3d)
+      ]);
+      const mat = new THREE.LineBasicMaterial({color:0x334155, transparent:true, opacity:0.3});
+      const line = new THREE.Line(geo, mat);
+      kgScene.add(line);
+      kgLines.push(line);
     }
   });
 
-  kgNodes.forEach((n,i) => {
-    if(!n._x) return;
-    const col = KG_COLORS[n._type]||KG_COLORS.unknown;
-    const r = n._type==='okf_class' ? 5 : 3;
-    ctx.beginPath(); ctx.arc(n._x,n._y,r,0,Math.PI*2);
-    ctx.fillStyle = col; ctx.fill();
-    if(kgSelected===i) { ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.stroke(); }
-  });
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+  kgRenderer.domElement.onclick = e => {
+    const rect = kgRenderer.domElement.getBoundingClientRect();
+    mouse.x = ((e.clientX-rect.left)/rect.width)*2-1;
+    mouse.y = -((e.clientY-rect.top)/rect.height)*2+1;
+    raycaster.setFromCamera(mouse, kgCamera);
+    const hits = raycaster.intersectObjects(kgMeshes);
+    if(hits.length) {
+      const idx = hits[0].object.userData.nodeIdx;
+      kgSelected = idx;
+      showNodeDetail(kgNodes[idx]);
+      kgMeshes.forEach(m => m.material.emissiveIntensity = 0.3);
+      hits[0].object.material.emissiveIntensity = 1;
+    }
+  };
+
+  animate3DKg();
 }
 
-function initKgInteraction() {
-  const canvas = $('#kgCanvas');
-  if(!canvas) return;
-  canvas.onmousedown = e => {
-    const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX-rect.left, my = e.clientY-rect.top;
-    let minD=20, minI=-1;
-    kgNodes.forEach((n,i) => { if(!n._x) return; const d=Math.hypot(n._x-mx,n._y-my); if(d<minD){minD=d;minI=i;} });
-    if(minI>=0) {
-      kgDragging=minI; kgOffset={x:mx-kgNodes[minI]._x,y:my-kgNodes[minI]._y};
-      kgSelected=minI; showNodeDetail(kgNodes[minI]); drawKgGraph();
-    }
-  };
-  canvas.onmousemove = e => {
-    if(kgDragging===null) return;
-    const rect=canvas.getBoundingClientRect();
-    kgNodes[kgDragging]._x=e.clientX-rect.left-kgOffset.x;
-    kgNodes[kgDragging]._y=e.clientY-rect.top-kgOffset.y;
-    drawKgGraph();
-  };
-  canvas.onmouseup = () => { kgDragging=null; };
+function animate3DKg() {
+  requestAnimationFrame(animate3DKg);
+  if(kgControls) kgControls.update();
+  if(kgRenderer && kgScene && kgCamera) kgRenderer.render(kgScene, kgCamera);
 }
 
 function showNodeDetail(n) {
@@ -780,13 +884,30 @@ async function processPID(file) {
 
   const el=$('#pidResults');
   if(res?.detections&&el) {
-    el.innerHTML='<table><tr><th>Class</th><th>Confidence</th><th>Box</th></tr>'+
-      res.detections.map(d=>`<tr><td>${d.class_name||d.class||'—'}</td><td>${((d.confidence||d.score||0)*100).toFixed(1)}%</td><td style="font-size:11px;color:var(--dim)">${d.box?d.box.map(b=>b.toFixed(0)).join(', '):'—'}</td></tr>`).join('')+'</table>';
+    el.innerHTML='<table><tr><th>Class</th><th>Confidence</th><th>Box</th><th>Action</th></tr>'+
+      res.detections.map((d,i)=>`<tr><td>${d.class_name||d.class||'—'}</td><td>${((d.confidence||d.score||0)*100).toFixed(1)}%</td><td style="font-size:11px;color:var(--dim)">${d.box?d.box.map(b=>b.toFixed(0)).join(', '):'—'}</td><td><button class="btn btn-sm" onclick="reclassifySymbol(${i},'${d.class_name||d.class||''}')">Reclassify</button></td></tr>`).join('')+'</table>';
   }
   if(res?.entities) {
     $('#pidEntities').innerHTML=res.entities.map(e=>`<div style="padding:4px 0;font-size:13px"><span class="tag tag-blue">${e.type}</span> ${e.value}</div>`).join('');
   }
   setTimeout(()=>{ if(pw) pw.style.display='none'; },1500);
+}
+
+async function reclassifySymbol(idx, currentClass) {
+  const newClass = prompt(`Reclassify symbol (current: ${currentClass}):`);
+  if (!newClass || newClass === currentClass) return;
+  const res = await api('/api/process/reclassify', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({node_id: idx, new_class: newClass})
+  });
+  if (res?.status === 'ok') {
+    toast(`Reclassified to ${newClass}`, 'success');
+    const cell = document.querySelectorAll('#pidResults tr')[idx+1]?.cells?.[0];
+    if (cell) cell.textContent = newClass;
+  } else {
+    toast(res?.error || 'Reclassification failed', 'error');
+  }
 }
 
 // ── AI Chat ──────────────────────────────────────────────────────────
@@ -819,6 +940,121 @@ async function sendAIChat() {
   }
 }
 
+// ── Storage Browser ──────────────────────────────────────────────────
+let storagePath = '';
+
+async function loadStorage(path) {
+  storagePath = path || '';
+  const url = '/api/storage' + (storagePath ? '/' + storagePath : '');
+  const res = await api(url);
+  if(!res) return;
+  const bc = $('#storageBreadcrumb');
+  const parts = res.path === '/' ? [''] : res.path.split('/');
+  bc.innerHTML = '<i class="fas fa-home" style="cursor:pointer" onclick="loadStorage()"></i>' +
+    parts.map((p, i) => {
+      if(!p) return '';
+      const link = parts.slice(1, i + 1).join('/');
+      return ` / <span style="cursor:pointer;color:var(--accent)" onclick="loadStorage('${link}')">${p}</span>`;
+    }).join('');
+  const el = $('#storageFiles');
+  const dirs = res.items.filter(i => i.type === 'dir');
+  const files = res.items.filter(i => i.type === 'file');
+  let html = '';
+  if(storagePath) {
+    const parent = storagePath.split('/').slice(0, -1).join('/');
+    html += `<div style="padding:8px 12px;cursor:pointer;color:var(--dim);font-size:13px" onclick="loadStorage('${parent}')">
+      <i class="fas fa-arrow-left"></i> Back</div>`;
+  }
+  dirs.forEach(d => {
+    html += `<div style="padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;border-radius:6px" 
+      onmouseover="this.style.background='rgba(255,255,255,.03)'" onmouseout="this.style.background=''" 
+      onclick="loadStorage('${d.path}')">
+      <i class="fas fa-folder" style="color:#fbbf24"></i> ${d.name}</div>`;
+  });
+  files.forEach(f => {
+    const icon = getFileIcon(f.name);
+    const size = formatSize(f.size);
+    html += `<div style="padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;border-radius:6px" 
+      onmouseover="this.style.background='rgba(255,255,255,.03)'" onmouseout="this.style.background=''" 
+      onclick="viewStorageFile('${f.path}','${f.name}')">
+      <i class="${icon.icon}" style="color:${icon.color}"></i> 
+      <span style="flex:1">${f.name}</span>
+      <span style="color:var(--dim);font-size:11px">${size}</span></div>`;
+  });
+  if(!res.items.length) html = '<div style="color:var(--dim);font-size:13px;padding:20px;text-align:center">Empty folder</div>';
+  el.innerHTML = html;
+}
+
+function getFileIcon(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  const map = {
+    jpg: {icon:'fas fa-image',color:'#60a5fa'}, jpeg: {icon:'fas fa-image',color:'#60a5fa'},
+    png: {icon:'fas fa-image',color:'#60a5fa'}, gif: {icon:'fas fa-image',color:'#60a5fa'},
+    json: {icon:'fas fa-code',color:'#34d399'}, graphml: {icon:'fas fa-project-diagram',color:'#a78bfa'},
+    csv: {icon:'fas fa-table',color:'#fbbf24'}, txt: {icon:'fas fa-file-lines',color:'#94a3b8'},
+    md: {icon:'fas fa-file-lines',color:'#94a3b8'}, pdf: {icon:'fas fa-file-pdf',color:'#f87171'},
+    xlsx: {icon:'fas fa-file-excel',color:'#34d399'}, xls: {icon:'fas fa-file-excel',color:'#34d399'},
+    docx: {icon:'fas fa-file-word',color:'#60a5fa'}, pptx: {icon:'fas fa-file-powerpoint',color:'#f97316'},
+  };
+  return map[ext] || {icon:'fas fa-file',color:'#94a3b8'};
+}
+
+function formatSize(bytes) {
+  if(bytes < 1024) return bytes + ' B';
+  if(bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/1048576).toFixed(1) + ' MB';
+}
+
+async function viewStorageFile(path, name) {
+  const viewer = $('#storageViewer');
+  const content = $('#storageViewerContent');
+  const vname = $('#storageViewerName');
+  const dlink = $('#storageDownloadLink');
+  viewer.style.display = 'block';
+  vname.textContent = name;
+  dlink.href = '/api/storage/download/' + path;
+  const ext = name.split('.').pop().toLowerCase();
+  if(['jpg','jpeg','png','gif','bmp'].includes(ext)) {
+    content.innerHTML = `<img src="/api/storage/download/${path}" style="max-width:100%;border-radius:8px">`;
+  } else if(ext === 'json') {
+    const res = await api('/api/storage/' + path);
+    content.innerHTML = `<pre style="margin:0;font-size:12px;color:var(--text);white-space:pre-wrap;word-break:break-all">${JSON.stringify(res, null, 2)}</pre>`;
+  } else if(ext === 'graphml') {
+    const res = await fetch('/api/storage/download/' + path);
+    const text = await res.text();
+    content.innerHTML = `<pre style="margin:0;font-size:12px;color:var(--text);white-space:pre-wrap;word-break:break-all">${escapeHtml(text)}</pre>`;
+  } else if(ext === 'csv') {
+    const res = await fetch('/api/storage/download/' + path);
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+    const headers = lines[0].split(',');
+    let tbl = '<table style="width:100%;font-size:12px"><tr>' + headers.map(h => `<th style="padding:6px 8px;text-align:left;border-bottom:1px solid var(--border)">${h}</th>`).join('') + '</tr>';
+    lines.slice(1, 50).forEach(line => {
+      const cols = line.split(',');
+      tbl += '<tr>' + cols.map(c => `<td style="padding:6px 8px;border-bottom:1px solid var(--border)">${c}</td>`).join('') + '</tr>';
+    });
+    tbl += '</table>';
+    if(lines.length > 50) tbl += `<div style="color:var(--dim);font-size:11px;margin-top:8px">Showing 50 of ${lines.length} rows</div>`;
+    content.innerHTML = tbl;
+  } else if(['txt','md','log'].includes(ext)) {
+    const res = await fetch('/api/storage/download/' + path);
+    const text = await res.text();
+    content.innerHTML = `<pre style="margin:0;font-size:12px;color:var(--text);white-space:pre-wrap">${escapeHtml(text)}</pre>`;
+  } else {
+    content.innerHTML = `<div style="color:var(--dim);font-size:13px;text-align:center;padding:20px">
+      <i class="fas fa-file" style="font-size:32px;margin-bottom:8px;display:block"></i>
+      Preview not available for .${ext} files. Use the download button.</div>`;
+  }
+}
+
+function closeStorageViewer() {
+  $('#storageViewer').style.display = 'none';
+}
+
+function escapeHtml(t) {
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 // ── Init ─────────────────────────────────────────────────────────────
 async function init() {
   const h = await api('/api/health');
@@ -829,7 +1065,7 @@ async function init() {
     $('#statusDot').className='dot dot-red';
     $('#statusText').textContent='Disconnected';
   }
-  loadHome();
+  showPage('home');
 }
 init();
 </script>

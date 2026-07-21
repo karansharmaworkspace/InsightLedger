@@ -1,0 +1,9 @@
+{
+  "total_nodes": 6,
+  "total_edges": 0,
+  "nodes_by_type": {
+    "y-strainer": 4,
+    "diaphragm_valve": 2
+  },
+  "edges_by_label": {}
+}

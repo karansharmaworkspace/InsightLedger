@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def main():
-    parser = argparse.ArgumentParser(description="DPID AI: Universal P&ID Digitization Engine")
+    parser = argparse.ArgumentParser(description="DOCOKF: Universal P&ID Digitization Engine")
     parser.add_argument("image_path", help="Path to the P&ID diagram (PNG/JPG)")
     parser.add_argument("--output", default="output", help="Output directory for JSON and visualizations")
     args = parser.parse_args()

@@ -1,5 +1,5 @@
 """
-DocuPID Enterprise Design System
+InsightLedger Enterprise Design System
 =================================
 A single source of truth for color, spacing, radius and component QSS,
 inspired by Microsoft Fabric / Azure AI Studio / Linear / Notion.

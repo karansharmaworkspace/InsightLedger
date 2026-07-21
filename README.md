@@ -1,4 +1,4 @@
-# DocuPID
+# InsightLedger
 
 **AI-Powered P&ID Digitization — From Paper to Knowledge in Minutes**
 
@@ -9,7 +9,7 @@ ET Hackathon 2.0 | Team InsightLedger
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](#license)
 
 <p align="center">
-  <img src="assets/svg/01-logo.svg" alt="DocuPID Logo" width="400">
+  <img src="assets/svg/01-logo.svg" alt="InsightLedger Logo" width="400">
 </p>
 
 ---
@@ -62,19 +62,19 @@ But there's a massive problem:
 - **Regulatory Fines**: Non-compliance with ISO 15926, ISA-88 standards
 - **Knowledge Drain**: When experienced engineers retire, their undocumented knowledge disappears
 
-> "Finding a single pressure relief valve across 500 P&ID drawings can take an experienced engineer 4+ hours. With DocuPID, it takes 4 seconds."
+> "Finding a single pressure relief valve across 500 P&ID drawings can take an experienced engineer 4+ hours. With InsightLedger, it takes 4 seconds."
 
 ---
 
 ## Our Solution
 
-### DocuPID: The AI P&ID Analyst
+### InsightLedger: The AI P&ID Analyst
 
-DocuPID is a **multi-stage AI pipeline** that transforms scanned P&ID images into **searchable, queryable knowledge graphs** in under 15 minutes.
+InsightLedger is a **multi-stage AI pipeline** that transforms scanned P&ID images into **searchable, queryable knowledge graphs** in under 15 minutes.
 
 ### Key Differentiators
 
-| Feature | DocuPID | Manual Process | Other Tools |
+| Feature | InsightLedger | Manual Process | Other Tools |
 |---------|---------|----------------|-------------|
 | Processing Time | **15 minutes** | 6-12 months | Days-Weeks |
 | Cost | **~$500** | $4.2M | $50K-200K |
@@ -167,7 +167,7 @@ DocuPID is a **multi-stage AI pipeline** that transforms scanned P&ID images int
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DocuPID Pipeline                         │
+│                        InsightLedger Pipeline                         │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐    │
@@ -406,7 +406,7 @@ Level 1: Major Categories (12)
 
 ### Quantitative Results
 
-| Metric | Before DocuPID | After DocuPID | Improvement |
+| Metric | Before InsightLedger | After InsightLedger | Improvement |
 |--------|----------------|---------------|-------------|
 | Processing Time | 6-12 months | **15 minutes** | **500x faster** |
 | Cost per Project | $4.2M | **~$500** | **99.99% reduction** |
@@ -437,7 +437,7 @@ Level 1: Major Categories (12)
 
 ### ROI Analysis
 
-| Scenario | Traditional | DocuPID | Savings |
+| Scenario | Traditional | InsightLedger | Savings |
 |----------|-------------|---------|---------|
 | Small Plant (100 P&IDs) | $800K, 3 months | $200, 2 days | $799.8K |
 | Medium Plant (500 P&IDs) | $4.2M, 9 months | $500, 1 week | $4.199M |
@@ -498,8 +498,8 @@ Level 1: Major Categories (12)
 
 ```bash
 # Clone the repository
-git clone https://github.com/team-insightledger/docupid.git
-cd docupid
+git clone https://github.com/team-insightledger/insightledger.git
+cd insightledger
 
 # Create virtual environment
 python -m venv venv
@@ -517,10 +517,10 @@ python scripts/download_models.py
 ### Quick Start
 
 ```python
-from docupid import DocuPID
+from insightledger import InsightLedger
 
 # Initialize the pipeline
-pipeline = DocuPID()
+pipeline = InsightLedger()
 
 # Process a single P&ID
 result = pipeline.process("path/to/pid_image.png")
@@ -537,7 +537,7 @@ pipeline.export_graph("output.graphml", format="graphml")
 
 ```bash
 # Start the web server
-python -m docupid.web
+python -m insightledger.web
 
 # Open browser to http://localhost:8000
 ```
@@ -546,7 +546,7 @@ python -m docupid.web
 
 ```bash
 # Launch PyQt6 application
-python -m docupid.gui
+python -m insightledger.gui
 ```
 
 ---
@@ -580,9 +580,9 @@ curl -X POST http://localhost:8000/api/query \
 ### Python SDK
 
 ```python
-from docupid import DocuPID
+from insightledger import InsightLedger
 
-client = DocuPID(api_url="http://localhost:8000")
+client = InsightLedger(api_url="http://localhost:8000")
 
 # Process
 job = client.process("image.png")
@@ -670,7 +670,7 @@ A: A Piping & Instrumentation Diagram (P&ID) is a detailed diagram showing the p
 **Q: Why are paper P&IDs still common?**
 A: Legacy systems, regulatory requirements, and the complexity of industrial documentation have kept many plants reliant on paper. Digital transformation in this sector has been slow due to high costs and specialized requirements.
 
-**Q: How accurate is DocuPID?**
+**Q: How accurate is InsightLedger?**
 A: Our current accuracy is 94%+ for symbol classification and 96%+ for text recognition. We're continuously improving through additional training data and model refinements.
 
 ### Technical
@@ -725,14 +725,15 @@ A: Oil & Gas, Chemical, Power Generation, Pharmaceutical, Water Treatment, Minin
 ### Team InsightLedger
 
 - **Email**: team@insightledger.dev
-- **GitHub**: [github.com/team-insightledger/docupid](https://github.com/team-insightledger/docupid)
+- **GitHub**: [github.com/team-insightledger/insightledger](https://github.com/team-insightledger/insightledger)
 - **LinkedIn**: [Team InsightLedger](https://linkedin.com/company/insightledger)
 
 ### Hackathon Links
 
-- **Project Repository**: [github.com/team-insightledger/docupid](https://github.com/team-insightledger/docupid)
+- **Project Repository**: 
+[github.com/team-insightledger/insightledger](https://github.com/team-insightledger/insightledger)
 - **Demo Video**: [YouTube](https://youtube.com/watch?v=demo)
-- **Live Demo**: [demo.docupid.dev](https://demo.docupid.dev)
+- **Live Demo**: [demo.insightledger.dev](https://demo.insightledger.dev)
 
 ---
 
@@ -766,6 +767,6 @@ SOFTWARE.
 
 ---
 
-**DocuPID** — Bridging the gap between paper and digital intelligence.
+**InsightLedger** — Bridging the gap between paper and digital intelligence.
 
 *Built with ❤️ at ET Hackathon 2.0*

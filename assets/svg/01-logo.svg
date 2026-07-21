@@ -43,7 +43,7 @@
     <circle cx="70" cy="14" r="4" fill="#00e5c0" class="sparkle"/>
     <circle cx="77" cy="8" r="2.5" fill="#00d4ff" class="sparkle" style="animation-delay: 0.5s"/>
   </g>
-  <!-- DocuPID text -->
+  <!-- InsightLedger text -->
   <text x="120" y="58" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700" fill="white" letter-spacing="-1" class="fade-in text-glow">Docu</text>
   <text x="215" y="58" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700" fill="url(#g1)" letter-spacing="-1" class="fade-in text-glow" style="animation-delay: 0.2s">PID</text>
   <!-- Tagline -->

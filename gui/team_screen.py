@@ -39,7 +39,7 @@ class TeamPage(QWidget):
         h_layout.setContentsMargins(24, 20, 24, 20)
         
         p_name = QVBoxLayout()
-        title = QLabel("DocuPID Enterprise Edition")
+        title = QLabel("InsightLedger Enterprise Edition")
         title.setStyleSheet("color: #F8FAFC; font-size: 24px; font-weight: bold; border: none;")
         p_name.addWidget(title)
         sprint = QLabel("Sprint 4: Knowledge Graph Expansion")

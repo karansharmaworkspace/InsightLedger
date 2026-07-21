@@ -92,7 +92,7 @@ class HomeScreen(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("DocuPID")
+        self.setWindowTitle("InsightLedger")
         self.resize(1340, 860)
         self.setMinimumSize(980, 620)
         self._sidebar_expanded = True
@@ -155,7 +155,7 @@ class HomeScreen(QMainWindow):
         """)
         self._brand_row.addWidget(self._brand_icon)
 
-        self._brand_text = QLabel("DocuPID")
+        self._brand_text = QLabel("InsightLedger")
         self._brand_text.setStyleSheet("color: #fff; font-size: 16px; font-weight: bold;")
         self._brand_row.addWidget(self._brand_text)
         self._brand_row.addStretch()

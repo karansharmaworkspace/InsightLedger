@@ -11,7 +11,7 @@ from gui.home_screen import HomeScreen
 
 def main():
     try:
-        print("Launching DocuPID...")
+        print("Launching InsightLedger...")
         app = QApplication(sys.argv)
         window = HomeScreen()
         window.show()

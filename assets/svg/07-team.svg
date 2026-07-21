@@ -29,7 +29,7 @@
   <rect width="900" height="400" fill="url(#bg7)" rx="12"/>
   <text x="450" y="45" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle" class="f1">TEAM INSIGHTLEDGER</text>
   <line x1="370" y1="55" x2="530" y2="55" stroke="url(#cyan7)" stroke-width="2"/>
-  <text x="450" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" text-anchor="middle" class="f2">The minds behind DocuPID</text>
+  <text x="450" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#7a8ba8" text-anchor="middle" class="f2">The minds behind InsightLedger</text>
 
   <!-- Member 1 -->
   <g transform="translate(50, 100)" class="c1">

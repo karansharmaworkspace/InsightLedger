@@ -20,7 +20,7 @@ from pyqtgraph.opengl import (
 )
 
 
-# ── Theme (DocuPID Enterprise Design System) ──────────────────────────
+# ── Theme (InsightLedger Enterprise Design System) ──────────────────────────
 BG_DARK = "#0F172A"
 BG_CARD = "#1E293B"
 BG_INPUT = "#0F172A"

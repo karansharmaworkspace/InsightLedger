@@ -69,5 +69,5 @@
     <text x="135" y="238" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#7a8ba8" text-anchor="middle">typical timeline for manual conversion</text>
   </g>
 
-  <text x="400" y="415" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="url(#cyan2)" text-anchor="middle" font-weight="600" class="fade-up" style="animation-delay:1s">DocuPID changes this.</text>
+  <text x="400" y="415" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="url(#cyan2)" text-anchor="middle" font-weight="600" class="fade-up" style="animation-delay:1s">InsightLedger changes this.</text>
 </svg>

@@ -720,22 +720,7 @@ A: Oil & Gas, Chemical, Power Generation, Pharmaceutical, Water Treatment, Minin
 
 ---
 
-## Contact
 
-### Team InsightLedger
-
-- **Email**: team@insightledger.dev
-- **GitHub**: [github.com/team-insightledger/insightledger](https://github.com/team-insightledger/insightledger)
-- **LinkedIn**: [Team InsightLedger](https://linkedin.com/company/insightledger)
-
-### Hackathon Links
-
-- **Project Repository**: 
-[github.com/team-insightledger/insightledger](https://github.com/team-insightledger/insightledger)
-- **Demo Video**: [YouTube](https://youtube.com/watch?v=demo)
-- **Live Demo**: [demo.insightledger.dev](https://demo.insightledger.dev)
-
----
 
 ## License
 
